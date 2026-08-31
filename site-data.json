@@ -1,0 +1,125 @@
+{
+  "settings": {
+    "openDate": "2026-09-01T08:00:00",
+    "deadline": "2026-10-15T23:59:00",
+    "applyLink": "https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register",
+    "pdfLink": "https://satitislam.psu.ac.th/files/com_g_regis/2026-08_27d09d94109fc4f.pdf"
+  },
+  "content": {
+    "videos": [
+      {
+        "id": 1,
+        "url": "https://youtu.be/qPQmZwh5HP8?si=bAvdrfDopLzvFjBq",
+        "title_th": "พรีเซนต์โรงเรียน",
+        "title_en": "School Presentation"
+      },
+      {
+        "id": 2,
+        "url": "https://youtu.be/XCufpsZjQ_0?si=2bpgSVWRnx-dJGGv",
+        "title_th": "บรรยากาศหอพัก",
+        "title_en": "Dormitory Life"
+      },
+      {
+        "id": 3,
+        "url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "title_th": "กิจกรรมทัศนศึกษา",
+        "title_en": "Field Trips"
+      }
+    ]
+  },
+  "timeline": [
+    {
+      "id": 1,
+      "date_th": "สิงหาคม 2569 เป็นต้นไป",
+      "date_en": "From Aug 2026",
+      "title_th": "ประชาสัมพันธ์",
+      "title_en": "PR Campaign",
+      "desc_th": "เผยแพร่ข้อมูลรับสมัครนักเรียนใหม่",
+      "desc_en": "Admissions information published",
+      "icon": "megaphone"
+    },
+    {
+      "id": 2,
+      "date_th": "1 ก.ย. - 15 ต.ค. 2569",
+      "date_en": "Sep 1 - Oct 15, 2026",
+      "title_th": "รับสมัครและชำระเงิน",
+      "title_en": "Application & Payment",
+      "desc_th": "สมัครผ่านออนไลน์ หรือ ยื่นใบสมัครด้วยตนเอง/ไปรษณีย์ พร้อมชำระค่าสมัคร 300 บาท",
+      "desc_en": "Apply online or via mail/in-person. Pay 300 THB fee.",
+      "icon": "calendar-plus"
+    },
+    {
+      "id": 3,
+      "date_th": "21 ตุลาคม 2569",
+      "date_en": "Oct 21, 2026",
+      "title_th": "ประกาศรายชื่อผู้มีสิทธิ์สอบ",
+      "title_en": "Announcement of Eligible Candidates",
+      "desc_th": "แจ้งรายชื่อ เลขที่นั่งสอบ และห้องสอบ ทางเว็บไซต์โรงเรียน",
+      "desc_en": "Exam seating and rooms announced on website",
+      "icon": "list-numbers"
+    },
+    {
+      "id": 4,
+      "date_th": "7 พฤศจิกายน 2569",
+      "date_en": "Nov 7, 2026",
+      "title_th": "สอบข้อเขียนคัดเลือก",
+      "title_en": "Written Examination",
+      "desc_th": "เวลา 09.00 น. – 12.00 น. ณ สนามสอบโรงเรียนสาธิตวิทยาการอิสลาม ม.อ.",
+      "desc_en": "09:00 AM - 12:00 PM at IDS PSU",
+      "icon": "pencil-simple"
+    },
+    {
+      "id": 5,
+      "date_th": "ภายใน 30 พฤศจิกายน 2569",
+      "date_en": "By Nov 30, 2026",
+      "title_th": "ประกาศผลการคัดเลือก",
+      "title_en": "Result Announcement",
+      "desc_th": "แจ้งผลการสอบข้อเขียนคัดเลือกผ่านระบบออนไลน์",
+      "desc_en": "Results announced via online system",
+      "icon": "confetti"
+    },
+    {
+      "id": 6,
+      "date_th": "1 - 4 ธันวาคม 2569",
+      "date_en": "Dec 1 - 4, 2026",
+      "title_th": "ยืนยันสิทธิ์ออนไลน์",
+      "title_en": "Online Confirmation",
+      "desc_th": "ยืนยันผ่านระบบของเว็บไซต์โรงเรียน (หากพ้นกำหนดถือว่าสละสิทธิ์)",
+      "desc_en": "Confirm admission online. Unconfirmed status will be forfeited.",
+      "icon": "check-square-offset"
+    },
+    {
+      "id": 7,
+      "date_th": "20 มีนาคม 2570",
+      "date_en": "Mar 20, 2027",
+      "title_th": "มอบตัวนักเรียนใหม่",
+      "title_en": "New Student Enrollment",
+      "desc_th": "ชำระเงินค่าธรรมเนียมแรกเข้าและเอกสารประกอบการมอบตัว",
+      "desc_en": "Pay initial fees and submit enrollment documents",
+      "icon": "student"
+    }
+  ],
+  "faqs": [
+    {
+      "id": 1,
+      "q_th": "ไม่เคยอยู่หอพักมาก่อน ลูกจะปรับตัวได้ไหม?",
+      "q_en": "Can my child adapt to dorm life?",
+      "a_th": "โรงเรียนมีระบบ 'รุ่นพี่ดูแลรุ่นน้อง' และมีอาจารย์ที่ปรึกษาหอพักดูแลอย่างใกล้ชิดตลอด 24 ชั่วโมง พร้อมกิจกรรมละลายพฤติกรรมในช่วงแรกเข้า ช่วยให้นักเรียนคลายความคิดถึงบ้าน ปรับตัวได้ไว และมีความรับผิดชอบมากขึ้นครับ",
+      "a_en": "We have a mentorship system and 24/7 dorm advisors. Initial ice-breaking activities help new students adapt quickly and build responsibility."
+    },
+    {
+      "id": 2,
+      "q_th": "จ่ายก้อนใหญ่ไม่ไหว โรงเรียนมีแนวทางช่วยเหลือไหม?",
+      "q_en": "Are there installment plans for tuition?",
+      "a_th": "เข้าใจความกังวลของผู้ปกครองครับ โรงเรียนมีนโยบายให้ 'แบ่งชำระเป็นงวดๆ 4-5 งวดในแต่ละเทอม' (สามารถดูกำหนดการจ่ายได้ที่ปุ่มแผนการแบ่งชำระด้านบน) เพื่อช่วยแบ่งเบาภาระงบประมาณระยะยาว โดยไม่มีการเก็บดอกเบี้ยหรือค่าธรรมเนียมแฝงครับ",
+      "a_en": "Yes, we offer 4-5 installment payment plans per term without any interest or hidden fees to help parents manage their budget."
+    },
+    {
+      "id": 3,
+      "q_th": "โครงการนี้จำกัดเฉพาะนักเรียนมุสลิมหรือไม่?",
+      "q_en": "Are non-Muslim students accepted?",
+      "a_th": "โรงเรียนยินดีต้อนรับนักเรียนทุกศาสนาครับ เรามุ่งเน้นการสร้างสังคมพหุวัฒนธรรม (Multicultural Society) ให้ผู้เรียนได้เรียนรู้การอยู่ร่วมกันอย่างมีความสุขและเคารพซึ่งกันและกัน",
+      "a_en": "Students of all religions are welcome! We focus on fostering a multicultural environment where students learn to live together happily."
+    }
+  ]
+}
