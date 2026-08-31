@@ -28,6 +28,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
+    <!-- Vercel Web Analytics -->
+    <script defer src="/_vercel/insights/script.js"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -80,6 +83,7 @@
     </div>
     <div id="toast-container"></div>
 
+    <!-- 🟢 SECTION: Navbar (Redesigned matching image_012331) 🟢 -->
     <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50 border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
@@ -107,6 +111,7 @@
         </div>
     </nav>
 
+    <!-- 🟢 SECTION: Hero 🟢 -->
     <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-slate-50">
         <!-- Decorative Background Blurs -->
         <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[500px] h-[500px] rounded-full bg-psu-accent/10 blur-3xl pointer-events-none"></div>
@@ -426,6 +431,7 @@
         </div>
     </section>
 
+    <!-- 🟢 SECTION: Videos 🟢 -->
     <section id="videos" class="py-20 bg-white border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-12">
@@ -439,6 +445,7 @@
         </div>
     </section>
 
+    <!-- 🟢 SECTION: Fees (Redesigned) 🟢 -->
     <section id="fees" class="py-20 bg-slate-900 text-white relative">
         <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -711,6 +718,7 @@
         <a id="apply-btn-sticky" href="https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register" class="bg-psu-accent text-white px-6 py-2.5 rounded-full font-bold shadow-md hover:bg-psu-light transition text-sm">สมัครเลย</a>
     </div>
 
+    <!-- Admin Modals -->
     <div id="admin-panel" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] hidden flex justify-center items-center p-4 overflow-y-auto">
         <div id="admin-login" class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-sm my-auto">
             <div class="text-center mb-6">
@@ -1102,7 +1110,7 @@
         };
 
         window.handleLogin = () => {
-            if (document.getElementById('login-pass').value === 'Admin*scius2026') {
+            if (document.getElementById('login-pass').value === 'Admin*2026') {
                 isAdmin = true;
                 document.getElementById('login-error').classList.add('hidden');
                 document.getElementById('admin-login').classList.add('hidden');
