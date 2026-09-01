@@ -87,16 +87,16 @@
   "faqs": [
     {
       "id": 1,
-      "q_th": "ไม่เคยอยู่หอพักมาก่อน ลูกจะปรับตัวได้ไหม?",
-      "q_en": "Can my child adapt to dorm life?",
-      "a_th": "โรงเรียนมีระบบ 'รุ่นพี่ดูแลรุ่นน้อง' และมีอาจารย์ที่ปรึกษาหอพักดูแลอย่างใกล้ชิดตลอด 24 ชั่วโมง พร้อมกิจกรรมละลายพฤติกรรมในช่วงแรกเข้า ช่วยให้นักเรียนคลายความคิดถึงบ้าน ปรับตัวได้ไว และมีความรับผิดชอบมากขึ้นครับ",
-      "a_en": "We have a mentorship system and 24/7 dorm advisors. Initial ice-breaking activities help new students adapt quickly and build responsibility."
+      "q_th": "เรียนไป-กลับได้ไหม หรือบังคับอยู่หอพัก",
+      "q_en": "Is boarding mandatory?",
+      "a_th": "ม.1 เลือกได้ทั้งแบบอยู่ประจำหรือไป-กลับ (ถ้าไป-กลับต้องอยู่กับผู้ปกครองสายตรงเท่านั้น ห้ามอยู่หอพักเอกชน) ส่วนนักเรียน ม.4 ทุกคนบังคับอยู่ประจำที่หอพักของโรงเรียน 100% ครับ",
+      "a_en": "M.1 can choose to be day students (must live with direct parents) or boarders. M.4 students must be 100% boarders in the school dormitory."
     },
     {
       "id": 2,
       "q_th": "จ่ายก้อนใหญ่ไม่ไหว โรงเรียนมีแนวทางช่วยเหลือไหม?",
       "q_en": "Are there installment plans for tuition?",
-      "a_th": "เข้าใจความกังวลของผู้ปกครองครับ โรงเรียนมีนโยบายให้ 'แบ่งชำระเป็นงวดๆ 4-5 งวดในแต่ละเทอม' (สามารถดูกำหนดการจ่ายได้ที่ปุ่มแผนการแบ่งชำระด้านบน) เพื่อช่วยแบ่งเบาภาระงบประมาณระยะยาว โดยไม่มีการเก็บดอกเบี้ยหรือค่าธรรมเนียมแฝงครับ",
+      "a_th": "โรงเรียนมีนโยบายให้ 'แบ่งชำระเป็นงวดๆ 4-5 งวดในแต่ละเทอม' (สามารถดูกำหนดการจ่ายได้ที่ปุ่มแผนการแบ่งชำระด้านบน) เพื่อช่วยแบ่งเบาภาระงบประมาณระยะยาว โดยไม่มีการเก็บดอกเบี้ยหรือค่าธรรมเนียมแฝงครับ",
       "a_en": "Yes, we offer 4-5 installment payment plans per term without any interest or hidden fees to help parents manage their budget."
     },
     {
@@ -112,6 +112,48 @@
       "q_en": "What grades are available?",
       "a_th": "โรงเรียนเปิดสอน ม.1 และ ม.4 โดย ม.4 จะมี 2 หลักสูตรคือ หลักสูตรวิทยาศาสตร์-คณิตศาสตร์ทั่วไป และ หลักสูตรโครงการ วมว.",
       "a_en": "We offer Grade 7 (M.1) and Grade 10 (M.4). M.4 has 2 tracks: Science-Math and SCiUS program."
+    },
+    {
+      "id": 1788244664554,
+      "q_th": "มีทุนการศึกษาให้ไหม?",
+      "q_en": "Are there scholarships available?",
+      "a_th": "ปีการศึกษานี้ยังไม่มีทุนการศึกษาสำหรับนักเรียนใหม่ครับ",
+      "a_en": "There are currently no scholarships available for new students this academic year."
+    },
+    {
+      "id": 1788244664946,
+      "q_th": "ต้องสอบคัดเลือกไหม และสอบวิชาอะไรบ้าง?",
+      "q_en": "Is there an entrance exam?",
+      "a_th": "มีการสอบคัดเลือกครับ โดยจะสอบ 3 วิชาหลัก ได้แก่ คณิตศาสตร์, วิทยาศาสตร์, และภาษาอังกฤษ",
+      "a_en": "Yes, applicants must take an entrance exam covering Mathematics, Science, and English."
+    },
+    {
+      "id": 1788244666002,
+      "q_th": "มีค่าสมัครสอบไหม ชำระอย่างไร?",
+      "q_en": "Is there an application fee?",
+      "a_th": "ค่าสมัครสอบ 300 บาทครับ สามารถชำระเงินสดได้ที่โรงเรียน (กรณีสมัครด้วยตนเอง), แนบเงินสด (กรณีสมัครทางไปรษณีย์) หรือสแกน QR Codeผ่านแอปธนาคาร (กรณีสมัครออนไลน์)",
+      "a_en": "The application fee is 300 THB. It can be paid in cash, via mail, or via Mobile Banking QR Code for online applications."
+    },
+    {
+      "id": 1788245005529,
+      "q_th": "ชำระค่าสมัครสอบทางออนไลน์แล้ว ต้องส่งสลิปไหม?",
+      "q_en": "Do I need to send the payment slip?",
+      "a_th": "ไม่ต้องส่งสลิปครับ ระบบจะตัดยอดและมีเจ้าหน้าที่ตรวจสอบการชำระเงินของผู้สมัครโดยอัตโนมัติ",
+      "a_en": "No need to send the slip. The system and our staff will verify your payment automatically."
+    },
+    {
+      "id": 1788245209313,
+      "q_th": "ตรวจสอบสถานะการชำระเงินได้ที่ไหน?",
+      "q_en": "Where can I check payment status?",
+      "a_th": "สามารถตรวจสอบได้ตลอดเวลาผ่านระบบรับสมัครออนไลน์ เมนู 'ตรวจสอบสถานะ' ในระบบ https://ischoolme.com/ischoolme/sathit/register_student.php?menu=student_register",
+      "a_en": "You can check it anytime via the online admission system's 'Check Status' menu. "
+    },
+    {
+      "id": 1788245209609,
+      "q_th": "จะมีการเปิดรับสมัครรอบสองไหม?",
+      "q_en": "Will there be a second round?",
+      "a_th": "การเปิดรับสมัครรอบสอง จะพิจารณาจากจำนวนผู้ยืนยันสิทธิ์ในรอบแรกครับ หากได้นักเรียนครบตามจำนวนที่ประกาศรับแล้ว จะไม่มีการเปิดรับสมัครในรอบที่สองครับ",
+      "a_en": "A second round depends on the number of confirmed students from the first round. If the quota is met, there won't be a second round."
     }
   ]
 }
