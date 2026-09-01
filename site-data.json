@@ -1,9 +1,10 @@
 {
   "settings": {
-    "openDate": "2026-08-31T08:00",
+    "openDate": "2026-09-01T08:00",
     "deadline": "2026-10-15T23:59:00",
     "applyLink": "https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register",
-    "pdfLink": "https://satitislam.psu.ac.th/files/com_g_regis/2026-08_27d09d94109fc4f.pdf"
+    "pdfLink": "https://satitislam.psu.ac.th/files/com_g_regis/2026-08_27d09d94109fc4f.pdf",
+    "manualLink": "https://drive.google.com/file/d/1wj42TOs9Bnt_QGsS64L-NL4UKGbs0cNv/view?usp=sharing"
   },
   "content": {
     "videos": [
@@ -22,16 +23,6 @@
     ]
   },
   "timeline": [
-    {
-      "id": 1,
-      "date_th": "สิงหาคม 2569 เป็นต้นไป",
-      "date_en": "From Aug 2026",
-      "title_th": "ประชาสัมพันธ์",
-      "title_en": "PR Campaign",
-      "desc_th": "เผยแพร่ข้อมูลรับสมัครนักเรียนใหม่",
-      "desc_en": "Admissions information published",
-      "icon": "megaphone"
-    },
     {
       "id": 2,
       "date_th": "1 ก.ย. - 15 ต.ค. 2569",
