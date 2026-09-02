@@ -16,7 +16,25 @@
       "link": "https://satitislam.psu.ac.th/news/detail/667"
     }
   ],
-  "application_channels": [],
+  "application_channels": [
+    {
+      "id": 1788344309353,
+      "icon": "users",
+      "color": "blue",
+      "title_th": "โควตาใหม่",
+      "title_en": "New Quota",
+      "desc_th": "คำอธิบาย...",
+      "desc_en": "Description...",
+      "btn1_th": "ปุ่มหลัก",
+      "btn1_en": "Main Btn",
+      "btn1_link": "#",
+      "btn1_icon": "noopener noreferrer",
+      "btn2_th": "",
+      "btn2_en": "",
+      "btn2_link": "",
+      "btn2_icon": ""
+    }
+  ],
   "timeline": [
     {
       "id": 2,
