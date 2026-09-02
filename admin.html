@@ -1,17 +1,12 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="th" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบจัดการเนื้อหา | สาธิตอิสลาม ม.อ.</title>
+    <title>CMS Admin | สาธิตวิทยาการอิสลาม ม.อ.</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -19,329 +14,389 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Kanit', 'sans-serif'], },
-                    colors: {
-                        'psu-blue': '#002C6A',
-                        'psu-light': '#0055A5',
-                        'psu-accent': '#00AEEF'
-                    }
+                    fontFamily: { sans: ['Kanit', 'sans-serif'] },
+                    colors: { 'psu-blue': '#002C6A', 'psu-light': '#0055A5', 'psu-accent': '#00AEEF' }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #f8fafc; }
-        /* Custom Toast */
-        #toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 10000; display: flex; flex-direction: column; gap: 10px; }
-        .toast { background: #333; color: #fff; padding: 12px 24px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); animation: slideInRight 0.3s ease, fadeOut 0.5s ease 2.5s forwards; display: flex; align-items: center; gap: 8px; font-size: 14px;}
-        .toast.success { background: #10b981; }
-        .toast.error { background: #ef4444; }
+        body { font-family: 'Kanit', sans-serif; background-color: #f8fafc; }
+        .toast { animation: slideInRight 0.3s ease, fadeOut 0.5s ease 2.5s forwards; }
         @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
     </style>
 </head>
-<body class="text-slate-800 h-screen flex flex-col">
+<body class="text-slate-800 min-h-screen flex flex-col relative">
 
-    <div id="toast-container"></div>
+    <div id="toast-container" class="fixed bottom-5 right-5 z-[10000] flex flex-col gap-2"></div>
 
-    <!-- Login Screen -->
-    <div id="login-screen" class="flex-1 flex justify-center items-center p-4">
-        <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-sm border border-slate-100">
-            <div class="text-center mb-6">
-                <div class="w-16 h-16 bg-psu-blue/10 rounded-full flex items-center justify-center mx-auto mb-4 text-psu-blue text-2xl"><i class="ph-fill ph-lock-key"></i></div>
-                <h2 class="text-2xl font-bold text-slate-800">เข้าสู่ระบบจัดการ</h2>
-                <p class="text-slate-500 text-sm mt-1">เฉพาะเจ้าหน้าที่ผู้ดูแลระบบ</p>
+    <div id="admin-login-screen" class="min-h-screen flex items-center justify-center p-4 bg-slate-900 absolute inset-0 z-50">
+        <div class="bg-white rounded-3xl shadow-2xl p-8 sm:p-10 w-full max-w-md">
+            <div class="text-center mb-8">
+                <div class="w-20 h-20 bg-psu-blue/10 text-psu-blue rounded-full flex items-center justify-center mx-auto mb-4 text-4xl shadow-inner"><i class="ph-fill ph-lock-key"></i></div>
+                <h1 class="text-2xl font-bold text-slate-800">ระบบจัดการหลังบ้าน</h1>
+                <p class="text-slate-500 text-sm mt-1">เจ้าหน้าที่ฝ่ายรับสมัครนักเรียนใหม่</p>
             </div>
             <div class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold text-slate-500 mb-1">รหัสผ่านสำหรับแก้ไขข้อมูล</label>
-                    <input type="password" id="login-pass" class="w-full px-4 py-3 border rounded-lg text-center font-bold tracking-widest text-lg focus:outline-none focus:border-psu-blue focus:ring-1 focus:ring-psu-blue" placeholder="PIN" onkeypress="if(event.key === 'Enter') handleLogin()">
-                </div>
-                <button onclick="handleLogin()" class="w-full bg-psu-blue text-white font-bold py-3 rounded-lg hover:bg-psu-light transition shadow-md">เข้าสู่ระบบ</button>
-                <p id="login-error" class="text-red-500 text-sm text-center hidden"></p>
+                <input type="password" id="login-pass" class="w-full px-4 py-3.5 border-2 border-slate-200 rounded-2xl text-center font-bold tracking-widest text-lg focus:outline-none focus:border-psu-accent transition" placeholder="รหัส PIN" onkeypress="if(event.key === 'Enter') handleLogin()">
+                <button onclick="handleLogin()" class="w-full bg-psu-blue hover:bg-psu-light text-white font-bold py-3.5 rounded-2xl transition shadow-lg active:scale-95">เข้าสู่ระบบ</button>
+                <p id="login-error" class="text-red-500 text-xs font-semibold text-center hidden"></p>
             </div>
         </div>
     </div>
 
-    <!-- Admin Dashboard -->
-    <div id="admin-dashboard" class="hidden flex-col h-screen">
-        <nav class="bg-psu-blue text-white px-6 py-4 shadow-md flex justify-between items-center z-10 shrink-0">
-            <div class="flex items-center gap-3">
-                <div class="bg-white p-1 rounded"><img src="https://i.postimg.cc/rmYkxhmy/logo-ids-edit-64px.png" alt="Logo" class="h-6 w-auto object-contain"></div>
-                <div>
-                    <h1 class="text-lg font-bold leading-none">IDS Admission CMS</h1>
-                    <p class="text-xs text-blue-200">ระบบจัดการเนื้อหาหน้าเว็บรับสมัคร</p>
+    <div id="admin-dashboard-screen" class="hidden flex-col flex-1 pb-24">
+        <header class="bg-psu-blue text-white sticky top-0 z-40 shadow-md">
+            <div class="max-w-6xl mx-auto px-4 h-16 flex justify-between items-center">
+                <h2 class="text-lg font-bold flex items-center gap-2"><i class="ph-fill ph-gear"></i> CMS Admin Control</h2>
+                <button onclick="handleLogout()" class="bg-red-500 hover:bg-red-600 px-4 py-1.5 rounded-lg text-sm font-bold transition flex items-center gap-1"><i class="ph-bold ph-sign-out"></i> ออกระบบ</button>
+            </div>
+        </header>
+
+        <main class="max-w-6xl mx-auto px-4 py-8 w-full space-y-6">
+            
+            <div class="bg-blue-50 border border-blue-200 rounded-2xl p-5">
+                <h3 class="font-bold text-psu-blue mb-2"><i class="ph-bold ph-key"></i> 1. ตั้งค่าการอัปเดตผ่าน GitHub API</h3>
+                <p class="text-xs text-slate-600 mb-3">ระบบจะจดจำ Token ของคุณไว้ในเบราว์เซอร์ของคอมพิวเตอร์เครื่องนี้เท่านั้น (ปลอดภัยที่สุดสำหรับการแก้ไขแบบ Serverless)</p>
+                <div class="grid sm:grid-cols-3 gap-3">
+                    <input type="text" id="github-user" class="text-sm p-2.5 border rounded-xl" placeholder="GitHub Username">
+                    <input type="text" id="github-repo" class="text-sm p-2.5 border rounded-xl" placeholder="Repo Name (e.g., apply-ids)">
+                    <input type="password" id="github-token" class="text-sm p-2.5 border rounded-xl" placeholder="Personal Access Token">
                 </div>
             </div>
-            <button onclick="handleLogout()" class="px-4 py-2 text-sm bg-white/10 hover:bg-red-500 font-bold rounded-lg transition flex items-center gap-2"><i class="ph-bold ph-sign-out"></i> <span class="hidden sm:inline">ออกจากระบบ</span></button>
-        </nav>
 
-        <div class="flex-1 overflow-y-auto p-4 sm:p-6 lg:px-8 bg-slate-50">
-            <div class="max-w-4xl mx-auto space-y-6 pb-20">
-                
-                <div class="bg-blue-50 border border-blue-200 rounded-2xl p-5 shadow-sm">
-                    <h3 class="font-bold text-psu-blue mb-2 flex items-center gap-2 text-lg"><i class="ph-bold ph-github-logo"></i> ตั้งค่าการเชื่อมต่อฐานข้อมูล (GitHub)</h3>
-                    <p class="text-sm text-slate-600 mb-4">ข้อมูลจะถูกจัดเก็บไว้ใน Local Storage ของเบราว์เซอร์เครื่องนี้อย่างปลอดภัย เพื่อใช้สำหรับ Publish ขึ้นเว็บ</p>
-                    <div class="grid sm:grid-cols-3 gap-4">
-                        <div><label class="block text-xs font-bold mb-1 text-slate-500">GitHub Username</label><input type="text" id="github-user" class="w-full p-2.5 border border-blue-200 rounded-lg text-sm bg-white" placeholder="เช่น yourname"></div>
-                        <div><label class="block text-xs font-bold mb-1 text-slate-500">Repository Name</label><input type="text" id="github-repo" class="w-full p-2.5 border border-blue-200 rounded-lg text-sm bg-white" placeholder="เช่น ids-apply"></div>
-                        <div><label class="block text-xs font-bold mb-1 text-slate-500">Personal Access Token</label><input type="password" id="github-token" class="w-full p-2.5 border border-blue-200 rounded-lg text-sm bg-white" placeholder="ghp_..."></div>
-                    </div>
-                    <button onclick="fetchDataFromGithub()" class="mt-4 bg-psu-light hover:bg-psu-blue text-white text-sm font-bold px-4 py-2 rounded-lg transition flex items-center gap-2"><i class="ph-bold ph-arrows-clockwise"></i> ดึงข้อมูลล่าสุดจาก GitHub</button>
+            <div class="bg-white border rounded-2xl p-6 shadow-sm">
+                <h3 class="font-bold text-lg mb-4 text-psu-blue border-b pb-2">2. ตั้งค่าระบบและลิงก์</h3>
+                <div class="grid sm:grid-cols-2 gap-4 mb-4">
+                    <div><label class="block text-xs font-bold mb-1">เวลาเปิดรับสมัคร</label><input type="datetime-local" id="admin-open-date" class="w-full text-sm px-3 py-2 border rounded-xl" onchange="updateSettings('openDate', this.value)"></div>
+                    <div><label class="block text-xs font-bold mb-1">เวลาปิดรับสมัคร</label><input type="datetime-local" id="admin-deadline" class="w-full text-sm px-3 py-2 border rounded-xl" onchange="updateSettings('deadline', this.value)"></div>
                 </div>
-
-                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                    <h3 class="font-bold text-xl mb-4 text-slate-800 border-b pb-3 flex items-center gap-2"><i class="ph-fill ph-sliders"></i> 1. ตั้งค่าระบบและลิงก์</h3>
-                    <div class="grid sm:grid-cols-2 gap-6 mb-6">
-                        <div><label class="block text-sm font-bold text-slate-700 mb-1">วัน-เวลา เปิดรับสมัคร</label><input type="datetime-local" id="admin-open-date" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50" onchange="updateSettings('openDate', this.value)"></div>
-                        <div><label class="block text-sm font-bold text-slate-700 mb-1">วัน-เวลา ปิดรับสมัคร</label><input type="datetime-local" id="admin-deadline" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50" onchange="updateSettings('deadline', this.value)"></div>
-                    </div>
-                    <div class="space-y-4">
-                        <div><label class="block text-sm font-bold text-slate-700 mb-1 flex items-center gap-2"><i class="ph-bold ph-link text-psu-accent"></i> ลิงก์ระบบรับสมัคร (ischoolme)</label><input type="text" id="admin-apply-link" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50" onchange="updateSettings('applyLink', this.value)"></div>
-                        <div><label class="block text-sm font-bold text-slate-700 mb-1 flex items-center gap-2"><i class="ph-bold ph-file-pdf text-red-500"></i> ลิงก์ประกาศฉบับเต็ม (PDF URL)</label><input type="text" id="admin-pdf-link" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50 placeholder-slate-400" placeholder="วางลิงก์ Google Drive หรือลิงก์ไฟล์ PDF" onchange="updateSettings('pdfLink', this.value)"></div>
-                        <div><label class="block text-sm font-bold text-slate-700 mb-1 flex items-center gap-2"><i class="ph-bold ph-book-open text-blue-500"></i> ลิงก์คู่มือการสมัคร (PDF URL)</label><input type="text" id="admin-manual-link" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50 placeholder-slate-400" placeholder="คู่มือภาพประกอบขั้นตอนการสมัคร" onchange="updateSettings('manualLink', this.value)"></div>
-                    </div>
-                </div>
-
-                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                    <div class="flex justify-between items-center border-b pb-3 mb-4">
-                        <h3 class="font-bold text-xl text-slate-800 flex items-center gap-2"><i class="ph-fill ph-calendar"></i> 2. กำหนดการ (Timeline)</h3>
-                        <button onclick="addTimelineItem()" class="bg-slate-800 text-white text-sm font-bold px-4 py-2 rounded-lg hover:bg-psu-blue transition shadow flex items-center gap-1"><i class="ph-bold ph-plus"></i> เพิ่มกำหนดการ</button>
-                    </div>
-                    <div id="admin-timeline-list" class="space-y-4"></div>
-                </div>
-
-                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-                    <div class="flex justify-between items-center border-b pb-3 mb-4">
-                        <h3 class="font-bold text-xl text-slate-800 flex items-center gap-2"><i class="ph-fill ph-question"></i> 3. คำถามที่พบบ่อย (FAQ)</h3>
-                        <button onclick="addFaqItem()" class="bg-slate-800 text-white text-sm font-bold px-4 py-2 rounded-lg hover:bg-psu-blue transition shadow flex items-center gap-1"><i class="ph-bold ph-plus"></i> เพิ่มคำถาม</button>
-                    </div>
-                    <div id="admin-faq-list" class="space-y-4"></div>
+                <div class="space-y-3">
+                    <div><label class="block text-xs font-bold mb-1">ลิงก์ระบบสมัครออนไลน์ (ปุ่มหลัก ischoolme)</label><input type="text" id="admin-apply-link" class="w-full text-sm px-3 py-2 border rounded-xl" onchange="updateSettings('applyLink', this.value)"></div>
+                    <div><label class="block text-xs font-bold mb-1">ลิงก์ประกาศฉบับเต็ม (PDF) <span class="text-slate-400 font-normal">เว้นว่างไว้เพื่อซ่อนปุ่ม</span></label><input type="text" id="admin-pdf-link" class="w-full text-sm px-3 py-2 border rounded-xl" onchange="updateSettings('pdfLink', this.value)"></div>
+                    <div><label class="block text-xs font-bold mb-1">ลิงก์คู่มือการสมัคร (PDF) <span class="text-slate-400 font-normal">เว้นว่างไว้เพื่อซ่อนปุ่ม</span></label><input type="text" id="admin-manual-link" class="w-full text-sm px-3 py-2 border rounded-xl" onchange="updateSettings('manualLink', this.value)"></div>
                 </div>
             </div>
-        </div>
 
-        <div class="bg-white border-t px-6 py-4 flex flex-wrap justify-between items-center gap-4 shadow-[0_-4px_15px_-3px_rgba(0,0,0,0.05)] shrink-0">
-            <button onclick="exportJSONLocal()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-5 py-3 rounded-xl transition flex items-center gap-2"><i class="ph-bold ph-download-simple"></i> Backup เป็นไฟล์ JSON</button>
-            <button onclick="syncToGitHubDirectly()" id="sync-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold px-8 py-3 rounded-xl shadow-lg shadow-green-600/30 flex items-center gap-2 transition text-lg"><i class="ph-bold ph-cloud-arrow-up text-xl"></i> บันทึกและเผยแพร่ขึ้นเว็บ (Publish)</button>
+            <div class="bg-white border rounded-2xl p-6 shadow-sm">
+                <div class="flex justify-between items-center border-b pb-2 mb-4">
+                    <h3 class="font-bold text-lg text-psu-blue">3. กระดานประกาศสำคัญ (Notice Board)</h3>
+                    <button onclick="addAnnouncementItem()" class="bg-psu-light text-white text-xs px-3 py-1.5 rounded-lg hover:bg-psu-blue transition"><i class="ph-bold ph-plus"></i> เพิ่มประกาศ</button>
+                </div>
+                <div id="admin-announcements-list" class="space-y-4"></div>
+            </div>
+
+            <div class="bg-white border rounded-2xl p-6 shadow-sm">
+                <div class="flex justify-between items-center border-b pb-2 mb-4">
+                    <h3 class="font-bold text-lg text-psu-blue">4. ช่องทางการสมัครและลิงก์ (Cards)</h3>
+                    <button onclick="addChannelItem()" class="bg-psu-light text-white text-xs px-3 py-1.5 rounded-lg hover:bg-psu-blue transition"><i class="ph-bold ph-plus"></i> เพิ่มการ์ดใหม่</button>
+                </div>
+                <div id="admin-channels-list" class="space-y-4"></div>
+            </div>
+
+            <div class="bg-white border rounded-2xl p-6 shadow-sm">
+                <div class="flex justify-between items-center border-b pb-2 mb-4">
+                    <h3 class="font-bold text-lg text-psu-blue">5. กำหนดการ (Timeline)</h3>
+                    <button onclick="addTimelineItem()" class="bg-psu-light text-white text-xs px-3 py-1.5 rounded-lg hover:bg-psu-blue transition"><i class="ph-bold ph-plus"></i> เพิ่ม</button>
+                </div>
+                <div id="admin-timeline-list" class="space-y-3"></div>
+            </div>
+
+            <div class="bg-white border rounded-2xl p-6 shadow-sm">
+                <div class="flex justify-between items-center border-b pb-2 mb-4">
+                    <h3 class="font-bold text-lg text-psu-blue">6. คำถามที่พบบ่อย (FAQ)</h3>
+                    <button onclick="addFaqItem()" class="bg-psu-light text-white text-xs px-3 py-1.5 rounded-lg hover:bg-psu-blue transition"><i class="ph-bold ph-plus"></i> เพิ่ม</button>
+                </div>
+                <div id="admin-faq-list" class="space-y-3"></div>
+            </div>
+        </main>
+
+        <div class="fixed bottom-0 left-0 w-full bg-white border-t border-slate-200 p-4 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] z-50">
+            <div class="max-w-6xl mx-auto flex flex-wrap justify-between items-center gap-3">
+                <button onclick="exportJSONForGithub()" class="bg-slate-700 hover:bg-slate-800 text-white font-bold px-5 py-3 rounded-xl text-sm transition"><i class="ph-bold ph-download-simple"></i> สำรองไฟล์ JSON แบบออฟไลน์</button>
+                <button onclick="syncToGitHubDirectly()" id="sync-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-3 rounded-xl shadow-lg active:scale-95 transition flex items-center gap-2"><i class="ph-bold ph-cloud-arrow-up text-lg"></i> บันทึกและอัปเดตหน้าเว็บทันที</button>
+            </div>
         </div>
     </div>
 
     <script>
-        let siteData = { settings: {}, timeline: [], faqs: [] };
-
         function showToast(message, type = 'success') {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            const icon = type === 'success' ? '<i class="ph-fill ph-check-circle text-lg"></i>' : '<i class="ph-fill ph-warning-circle text-lg"></i>';
-            toast.innerHTML = `${icon} <span>${message}</span>`;
+            toast.className = `toast px-4 py-3 rounded-xl shadow-xl text-white text-sm font-bold flex items-center gap-2 ${type === 'success' ? 'bg-green-600' : 'bg-red-500'}`;
+            toast.innerHTML = `<i class="ph-bold ${type === 'success' ? 'ph-check-circle' : 'ph-warning-circle'} text-lg"></i> <span>${message}</span>`;
             container.appendChild(toast);
             setTimeout(() => { toast.remove(); }, 3000);
         }
 
-        window.handleLogin = () => {
+        let siteData = { settings: {}, announcements: [], application_channels: [], timeline: [], faqs: [] };
+
+        function handleLogin() {
             if (document.getElementById('login-pass').value === 'Admin*scius2026') {
-                document.getElementById('login-screen').classList.add('hidden');
-                document.getElementById('admin-dashboard').classList.remove('hidden');
-                document.getElementById('admin-dashboard').classList.add('flex');
-                
-                if(localStorage.getItem('gh_user')) document.getElementById('github-user').value = localStorage.getItem('gh_user');
-                if(localStorage.getItem('gh_repo')) document.getElementById('github-repo').value = localStorage.getItem('gh_repo');
-                if(localStorage.getItem('gh_token')) document.getElementById('github-token').value = localStorage.getItem('gh_token');
-                
-                fetchDataFromGithub(); 
+                document.getElementById('admin-login-screen').classList.add('hidden');
+                document.getElementById('admin-dashboard-screen').classList.remove('hidden');
+                document.getElementById('admin-dashboard-screen').classList.add('flex');
+                loadDataFromGitHub();
             } else {
                 document.getElementById('login-error').innerText = "รหัสผ่านไม่ถูกต้อง";
                 document.getElementById('login-error').classList.remove('hidden');
             }
-        };
+        }
 
-        window.handleLogout = () => { 
+        function handleLogout() {
+            document.getElementById('admin-dashboard-screen').classList.add('hidden');
+            document.getElementById('admin-dashboard-screen').classList.remove('flex');
+            document.getElementById('admin-login-screen').classList.remove('hidden');
             document.getElementById('login-pass').value = '';
-            document.getElementById('login-screen').classList.remove('hidden'); 
-            document.getElementById('admin-dashboard').classList.add('hidden'); 
-            document.getElementById('admin-dashboard').classList.remove('flex'); 
-        };
+        }
 
-        window.fetchDataFromGithub = async () => {
-            const user = document.getElementById('github-user').value.trim();
-            const repo = document.getElementById('github-repo').value.trim();
-            
-            if(!user || !repo) {
-                showToast("ยังไม่มีการตั้งค่าเชื่อมต่อ จะใช้ข้อมูลจำลอง (Default)", "error");
-                siteData = {
-                    settings: { openDate: "2026-09-01T08:00:00", deadline: "2026-10-15T23:59:00", applyLink: "", pdfLink: "", manualLink: "" },
-                    timeline: [], faqs: []
-                };
-                renderAdminPanel();
-                return;
-            }
-            
+        const loadDataFromGitHub = async () => {
             try {
-                const response = await fetch(`https://raw.githubusercontent.com/${user}/${repo}/main/site-data.json?v=${new Date().getTime()}`);
+                // To prevent caching during fetches
+                const response = await fetch(`site-data.json?v=${new Date().getTime()}`);
                 if (response.ok) {
-                    siteData = await response.json();
-                    renderAdminPanel();
-                    showToast("ดึงข้อมูลล่าสุดเรียบร้อย", "success");
-                } else {
-                    throw new Error("Cannot fetch");
+                    const data = await response.json();
+                    if(data.settings) siteData.settings = data.settings;
+                    if(data.announcements) siteData.announcements = data.announcements;
+                    if(data.application_channels) siteData.application_channels = data.application_channels;
+                    if(data.timeline) siteData.timeline = data.timeline;
+                    if(data.faqs) siteData.faqs = data.faqs;
                 }
-            } catch (e) { 
-                showToast("ไม่สามารถดึงข้อมูลได้ โปรดตรวจสอบชื่อ Username/Repo", "error"); 
-            }
+            } catch (e) { console.log("Failed to fetch JSON. Using default blank state."); }
+            renderAdminPanel();
         };
 
         const renderAdminPanel = () => {
-            if(siteData.settings) {
-                document.getElementById('admin-open-date').value = siteData.settings.openDate || "";
-                document.getElementById('admin-deadline').value = siteData.settings.deadline || "";
-                document.getElementById('admin-apply-link').value = siteData.settings.applyLink || "";
-                document.getElementById('admin-pdf-link').value = siteData.settings.pdfLink || "";
-                document.getElementById('admin-manual-link').value = siteData.settings.manualLink || "";
-            }
+            document.getElementById('admin-open-date').value = siteData.settings.openDate || "";
+            document.getElementById('admin-deadline').value = siteData.settings.deadline || "";
+            document.getElementById('admin-apply-link').value = siteData.settings.applyLink || "";
+            document.getElementById('admin-pdf-link').value = siteData.settings.pdfLink || "";
+            document.getElementById('admin-manual-link').value = siteData.settings.manualLink || "";
 
-            // Timeline
-            const iconsList = ['calendar', 'megaphone', 'calendar-plus', 'list-numbers', 'pencil-simple', 'confetti', 'check-square-offset', 'student'];
+            // Announcements Render
+            document.getElementById('admin-announcements-list').innerHTML = (siteData.announcements || []).map((a, idx) => `
+                <div class="border border-slate-200 rounded-xl p-4 bg-slate-50 relative">
+                    <button onclick="deleteItem('announcements', ${idx})" class="absolute top-2 right-2 text-red-500 hover:text-red-700 bg-red-100 p-1.5 rounded transition"><i class="ph-bold ph-trash"></i></button>
+                    <div class="grid sm:grid-cols-3 gap-3 mb-2 pr-8">
+                        <div><label class="text-[10px] font-bold block text-slate-500">วันที่</label><input type="date" value="${a.date || ''}" onchange="updateData('announcements',${idx},'date',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm w-full outline-none focus:border-psu-accent"></div>
+                        <div class="sm:col-span-2"><label class="text-[10px] font-bold block text-slate-500">ประเภทสีการ์ด</label>
+                            <select onchange="updateData('announcements',${idx},'type',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm w-full bg-white outline-none focus:border-psu-accent">
+                                <option value="general" ${a.type==='general'?'selected':''}>ทั่วไป (สีน้ำเงิน - ข่าวสาร)</option>
+                                <option value="important" ${a.type==='important'?'selected':''}>สำคัญ/ด่วน (สีแดง - ประกาศผล)</option>
+                                <option value="success" ${a.type==='success'?'selected':''}>ยินดีด้วย (สีเขียว - ประกาศตัวจริง)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-3 mb-2">
+                        <input type="text" value="${a.title_th || ''}" onchange="updateData('announcements',${idx},'title_th',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm w-full font-bold outline-none focus:border-psu-accent" placeholder="หัวข้อประกาศ (ภาษาไทย)">
+                        <input type="text" value="${a.title_en || ''}" onchange="updateData('announcements',${idx},'title_en',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm w-full font-bold outline-none focus:border-psu-accent" placeholder="Title (English)">
+                    </div>
+                    <input type="text" value="${a.link || ''}" onchange="updateData('announcements',${idx},'link',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm w-full outline-none focus:border-psu-accent" placeholder="ลิงก์ไปอ่าน (Google Drive PDF หรือ URL ข่าวเว็บโรงเรียน)">
+                </div>
+            `).join('');
+
+            // Application Channels Render
+            document.getElementById('admin-channels-list').innerHTML = (siteData.application_channels || []).map((c, idx) => `
+                <div class="border border-slate-200 rounded-xl p-5 bg-slate-50 relative">
+                    <button onclick="deleteItem('application_channels', ${idx})" class="absolute top-2 right-2 text-red-500 hover:text-red-700 bg-red-100 p-1.5 rounded transition"><i class="ph-bold ph-trash"></i></button>
+                    <div class="grid sm:grid-cols-3 gap-3 mb-3 pr-8">
+                        <div>
+                            <label class="text-[10px] font-bold block text-slate-500">ไอคอน (Phosphor Icons)</label>
+                            <input type="text" value="${c.icon || ''}" onchange="updateData('application_channels',${idx},'icon',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm w-full outline-none focus:border-psu-accent" placeholder="e.g., users, medal">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="text-[10px] font-bold block text-slate-500">โทนสีของการ์ด</label>
+                            <select onchange="updateData('application_channels',${idx},'color',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm w-full bg-white outline-none focus:border-psu-accent">
+                                <option value="blue" ${c.color==='blue'?'selected':''}>กรมท่า (PSU Blue)</option>
+                                <option value="light" ${c.color==='light'?'selected':''}>น้ำเงิน (PSU Light)</option>
+                                <option value="accent" ${c.color==='accent'?'selected':''}>ฟ้า (PSU Accent)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-3 mb-2">
+                        <input type="text" value="${c.title_th || ''}" onchange="updateData('application_channels',${idx},'title_th',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm font-bold outline-none focus:border-psu-accent" placeholder="ชื่อโควตา (TH)">
+                        <input type="text" value="${c.title_en || ''}" onchange="updateData('application_channels',${idx},'title_en',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm font-bold outline-none focus:border-psu-accent" placeholder="Quota Name (EN)">
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-3 mb-3">
+                        <textarea onchange="updateData('application_channels',${idx},'desc_th',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm h-16 outline-none focus:border-psu-accent" placeholder="คำอธิบาย (TH)">${c.desc_th || ''}</textarea>
+                        <textarea onchange="updateData('application_channels',${idx},'desc_en',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm h-16 outline-none focus:border-psu-accent" placeholder="Description (EN)">${c.desc_en || ''}</textarea>
+                    </div>
+                    <div class="bg-white p-3 border border-slate-200 rounded-lg grid sm:grid-cols-12 gap-2 mb-2 shadow-sm">
+                        <div class="sm:col-span-3"><input type="text" value="${c.btn1_th || ''}" onchange="updateData('application_channels',${idx},'btn1_th',this.value)" class="border rounded-md p-1.5 text-xs w-full outline-none focus:border-psu-accent" placeholder="ปุ่มหลัก (TH)"></div>
+                        <div class="sm:col-span-3"><input type="text" value="${c.btn1_en || ''}" onchange="updateData('application_channels',${idx},'btn1_en',this.value)" class="border rounded-md p-1.5 text-xs w-full outline-none focus:border-psu-accent" placeholder="Main Btn (EN)"></div>
+                        <div class="sm:col-span-2"><input type="text" value="${c.btn1_icon || ''}" onchange="updateData('application_channels',${idx},'btn1_icon',this.value)" class="border rounded-md p-1.5 text-xs w-full outline-none focus:border-psu-accent" placeholder="Icon (e.g. globe)"></div>
+                        <div class="sm:col-span-4"><input type="text" value="${c.btn1_link || ''}" onchange="updateData('application_channels',${idx},'btn1_link',this.value)" class="border rounded-md p-1.5 text-xs w-full outline-none focus:border-psu-accent" placeholder="Link URL or mailto:"></div>
+                    </div>
+                    <div class="bg-white p-3 border border-slate-200 rounded-lg grid sm:grid-cols-12 gap-2 shadow-sm">
+                        <div class="sm:col-span-3"><input type="text" value="${c.btn2_th || ''}" onchange="updateData('application_channels',${idx},'btn2_th',this.value)" class="border rounded-md p-1.5 text-xs w-full outline-none focus:border-psu-accent" placeholder="ปุ่มรอง (TH) ว่างไว้ถ้าไม่มี"></div>
+                        <div class="sm:col-span-3"><input type="text" value="${c.btn2_en || ''}" onchange="updateData('application_channels',${idx},'btn2_en',this.value)" class="border rounded-md p-1.5 text-xs w-full outline-none focus:border-psu-accent" placeholder="Sec Btn (EN)"></div>
+                        <div class="sm:col-span-2"><input type="text" value="${c.btn2_icon || ''}" onchange="updateData('application_channels',${idx},'btn2_icon',this.value)" class="border rounded-md p-1.5 text-xs w-full outline-none focus:border-psu-accent" placeholder="Icon"></div>
+                        <div class="sm:col-span-4"><input type="text" value="${c.btn2_link || ''}" onchange="updateData('application_channels',${idx},'btn2_link',this.value)" class="border rounded-md p-1.5 text-xs w-full outline-none focus:border-psu-accent" placeholder="Link URL or mailto:"></div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Timeline Render
             document.getElementById('admin-timeline-list').innerHTML = (siteData.timeline || []).map((t, idx) => `
-                <div class="border border-slate-200 rounded-xl p-4 bg-slate-50 relative group">
-                    <div class="absolute -left-3 top-4 w-6 h-6 bg-psu-blue text-white rounded-full flex items-center justify-center font-bold text-xs">${idx+1}</div>
-                    <button onclick="deleteItem('timeline', ${idx})" class="absolute top-4 right-4 text-slate-400 hover:text-red-500 bg-white p-1.5 rounded shadow-sm border opacity-0 group-hover:opacity-100 transition"><i class="ph-bold ph-trash"></i></button>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3 ml-4">
-                        <div><label class="text-[10px] uppercase font-bold text-slate-500">วันที่ (TH)</label><input type="text" value="${t.date_th}" onchange="updateData('timeline',${idx},'date_th',this.value)" class="border rounded-lg px-3 py-2 text-sm w-full bg-white"></div>
-                        <div><label class="text-[10px] uppercase font-bold text-slate-500">Date (EN)</label><input type="text" value="${t.date_en}" onchange="updateData('timeline',${idx},'date_en',this.value)" class="border rounded-lg px-3 py-2 text-sm w-full bg-white"></div>
+                <div class="border border-slate-200 rounded-xl p-4 bg-white relative shadow-sm">
+                    <button onclick="deleteItem('timeline', ${idx})" class="absolute top-2 right-2 text-red-500 hover:text-red-700 bg-red-50 p-1.5 rounded transition"><i class="ph-bold ph-trash"></i></button>
+                    <div class="grid sm:grid-cols-3 gap-2 mb-2 pr-8">
+                        <input type="text" value="${t.date_th || ''}" onchange="updateData('timeline',${idx},'date_th',this.value)" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full outline-none focus:border-psu-accent" placeholder="วันที่ (TH)">
+                        <input type="text" value="${t.date_en || ''}" onchange="updateData('timeline',${idx},'date_en',this.value)" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full outline-none focus:border-psu-accent" placeholder="Date (EN)">
+                        <input type="text" value="${t.icon || ''}" onchange="updateData('timeline',${idx},'icon',this.value)" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full outline-none focus:border-psu-accent" placeholder="Icon (e.g. confetti)">
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3 ml-4">
-                        <div><label class="text-[10px] uppercase font-bold text-slate-500">หัวข้อ (TH)</label><input type="text" value="${t.title_th}" onchange="updateData('timeline',${idx},'title_th',this.value)" class="border rounded-lg px-3 py-2 text-sm w-full bg-white font-bold"></div>
-                        <div><label class="text-[10px] uppercase font-bold text-slate-500">Title (EN)</label><input type="text" value="${t.title_en}" onchange="updateData('timeline',${idx},'title_en',this.value)" class="border rounded-lg px-3 py-2 text-sm w-full bg-white font-bold"></div>
+                    <div class="grid sm:grid-cols-2 gap-2 mb-2">
+                        <input type="text" value="${t.title_th || ''}" onchange="updateData('timeline',${idx},'title_th',this.value)" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full font-bold outline-none focus:border-psu-accent" placeholder="หัวข้อ (TH)">
+                        <input type="text" value="${t.title_en || ''}" onchange="updateData('timeline',${idx},'title_en',this.value)" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full font-bold outline-none focus:border-psu-accent" placeholder="Title (EN)">
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3 ml-4">
-                        <div><label class="text-[10px] uppercase font-bold text-slate-500">รายละเอียด (TH)</label><textarea onchange="updateData('timeline',${idx},'desc_th',this.value)" class="w-full border rounded-lg px-3 py-2 text-sm text-slate-600 h-20 bg-white">${t.desc_th}</textarea></div>
-                        <div><label class="text-[10px] uppercase font-bold text-slate-500">Description (EN)</label><textarea onchange="updateData('timeline',${idx},'desc_en',this.value)" class="w-full border rounded-lg px-3 py-2 text-sm text-slate-600 h-20 bg-white">${t.desc_en}</textarea></div>
-                    </div>
-                    <div class="ml-4">
-                        <label class="text-[10px] uppercase font-bold text-slate-500 block mb-1">ไอคอน (Phosphor Icons)</label>
-                        <select onchange="updateData('timeline',${idx},'icon',this.value)" class="border rounded-lg px-3 py-2 text-sm bg-white w-48">
-                            ${iconsList.map(icon => `<option value="${icon}" ${t.icon === icon ? 'selected' : ''}>${icon}</option>`).join('')}
-                        </select>
+                    <div class="grid sm:grid-cols-2 gap-2">
+                        <textarea onchange="updateData('timeline',${idx},'desc_th',this.value)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-500 h-16 outline-none focus:border-psu-accent" placeholder="รายละเอียด (TH)">${t.desc_th || ''}</textarea>
+                        <textarea onchange="updateData('timeline',${idx},'desc_en',this.value)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-500 h-16 outline-none focus:border-psu-accent" placeholder="Description (EN)">${t.desc_en || ''}</textarea>
                     </div>
                 </div>
             `).join('');
 
-            // FAQ
+            // FAQ Render
             document.getElementById('admin-faq-list').innerHTML = (siteData.faqs || []).map((f, idx) => `
-                <div class="border border-slate-200 rounded-xl p-4 bg-slate-50 relative group">
-                    <button onclick="deleteItem('faqs', ${idx})" class="absolute top-4 right-4 text-slate-400 hover:text-red-500 bg-white p-1.5 rounded shadow-sm border opacity-0 group-hover:opacity-100 transition"><i class="ph-bold ph-trash"></i></button>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div><label class="text-[10px] uppercase font-bold text-psu-blue flex items-center gap-1"><i class="ph-bold ph-question"></i> คำถาม (TH)</label><input type="text" value="${f.q_th}" onchange="updateData('faqs',${idx},'q_th',this.value)" class="w-full border rounded-lg px-3 py-2 text-sm font-bold bg-white"></div>
-                        <div><label class="text-[10px] uppercase font-bold text-psu-blue flex items-center gap-1"><i class="ph-bold ph-question"></i> Question (EN)</label><input type="text" value="${f.q_en}" onchange="updateData('faqs',${idx},'q_en',this.value)" class="w-full border rounded-lg px-3 py-2 text-sm font-bold bg-white"></div>
+                <div class="border border-slate-200 rounded-xl p-4 bg-white relative shadow-sm">
+                    <button onclick="deleteItem('faqs', ${idx})" class="absolute top-2 right-2 text-red-500 hover:text-red-700 bg-red-50 p-1.5 rounded transition"><i class="ph-bold ph-trash"></i></button>
+                    <div class="grid sm:grid-cols-2 gap-2 mb-2 pr-8">
+                        <input type="text" value="${f.q_th || ''}" onchange="updateData('faqs',${idx},'q_th',this.value)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm font-bold outline-none focus:border-psu-accent" placeholder="คำถาม (TH)">
+                        <input type="text" value="${f.q_en || ''}" onchange="updateData('faqs',${idx},'q_en',this.value)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm font-bold outline-none focus:border-psu-accent" placeholder="Question (EN)">
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div><label class="text-[10px] uppercase font-bold text-green-600 flex items-center gap-1"><i class="ph-bold ph-chat-text"></i> คำตอบ (TH)</label><textarea onchange="updateData('faqs',${idx},'a_th',this.value)" class="w-full border rounded-lg px-3 py-2 text-sm h-24 bg-white">${f.a_th}</textarea></div>
-                        <div><label class="text-[10px] uppercase font-bold text-green-600 flex items-center gap-1"><i class="ph-bold ph-chat-text"></i> Answer (EN)</label><textarea onchange="updateData('faqs',${idx},'a_en',this.value)" class="w-full border rounded-lg px-3 py-2 text-sm h-24 bg-white">${f.a_en}</textarea></div>
+                    <div class="grid sm:grid-cols-2 gap-2">
+                        <textarea onchange="updateData('faqs',${idx},'a_th',this.value)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm h-16 outline-none focus:border-psu-accent" placeholder="คำตอบ (TH)">${f.a_th || ''}</textarea>
+                        <textarea onchange="updateData('faqs',${idx},'a_en',this.value)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm h-16 outline-none focus:border-psu-accent" placeholder="Answer (EN)">${f.a_en || ''}</textarea>
                     </div>
                 </div>
             `).join('');
         };
 
-        window.updateSettings = (key, value) => { if(!siteData.settings) siteData.settings = {}; siteData.settings[key] = value; };
-        window.updateData = (col, idx, field, val) => { siteData[col][idx][field] = val; };
-        window.deleteItem = (col, idx) => { if(confirm('ยืนยันการลบรายการนี้?')) { siteData[col].splice(idx, 1); renderAdminPanel(); } };
+        window.updateSettings = (k, v) => { siteData.settings[k] = v; renderAdminPanel(); };
+        window.updateData = (col, idx, f, v) => { siteData[col][idx][f] = v; renderAdminPanel(); };
         
-        window.addTimelineItem = () => { 
-            if(!siteData.timeline) siteData.timeline = [];
-            siteData.timeline.push({ id: Date.now(), date_th: "ระบุวันที่", date_en:"Date", title_th: "หัวข้อ", title_en:"Title", desc_th: "", desc_en: "", icon: "calendar" }); 
-            renderAdminPanel(); 
-        };
-        window.addFaqItem = () => { 
-            if(!siteData.faqs) siteData.faqs = [];
-            siteData.faqs.push({ id: Date.now(), q_th: "คำถาม?", q_en: "Question?", a_th: "คำตอบ...", a_en: "Answer..." }); 
-            renderAdminPanel(); 
+        window.deleteItem = (col, idx) => { 
+            if(confirm('ต้องการลบรายการนี้ใช่หรือไม่? การกระทำนี้ไม่สามารถย้อนกลับได้')) { 
+                siteData[col].splice(idx, 1); 
+                renderAdminPanel(); 
+            } 
         };
 
-        window.exportJSONLocal = () => {
+        window.addAnnouncementItem = () => {
+            siteData.announcements = siteData.announcements || [];
+            siteData.announcements.push({ id: Date.now(), date: "2026-10-21", type: "general", title_th: "ประกาศใหม่...", title_en: "New Notice...", link: "#" });
+            renderAdminPanel();
+        };
+
+        window.addChannelItem = () => {
+            siteData.application_channels = siteData.application_channels || [];
+            siteData.application_channels.push({ id: Date.now(), icon: "users", color: "blue", title_th: "โควตาใหม่", title_en: "New Quota", desc_th: "คำอธิบาย...", desc_en: "Description...", btn1_th: "ปุ่มหลัก", btn1_en: "Main Btn", btn1_link: "#", btn1_icon: "link", btn2_th: "", btn2_en: "", btn2_link: "", btn2_icon: "" });
+            renderAdminPanel();
+        };
+
+        window.addTimelineItem = () => {
+            siteData.timeline = siteData.timeline || [];
+            siteData.timeline.push({ id: Date.now(), date_th: "วันที่...", date_en: "Date...", title_th: "หัวข้อใหม่", title_en: "New Title", desc_th: "", desc_en: "", icon: "calendar" });
+            renderAdminPanel();
+        };
+
+        window.addFaqItem = () => {
+            siteData.faqs = siteData.faqs || [];
+            siteData.faqs.push({ id: Date.now(), q_th: "คำถามใหม่?", q_en: "New Question?", a_th: "", a_en: "" });
+            renderAdminPanel();
+        };
+
+        window.exportJSONForGithub = () => {
             const dataStr = JSON.stringify(siteData, null, 2);
             const blob = new Blob([dataStr], { type: "application/json" });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a'); a.href = url; a.download = 'site-data.json';
             document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
-            showToast("ดาวน์โหลดไฟล์ Backup แล้ว", "success");
+            showToast("ดาวน์โหลดไฟล์ JSON สำเร็จ สามารถนำไปอัปโหลดทับได้เลย", "success");
         };
 
+        // GitHub API Integration
         window.syncToGitHubDirectly = async () => {
             const user = document.getElementById('github-user').value.trim();
             const repo = document.getElementById('github-repo').value.trim();
             const token = document.getElementById('github-token').value.trim();
 
-            if (!user || !repo || !token) {
-                showToast("กรุณากรอกข้อมูล GitHub ให้ครบถ้วนด้านบนสุด", "error");
-                document.querySelector('.flex-1.overflow-y-auto').scrollTo({top: 0, behavior: 'smooth'});
-                return;
+            if (!user || !repo || !token) { 
+                showToast("กรุณากรอกข้อมูล GitHub ให้ครบถ้วนทั้ง 3 ช่อง", "error"); 
+                return; 
             }
-
-            localStorage.setItem('gh_user', user);
-            localStorage.setItem('gh_repo', repo);
+            
+            // Save securely in local storage
+            localStorage.setItem('gh_user', user); 
+            localStorage.setItem('gh_repo', repo); 
             localStorage.setItem('gh_token', token);
 
             const btn = document.getElementById('sync-btn');
             const origHTML = btn.innerHTML;
-            btn.innerHTML = `<i class="ph-bold ph-spinner-gap animate-spin text-xl"></i> กำลังอัปเดต...`;
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin text-lg"></i> กำลังอัปเดต...`;
             btn.disabled = true;
 
             try {
                 const path = 'site-data.json';
                 const apiUrl = `https://api.github.com/repos/${user}/${repo}/contents/${path}`;
-
                 let sha = '';
-                const getRes = await fetch(apiUrl, {
-                    headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' }
+                
+                // 1. Get current SHA hash required by Github to update a file
+                const getRes = await fetch(apiUrl, { 
+                    headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' } 
                 });
+                
                 if (getRes.ok) {
-                    const getJson = await getRes.json();
-                    sha = getJson.sha;
+                    sha = (await getRes.json()).sha;
                 }
 
+                // 2. Base64 Encode the JSON safely (handling Thai characters)
                 const jsonString = JSON.stringify(siteData, null, 2);
                 const bytes = new TextEncoder().encode(jsonString);
-                let binString = "";
+                let binString = ""; 
                 bytes.forEach((b) => binString += String.fromCharCode(b));
                 const contentBase64 = btoa(binString);
 
+                // 3. PUT request to Github
                 const putRes = await fetch(apiUrl, {
                     method: 'PUT',
-                    headers: {
-                        'Authorization': `token ${token}`,
-                        'Accept': 'application/vnd.github.v3+json',
-                        'Content-Type': 'application/json'
+                    headers: { 
+                        'Authorization': `token ${token}`, 
+                        'Accept': 'application/vnd.github.v3+json', 
+                        'Content-Type': 'application/json' 
                     },
-                    body: JSON.stringify({
-                        message: `Update via CMS by Admin (${new Date().toLocaleString('th-TH')})`,
-                        content: contentBase64,
-                        sha: sha !== '' ? sha : undefined
+                    body: JSON.stringify({ 
+                        message: 'Updated site-data via Admin CMS', 
+                        content: contentBase64, 
+                        sha: sha !== '' ? sha : undefined 
                     })
                 });
 
                 if (putRes.ok) {
-                    btn.innerHTML = '<i class="ph-bold ph-check-circle text-xl"></i> บันทึกและอัปเดตสำเร็จ!';
-                    btn.classList.replace('bg-green-600', 'bg-blue-600');
-                    showToast("อัปเดตข้อมูลบนเว็บไซต์เรียบร้อยแล้ว!", "success");
+                    showToast("อัปเดตข้อมูลขึ้นเว็บไซต์หลักสำเร็จแล้ว!", "success");
                 } else {
-                    throw new Error("API Error");
+                    const error = await putRes.json();
+                    console.error(error);
+                    showToast("เกิดข้อผิดพลาด: สิทธิ์การเข้าถึง Token ไม่ถูกต้อง", "error");
                 }
             } catch (err) {
                 console.error(err);
-                btn.innerHTML = '<i class="ph-bold ph-warning-circle text-xl"></i> เกิดข้อผิดพลาด';
-                btn.classList.replace('bg-green-600', 'bg-red-500');
-                showToast("ไม่สามารถอัปเดตได้ ตรวจสอบ Token ว่าหมดอายุหรือไม่", "error");
+                showToast("ไม่สามารถอัปเดตได้ ตรวจสอบการเชื่อมต่ออินเทอร์เน็ต", "error");
             } finally {
-                setTimeout(() => {
-                    btn.innerHTML = origHTML;
-                    btn.disabled = false;
-                    btn.className = "bg-green-600 hover:bg-green-700 text-white font-bold px-8 py-3 rounded-xl shadow-lg shadow-green-600/30 flex items-center gap-2 transition text-lg";
-                }, 4000);
+                setTimeout(() => { 
+                    btn.innerHTML = origHTML; 
+                    btn.disabled = false; 
+                }, 2000);
             }
         };
+
+        // Load saved credentials on startup
+        document.addEventListener('DOMContentLoaded', () => {
+            if(localStorage.getItem('gh_user')) document.getElementById('github-user').value = localStorage.getItem('gh_user');
+            if(localStorage.getItem('gh_repo')) document.getElementById('github-repo').value = localStorage.getItem('gh_repo');
+            if(localStorage.getItem('gh_token')) document.getElementById('github-token').value = localStorage.getItem('gh_token');
+        });
     </script>
 </body>
 </html>
