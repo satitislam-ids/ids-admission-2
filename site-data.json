@@ -32,7 +32,7 @@
       "btn2_th": "โหลดฟอร์ม",
       "btn2_en": "Form",
       "btn2_link": "https://satitislam.psu.ac.th/files/com_g_regis/2026-09_ab6c035766b8a3a.pdf",
-      "btn2_icon": "ph-bold ph-envelope-simple"
+      "btn2_icon": "ph-bold ph-download-simple"
     },
     {
       "id": 1788344585561,
@@ -45,7 +45,7 @@
       "btn1_th": "เข้าสู่ระบบรับสมัคร",
       "btn1_en": "Apply Now",
       "btn1_link": "https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register",
-      "btn1_icon": "ph-bold ph-download-simple",
+      "btn1_icon": "ph-bold ph-cursor-click",
       "btn2_th": "",
       "btn2_en": "",
       "btn2_link": "",
