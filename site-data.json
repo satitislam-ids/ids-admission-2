@@ -6,22 +6,35 @@
     "pdfLink": "https://satitislam.psu.ac.th/files/com_g_regis/2026-08_27d09d94109fc4f.pdf",
     "manualLink": "https://drive.google.com/file/d/1wj42TOs9Bnt_QGsS64L-NL4UKGbs0cNv/view?usp=sharing"
   },
-  "content": {
-    "videos": [
-      {
-        "id": 1,
-        "url": "https://youtu.be/qPQmZwh5HP8?si=bAvdrfDopLzvFjBq",
-        "title_th": "พรีเซนต์โรงเรียน",
-        "title_en": "School Presentation"
-      },
-      {
-        "id": 2,
-        "url": "https://youtu.be/XCufpsZjQ_0?si=2bpgSVWRnx-dJGGv",
-        "title_th": "บรรยากาศหอพัก",
-        "title_en": "Dormitory Life"
-      }
-    ]
-  },
+  "announcements": [
+    {
+      "id": 1788343244515,
+      "date": "2026-10-21",
+      "type": "general",
+      "title_th": "ประกาศใหม่...",
+      "title_en": "New Notice...",
+      "link": "#"
+    }
+  ],
+  "application_channels": [
+    {
+      "id": 1788343232363,
+      "icon": "users",
+      "color": "blue",
+      "title_th": "โควตาใหม่",
+      "title_en": "New Quota",
+      "desc_th": "คำอธิบาย...",
+      "desc_en": "Description...",
+      "btn1_th": "ปุ่มหลัก",
+      "btn1_en": "Main Btn",
+      "btn1_link": "#",
+      "btn1_icon": "link",
+      "btn2_th": "",
+      "btn2_en": "",
+      "btn2_link": "",
+      "btn2_icon": ""
+    }
+  ],
   "timeline": [
     {
       "id": 2,
