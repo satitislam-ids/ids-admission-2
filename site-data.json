@@ -19,7 +19,7 @@
   "application_channels": [
     {
       "id": 1788344309353,
-      "icon": "users",
+      "icon": "ph-fill ph-users text-xl",
       "color": "blue",
       "title_th": "โควตาใหม่",
       "title_en": "New Quota",
@@ -36,7 +36,7 @@
     },
     {
       "id": 1788344585561,
-      "icon": "users",
+      "icon": "ph-fill ph-arrow-circle-up text-xl",
       "color": "blue",
       "title_th": "โควตาใหม่",
       "title_en": "New Quota",
@@ -53,7 +53,7 @@
     },
     {
       "id": 1788344634184,
-      "icon": "users",
+      "icon": "ph-fill ph-handshake text-xl",
       "color": "blue",
       "title_th": "โควตาใหม่",
       "title_en": "New Quota",
@@ -67,6 +67,23 @@
       "btn2_en": "",
       "btn2_link": "",
       "btn2_icon": "ph-bold ph-envelope-simple"
+    },
+    {
+      "id": 1788344987704,
+      "icon": "ph-fill ph-medal text-xl",
+      "color": "blue",
+      "title_th": "โควตาใหม่",
+      "title_en": "New Quota",
+      "desc_th": "คำอธิบาย...",
+      "desc_en": "Description...",
+      "btn1_th": "ปุ่มหลัก",
+      "btn1_en": "Main Btn",
+      "btn1_link": "#",
+      "btn1_icon": "link",
+      "btn2_th": "",
+      "btn2_en": "",
+      "btn2_link": "",
+      "btn2_icon": ""
     }
   ],
   "timeline": [
