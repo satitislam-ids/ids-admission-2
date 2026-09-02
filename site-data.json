@@ -28,7 +28,7 @@
       "btn1_th": "ปุ่มหลัก",
       "btn1_en": "Main Btn",
       "btn1_link": "#",
-      "btn1_icon": "noopener noreferrer",
+      "btn1_icon": "ph-bold ph-cursor-click",
       "btn2_th": "",
       "btn2_en": "",
       "btn2_link": "",
