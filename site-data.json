@@ -16,59 +16,7 @@
       "link": "https://satitislam.psu.ac.th/news/detail/667"
     }
   ],
-  "application_channels": [
-    {
-      "id": 1788343232363,
-      "icon": "users",
-      "color": "blue",
-      "title_th": "โควตาใหม่",
-      "title_en": "New Quota",
-      "desc_th": "คำอธิบาย...",
-      "desc_en": "Description...",
-      "btn1_th": "ปุ่มหลัก",
-      "btn1_en": "Main Btn",
-      "btn1_link": "#",
-      "btn1_icon": "link",
-      "btn2_th": "ปุ่มรอง",
-      "btn2_en": "btn",
-      "btn2_link": "#",
-      "btn2_icon": "link"
-    },
-    {
-      "id": 1788343484666,
-      "icon": "users",
-      "color": "light",
-      "title_th": "โควตาใหม่",
-      "title_en": "New Quota",
-      "desc_th": "คำอธิบาย...",
-      "desc_en": "Description...",
-      "btn1_th": "ปุ่มหลัก",
-      "btn1_en": "Main Btn",
-      "btn1_link": "#",
-      "btn1_icon": "download",
-      "btn2_th": "",
-      "btn2_en": "",
-      "btn2_link": "",
-      "btn2_icon": ""
-    },
-    {
-      "id": 1788343521635,
-      "icon": "users",
-      "color": "accent",
-      "title_th": "โควตาใหม่",
-      "title_en": "New Quota",
-      "desc_th": "คำอธิบาย...",
-      "desc_en": "Description...",
-      "btn1_th": "ปุ่มหลัก",
-      "btn1_en": "Main Btn",
-      "btn1_link": "#",
-      "btn1_icon": "link",
-      "btn2_th": "",
-      "btn2_en": "",
-      "btn2_link": "",
-      "btn2_icon": ""
-    }
-  ],
+  "application_channels": [],
   "timeline": [
     {
       "id": 2,
