@@ -29,14 +29,10 @@
       "btn1_en": "Apply Now",
       "btn1_link": "https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register",
       "btn1_icon": "ph-bold ph-cursor-click",
-      "btn2_th": "โหลดฟอร์ม ม.1",
+      "btn2_th": "โหลดฟอร์ม",
       "btn2_en": "Form",
-      "btn2_link": "https://satitislam.psu.ac.th/files/com_g_regis/2026-09_ab6c035766b8a3a.pdf",
+      "btn2_link": "https://satitislam.psu.ac.th/news_download",
       "btn2_icon": "ph-bold ph-download-simple"
-      "btn3_th": "โหลดฟอร์ม ม.4",
-      "btn3_en": "Form",
-      "btn3_link": "https://satitislam.psu.ac.th/files/com_g_regis/2026-09_4050cf399a9484d.pdf",
-      "btn3_icon": "ph-bold ph-download-simple"
     },
     {
       "id": 1788344585561,
