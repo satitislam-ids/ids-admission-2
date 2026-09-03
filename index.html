@@ -18,7 +18,6 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="แบนเนอร์รับสมัครนักเรียน รับสมัครนักเรียนใหม่ ปี 2570 | สาธิตวิทยาการอิสลาม ม.อ.">    
-    <meta property="fb:app_id" content="1234567890"> <!-- ป้องกันแจ้งเตือน Debugger -->
     
     <!-- Favicon -->
     <link rel="icon" href="https://i.postimg.cc/rmYkxhmy/logo-ids-edit-64px.png">
@@ -77,12 +76,12 @@
         @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
 
-        /* Back to top button */
+        /* Back to top button transition */
         #back-to-top { transition: opacity 0.3s ease, transform 0.3s ease; }
         #back-to-top.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
         #back-to-top.hide { opacity: 0; transform: translateY(20px); pointer-events: none; }
         
-        /* Mobile Menu */
+        /* Mobile Menu Transition */
         #mobile-menu { transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out; max-height: 0px; opacity: 0; overflow: hidden; }
 
         /* Interactive Nav Styles (Scrollspy) */
@@ -115,7 +114,6 @@
     <nav class="fixed w-full bg-white/95 backdrop-blur-md shadow-sm z-50 border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <!-- Left: Logo -->
                 <div class="flex items-center cursor-pointer gap-3" onclick="window.scrollTo(0,0)">
                     <img src="https://i.postimg.cc/rmYkxhmy/logo-ids-edit-64px.png" alt="IDS PSU Logo" class="h-8 sm:h-9 w-auto object-contain">
                     <div class="flex flex-col justify-center">
@@ -124,7 +122,6 @@
                     </div>
                 </div>
                 
-                <!-- Center/Right: Desktop Menu -->
                 <div class="hidden lg:flex items-center space-x-6">
                     <a href="#highlights" class="nav-link text-sm font-medium text-slate-600 hover:text-psu-blue" data-i18n="nav_hl">จุดเด่น</a>
                     <a href="#quotas" class="nav-link text-sm font-medium text-slate-600 hover:text-psu-blue" data-i18n="nav_quota">โควตา</a>
@@ -133,7 +130,6 @@
                     <a href="#fees" class="nav-link text-sm font-medium text-slate-600 hover:text-psu-blue" data-i18n="nav_fees">ค่าเทอม</a>
                     <a href="#faq" class="nav-link text-sm font-medium text-slate-600 hover:text-psu-blue">FAQ</a>
                     
-                    <!-- Language Switcher -->
                     <button onclick="toggleLang()" class="flex items-center gap-1.5 text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-600 px-3 py-1.5 rounded-full transition ml-2 active:scale-95">
                         <i class="ph-bold ph-globe"></i> <span id="lang-indicator">TH</span>
                     </button>
@@ -141,7 +137,6 @@
                     <a href="#eligibility" class="inline-flex border-2 border-psu-blue bg-white text-psu-blue hover:bg-psu-blue hover:text-white px-5 py-2 rounded-full font-bold transition-colors items-center text-sm shadow-sm ml-2 active:scale-95" data-i18n="nav_check">ตรวจสอบคุณสมบัติ</a>
                 </div>
 
-                <!-- Right: Mobile Menu Toggle Button -->
                 <div class="flex lg:hidden items-center gap-3">
                     <button onclick="toggleLang()" class="flex items-center gap-1 text-xs font-bold bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full active:scale-95">
                         <i class="ph-bold ph-globe"></i> <span id="lang-indicator-mobile">TH</span>
@@ -153,7 +148,6 @@
             </div>
         </div>
 
-        <!-- Mobile Dropdown Menu -->
         <div id="mobile-menu" class="lg:hidden bg-white border-t border-slate-100 shadow-xl absolute w-full left-0 top-full origin-top">
             <div class="px-4 pt-2 pb-6 space-y-1">
                 <a href="#highlights" class="block px-4 py-3 text-base font-medium text-slate-700 hover:text-psu-blue hover:bg-slate-50 rounded-r-md mobile-link" data-i18n="nav_hl">จุดเด่นของโรงเรียน</a>
@@ -173,9 +167,16 @@
         <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[500px] h-[500px] rounded-full bg-psu-accent/10 blur-3xl pointer-events-none"></div>
         <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-[400px] h-[400px] rounded-full bg-psu-blue/5 blur-3xl pointer-events-none"></div>
 
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-8">
+            <div class="bg-blue-50 border border-blue-200 text-psu-blue px-4 py-3 rounded-xl text-sm flex items-center justify-center gap-2 shadow-sm text-center">
+                <i class="ph-fill ph-info text-xl shrink-0"></i>
+                <span data-i18n="hub_notice">เว็บไซต์นี้เป็นหน้าระบบอำนวยความสะดวกการรับสมัคร สำหรับข้อมูลและประกาศฉบับเต็มอย่างเป็นทางการ กรุณาติดตามได้ที่ </span>
+                <a href="https://satitislam.psu.ac.th" target="_blank" rel="noopener noreferrer" class="font-bold underline hover:text-psu-accent transition whitespace-nowrap">satitislam.psu.ac.th</a>
+            </div>
+        </div>
+
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-                <!-- Left: Text Content -->
                 <div class="text-center lg:text-left">
                     <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-slate-200/50 text-slate-600 text-sm font-medium mb-6 border border-slate-200 shadow-sm">
                         <span class="w-2 h-2 rounded-full bg-psu-blue mr-2"></span>
@@ -201,7 +202,6 @@
                     </div>
                 </div>
 
-                <!-- Right: Floating Card -->
                 <div class="relative max-w-md mx-auto lg:mx-0 lg:ml-auto w-full">
                     <div class="bg-white rounded-[2rem] shadow-2xl shadow-psu-blue/10 p-6 sm:p-8 pt-10 border border-slate-100 relative mt-8 lg:mt-0">
                         <div id="status-badge" class="absolute -top-4 left-1/2 -translate-x-1/2 whitespace-nowrap px-6 py-1.5 rounded-full bg-white border-2 border-psu-accent text-psu-accent text-sm font-bold shadow-sm">
@@ -213,14 +213,12 @@
                             <p class="text-slate-500 text-sm font-medium" data-i18n="card_date">1 กันยายน – 15 ตุลาคม 2569</p>
                         </div>
 
-                        <!-- Countdown -->
                         <div class="flex gap-2 sm:gap-4 text-center justify-center mb-8" id="countdown-container">
                             <div class="bg-slate-50 border border-slate-100 rounded-2xl p-2 sm:p-4 min-w-[65px] sm:min-w-[80px]"><div class="text-2xl sm:text-4xl font-black text-slate-800 mb-1">-</div><div class="text-[10px] sm:text-xs font-medium text-slate-500">วัน</div></div>
                         </div>
 
                         <div class="w-full h-px bg-slate-100 mb-6"></div>
 
-                        <!-- Quick Stats inside Card -->
                         <div class="space-y-5">
                             <div class="flex items-center gap-4">
                                 <div class="w-10 h-10 rounded-full bg-blue-50 text-psu-blue flex items-center justify-center text-xl shrink-0"><i class="ph-bold ph-users-three"></i></div>
@@ -255,9 +253,7 @@
                     </div>
                 </div>
             </div>
-            <div id="announcement-cards" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- Javascript will inject cards here -->
-            </div>
+            <div id="announcement-cards" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
         </div>
     </section>
 
@@ -306,7 +302,6 @@
             </div>
             
             <div class="grid md:grid-cols-2 gap-8">
-                <!-- M.1 Quota -->
                 <div class="border border-slate-200 rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition group">
                     <div class="bg-psu-blue text-white p-6 text-center relative overflow-hidden">
                         <div class="absolute -right-6 -top-6 text-white/10 text-9xl group-hover:scale-110 transition duration-500"><i class="ph-fill ph-student"></i></div>
@@ -335,7 +330,6 @@
                     </div>
                 </div>
 
-                <!-- M.4 Quota -->
                 <div class="border border-slate-200 rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition group">
                     <div class="bg-psu-accent text-white p-6 text-center relative overflow-hidden">
                         <div class="absolute -right-6 -top-6 text-white/20 text-9xl group-hover:scale-110 transition duration-500"><i class="ph-fill ph-graduation-cap"></i></div>
@@ -392,8 +386,6 @@
                             </div>
                             <div class="pb-6 w-full">
                                 <h4 class="text-lg font-bold text-slate-800 mb-3" data-i18n="step_2_title">ช่องทางการยื่นใบสมัคร (แบ่งตามโควตา)</h4>
-                                
-                                <!-- 🟢 Card UX สำหรับช่องทางการสมัคร (เรนเดอร์โดย JS) 🟢 -->
                                 <div id="channels-container" class="grid md:grid-cols-2 gap-4">
                                     <!-- Javascript will inject Application Channels Cards here -->
                                 </div>
@@ -414,10 +406,7 @@
                         </div>
                     </div>
                     
-                    <!-- Download Buttons -->
-                    <div class="mt-10 grid sm:grid-cols-2 gap-4 w-full" id="pdf-link-container">
-                        <!-- JS will inject PDF download buttons here -->
-                    </div>
+                    <div class="mt-10 grid sm:grid-cols-2 gap-4 w-full" id="pdf-link-container"></div>
                 </div>
             </div>
         </div>
@@ -526,15 +515,16 @@
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <span class="bg-psu-accent/20 text-psu-accent text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block" data-i18n="fee_badge">Cost Transparency</span>
                 <h2 class="text-3xl md:text-4xl font-bold mb-4" data-i18n="fee_title">โครงสร้างค่าใช้จ่าย (ปีแรกเข้า)</h2>
-                <p class="text-slate-400 text-lg" data-i18n="fee_desc">คุ้มค่า หมดกังวลเรื่องค่าใช้จ่ายจุกจิก เพราะรวมค่าอาหาร หอพัก และกิจกรรมพัฒนาผู้เรียนไว้แล้ว (เบื้องต้นจ่ายเพียงหมื่นแรกเพื่อยืนยันสิทธิ์)</p>
+                <p class="text-slate-400 text-lg" data-i18n="fee_desc">โปร่งใส หมดกังวล เพราะโรงเรียนรวมค่าอาหาร 3 มื้อและหอพักไว้แล้ว (เบื้องต้นจ่ายเพียงหมื่นแรกเพื่อยืนยันสิทธิ์)</p>
             </div>
 
+            <!-- Fee Summary Cards -->
             <div class="grid md:grid-cols-3 gap-6 mb-12">
                 <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center hover:bg-white/10 hover:-translate-y-1 transition-all group flex flex-col justify-between h-full">
                     <div>
                         <div class="inline-block bg-green-500/10 text-green-400 text-[10px] font-bold px-3 py-1 rounded-full mb-3 border border-green-500/20" data-i18n="fee_p1">แบ่งชำระได้ 4 งวด/เทอม</div>
                         <h3 class="text-xl font-bold text-white mb-1" data-i18n="fee_c1_title">ม.1 ประจำหอพัก</h3>
-                        <p class="text-slate-400 text-sm mb-6 flex justify-center items-center gap-1"><i class="ph-fill ph-check-circle text-psu-accent"></i> <span data-i18n="fee_c1_desc">รวมอาหาร 3 มื้อและหอพัก</span></p>
+                        <p class="text-slate-400 text-sm mb-6 flex justify-center items-center gap-1"><i class="ph-fill ph-check-circle text-psu-accent"></i> <span data-i18n="fee_c1_desc">รวมอาหาร จ.-ส. 2 มื้อ (ศ. 3 มื้อ) และหอพัก</span></p>
                     </div>
                     <div>
                         <div class="text-sm text-slate-400 mb-1" data-i18n="fee_start">ยอดชำระยืนยันสิทธิ์</div>
@@ -565,7 +555,7 @@
                         <div class="absolute top-0 right-0 bg-yellow-500 text-yellow-900 text-[10px] font-bold px-3 py-1 rounded-bl-lg" data-i18n="fee_req">บังคับ 100%</div>
                         <div class="inline-block bg-green-500/10 text-green-400 text-[10px] font-bold px-3 py-1 rounded-full mb-3 border border-green-500/20 mt-4" data-i18n="fee_p3">แบ่งชำระได้ 5 งวด/เทอม</div>
                         <h3 class="text-xl font-bold text-white mb-1" data-i18n="fee_c3_title">ม.4 ประจำหอพัก</h3>
-                        <p class="text-slate-400 text-sm mb-6 flex justify-center items-center gap-1"><i class="ph-fill ph-check-circle text-psu-accent"></i> <span data-i18n="fee_c3_desc">รวมอาหาร 3 มื้อและหอพัก</span></p>
+                        <p class="text-slate-400 text-sm mb-6 flex justify-center items-center gap-1"><i class="ph-fill ph-check-circle text-psu-accent"></i> <span data-i18n="fee_c3_desc">รวมอาหาร จ.-ส. 2 มื้อ (ศ. 3 มื้อ) และหอพัก</span></p>
                     </div>
                     <div>
                         <div class="text-sm text-slate-400 mb-1" data-i18n="fee_start">ยอดชำระยืนยันสิทธิ์</div>
@@ -577,21 +567,99 @@
                 </div>
             </div>
 
-            <div class="max-w-3xl mx-auto">
+            <!-- New Transparent Receipt/Breakdown View instead of complex JS -->
+            <div class="max-w-4xl mx-auto">
                 <details class="group bg-slate-800 border border-slate-700 rounded-xl overflow-hidden cursor-pointer transition-all outline-none">
-                    <summary class="flex justify-between items-center px-6 py-4 hover:bg-slate-800/80 outline-none">
-                        <span class="font-semibold text-blue-200 flex items-center gap-2"><i class="ph-bold ph-list-magnifying-glass text-xl"></i> <span data-i18n="fee_detail_btn">ดูแผนการแบ่งชำระเป็นงวดโดยละเอียดตลอดปี</span></span>
-                        <i class="ph-bold ph-caret-down text-slate-400 transition-transform duration-300 group-open:rotate-180"></i>
+                    <summary class="flex justify-between items-center px-6 py-5 hover:bg-slate-800/80 outline-none">
+                        <span class="font-semibold text-white flex items-center gap-2 text-lg"><i class="ph-bold ph-receipt text-psu-accent text-xl"></i> <span data-i18n="fee_detail_btn">ชำแหละค่าใช้จ่ายทั้งหมด (โครงสร้างค่าเทอม)</span></span>
+                        <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center group-hover:bg-psu-blue transition-colors">
+                            <i class="ph-bold ph-caret-down text-slate-300 transition-transform duration-300 group-open:rotate-180"></i>
+                        </div>
                     </summary>
-                    <div class="px-6 py-6 border-t border-slate-700 bg-slate-900/50 text-sm space-y-8" id="fee-details-container">
-                        <!-- JS Will Inject Fee details based on language -->
+                    <div class="px-6 py-6 border-t border-slate-700 bg-slate-900/80 cursor-default">
+                        <p class="text-sm text-yellow-500/90 bg-yellow-500/10 p-4 rounded-lg border border-yellow-500/20 mb-8" data-i18n="fee_detail_note"><i class="ph-fill ph-info"></i> ยอดค่าธรรมเนียมแรกเข้า (9,490 บาท) รวมอยู่ในเงิน 10,000 บาทงวดยืนยันสิทธิ์เรียบร้อยแล้ว ไม่ต้องจ่ายเพิ่ม</p>
+                        
+                        <!-- Grid Breakdown -->
+                        <div class="grid md:grid-cols-3 gap-6 mb-10">
+                            <!-- Section 7.1 -->
+                            <div class="bg-slate-800 rounded-xl p-5 border border-slate-700">
+                                <div class="w-10 h-10 bg-psu-accent/20 text-psu-accent rounded-lg flex items-center justify-center text-xl mb-4"><i class="ph-fill ph-backpack"></i></div>
+                                <h4 class="text-white font-bold mb-3 border-b border-slate-700 pb-2">1. ค่าธรรมเนียมแรกเข้า<br><span class="text-xs text-slate-400 font-normal">ชำระครั้งแรกครั้งเดียว (9,490 ฿)</span></h4>
+                                <ul class="text-sm text-slate-400 space-y-2">
+                                    <li class="flex justify-between"><span>โครงการปรับพื้นฐาน</span><span class="text-slate-200">5,000 ฿</span></li>
+                                    <li class="flex justify-between"><span>กิฟเซต/เครื่องนอน</span><span class="text-slate-200">1,500 ฿</span></li>
+                                    <li class="flex justify-between"><span>ประกันทรัพย์สิน (คืนตอนจบ)</span><span class="text-slate-200">1,500 ฿</span></li>
+                                    <li class="flex justify-between"><span>ประกันอุบัติเหตุรายปี</span><span class="text-slate-200">390 ฿</span></li>
+                                    <li class="flex justify-between"><span>สมาชิกหอสมุด JF Kennedy</span><span class="text-slate-200">750 ฿</span></li>
+                                    <li class="flex justify-between"><span>บัตรประจำตัวนักเรียน</span><span class="text-slate-200">350 ฿</span></li>
+                                </ul>
+                            </div>
+                            <!-- Section 7.2 + 7.3 -->
+                            <div class="bg-slate-800 rounded-xl p-5 border border-slate-700">
+                                <div class="w-10 h-10 bg-psu-light/20 text-psu-light rounded-lg flex items-center justify-center text-xl mb-4"><i class="ph-fill ph-books"></i></div>
+                                <h4 class="text-white font-bold mb-3 border-b border-slate-700 pb-2">2. ค่าการศึกษาและกิจกรรม<br><span class="text-xs text-slate-400 font-normal">ชำระต่อภาคเรียน</span></h4>
+                                <ul class="text-sm text-slate-400 space-y-2">
+                                    <li class="flex justify-between"><span>ค่าพัฒนาคุณภาพการศึกษา</span><span class="text-slate-200">20,000 ฿</span></li>
+                                    <li class="flex justify-between"><span>ค่าบำรุงห้องเรียน/สื่อ</span><span class="text-slate-200">5,000 ฿</span></li>
+                                    <li class="pt-2 mt-2 border-t border-slate-700/50 flex justify-between"><span>ทัศนศึกษา (ม.1)</span><span class="text-slate-200">5,000 ฿</span></li>
+                                    <li class="flex justify-between"><span>ทัศนศึกษา ตปท. (ม.4)</span><span class="text-slate-200">10,000 ฿</span></li>
+                                </ul>
+                            </div>
+                            <!-- Living -->
+                            <div class="bg-slate-800 rounded-xl p-5 border border-slate-700">
+                                <div class="w-10 h-10 bg-green-500/20 text-green-400 rounded-lg flex items-center justify-center text-xl mb-4"><i class="ph-fill ph-house-line"></i></div>
+                                <h4 class="text-white font-bold mb-3 border-b border-slate-700 pb-2">3. อาหารและหอพัก<br><span class="text-xs text-slate-400 font-normal">ชำระต่อภาคเรียน</span></h4>
+                                <ul class="text-sm text-slate-400 space-y-2">
+                                    <li class="flex justify-between"><span>อาหารนักเรียนประจำ</span><span class="text-green-400 font-medium">15,000 ฿</span></li>
+                                    <li class="flex justify-between"><span>อาหารนักเรียนไป-กลับ</span><span class="text-green-400 font-medium">1,500 ฿</span></li>
+                                    <li class="pt-2 mt-2 border-t border-slate-700/50 flex justify-between"><span>หอพักปกติ (ม.1)</span><span class="text-slate-200">6,000 ฿</span></li>
+                                    <li class="flex justify-between"><span>หอพักปกติ (ม.4)</span><span class="text-slate-200">8,000 ฿</span></li>
+                                    <li class="flex justify-between text-xs text-slate-500 mt-1"><span>*ม.4 มีประกันหอพักเสียหายแรกเข้า</span><span>1,500 ฿</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Section 7.4 Summary Table -->
+                        <h4 class="text-white font-bold mb-4 text-lg border-l-4 border-psu-accent pl-3">ตารางสรุปยอดรวมแต่ละเทอม (ปีแรกเข้าเรียน)</h4>
+                        <div class="overflow-x-auto rounded-xl border border-slate-700">
+                            <table class="w-full text-left border-collapse text-sm whitespace-nowrap">
+                                <thead>
+                                    <tr class="bg-slate-700 text-white">
+                                        <th class="p-4 font-bold border-b border-slate-600">ระดับชั้น / รูปแบบ</th>
+                                        <th class="p-4 font-bold border-b border-slate-600">เทอมที่ 1 (แรกเข้า)</th>
+                                        <th class="p-4 font-bold border-b border-slate-600">เทอมที่ 2 (ปกติ)</th>
+                                        <th class="p-4 font-bold border-b border-slate-600 text-psu-accent bg-slate-800/50">รวมทั้งปี</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-slate-300">
+                                    <tr class="border-b border-slate-700/50 hover:bg-slate-800/50 transition">
+                                        <td class="p-4 font-medium text-white">ชั้น ม.1 - ประจำหอพัก</td>
+                                        <td class="p-4">60,490 บาท</td>
+                                        <td class="p-4">51,000 บาท</td>
+                                        <td class="p-4 font-bold text-psu-accent bg-slate-800/20">111,490 บาท</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-700/50 hover:bg-slate-800/50 transition">
+                                        <td class="p-4 font-medium text-white">ชั้น ม.1 - ไป-กลับ</td>
+                                        <td class="p-4">40,990 บาท</td>
+                                        <td class="p-4">31,500 บาท</td>
+                                        <td class="p-4 font-bold text-psu-accent bg-slate-800/20">72,490 บาท</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-800/50 transition">
+                                        <td class="p-4 font-medium text-white">ชั้น ม.4 - ประจำหอพัก</td>
+                                        <td class="p-4">68,990 บาท</td>
+                                        <td class="p-4">58,000 บาท</td>
+                                        <td class="p-4 font-bold text-psu-accent bg-slate-800/20">126,990 บาท</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </details>
             </div>
         </div>
     </section>
 
-    <section id="faq" class="py-20 bg-white border-t border-slate-200 scroll-mt-20">
+    <section id="faq" class="py-20 bg-slate-50 border-t border-slate-200 scroll-mt-20">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-psu-blue mb-4" data-i18n="faq_title">FAQ / คำถามที่พบบ่อย</h2>
@@ -603,12 +671,12 @@
         </div>
     </section>
 
-    <section class="py-12 bg-slate-50 border-t border-slate-200">
+    <section class="py-12 bg-white border-t border-slate-200">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-6"><h4 class="text-sm font-semibold text-slate-400 uppercase tracking-widest" data-i18n="sponsor_title">ดำเนินการโดย</h4></div>
             <div class="flex flex-wrap justify-center items-center gap-8 sm:gap-14">
                 <img id="logo-psu" src="https://i.postimg.cc/Y08RHts6/Prince-of-Songkla-University-Emblem.png" class="h-14 sm:h-20 grayscale-hover object-contain" alt="PSU">
-                <img id="logo-fais" src="https://i.postimg.cc/KzPLmWJw/Fa-IS-PSU-EN-H.png" class="h-14 sm:h-20 grayscale-hover object-contain" alt="FaIS PSU">
+                <img id="FaIS PSU" src="https://i.postimg.cc/KzPLmWJw/Fa-IS-PSU-EN-H.png" class="h-14 sm:h-26 grayscale-hover object-contain" alt="FaIS PSU">
                 <img id="logo-ids" src="https://i.postimg.cc/ZY6R05mp/IDS-PSU-Logo-Final-02.png" class="h-16 sm:h-28 grayscale-hover object-contain" alt="IDS PSU">
             </div>
         </div>
@@ -621,15 +689,15 @@
                     <h3 class="text-white text-xl font-bold mb-2" data-i18n="ft_title">โรงเรียนสาธิตวิทยาการอิสลาม</h3>
                     <p class="text-slate-400 mb-6 text-sm" data-i18n="ft_subtitle">มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตปัตตานี</p>
                     <div class="flex space-x-4">
-                        <a href="http://www.facebook.com/SatitIslam" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-psu-accent hover:text-white transition active:scale-95"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://satitislam.psu.ac.th/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-psu-accent hover:text-white transition active:scale-95"><i class="fas fa-globe"></i></a>
+                        <a href="http://www.facebook.com/SatitIslam" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-psu-accent hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://satitislam.psu.ac.th/" target="_blank" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-psu-accent hover:text-white transition"><i class="fas fa-globe"></i></a>
                     </div>
                 </div>
                 <div>
                     <h4 class="text-white font-semibold mb-4" data-i18n="ft_contact">ติดต่อสอบถาม</h4>
                     <ul class="space-y-3 text-sm">
                         <li class="flex items-start gap-3"><i class="ph-fill ph-map-pin text-psu-accent text-lg mt-0.5 shrink-0"></i> <span data-i18n="ft_address">181 ถ.เจริญประดิษฐ์ ต.รูสะมิแล อ.เมือง จ.ปัตตานี 94000</span></li>
-                        <li class="flex items-center gap-3"><i class="ph-fill ph-phone text-psu-accent text-lg shrink-0"></i> <span>073-313928 - 31 ต่อ 44511, แผนก UC ต่อ (4) 4511<br>ฝ่ายรับสมัคร: 064-545-2797, 084-1852329</span></li>
+                        <li class="flex items-center gap-3"><i class="ph-fill ph-phone text-psu-accent text-lg shrink-0"></i> <span>073-313928 - 31 ต่อ UC (4) 4511<br>ฝ่ายรับสมัคร: 064-545-2797, 084-1852329</span></li>
                         <li class="flex items-center gap-3"><i class="ph-fill ph-envelope-simple text-psu-accent text-lg shrink-0"></i> <span>satit.cis@gmail.com</span></li>
                     </ul>
                 </div>
@@ -648,7 +716,7 @@
             <p class="text-xs text-slate-500 font-bold" data-i18n="sticky_txt">สาธิตอิสลาม ม.อ.</p>
             <p class="text-psu-blue font-bold text-sm" data-i18n="sticky_sub">รับสมัคร ม.1 และ ม.4</p>
         </div>
-        <a id="apply-btn-sticky" href="https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register" target="_blank" rel="noopener noreferrer" class="bg-psu-blue text-white px-6 py-2.5 rounded-full font-bold shadow-md hover:bg-psu-light transition text-sm active:scale-95" data-i18n="btn_apply_now">สมัครเลย</a>
+        <a id="apply-btn-sticky" href="https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register" class="bg-psu-blue text-white px-6 py-2.5 rounded-full font-bold shadow-md hover:bg-psu-light transition text-sm" data-i18n="btn_apply_now">สมัครเลย</a>
     </div>
 
     <script>
@@ -663,41 +731,21 @@
             setTimeout(() => { toast.remove(); }, 3000);
         }
 
-        // Reading Progress & Back to Top & ScrollSpy
+        // Back to top functionality
         const backToTopBtn = document.getElementById('back-to-top');
-        const readingProgress = document.getElementById('reading-progress');
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-link, .mobile-link');
-
         window.addEventListener('scroll', () => {
-            // Back to top
-            if (window.scrollY > 300) backToTopBtn.classList.replace('hide', 'show');
-            else backToTopBtn.classList.replace('show', 'hide');
-
-            // Reading Progress
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            readingProgress.style.width = (height > 0) ? (winScroll / height) * 100 + "%" : "0%";
-
-            // ScrollSpy
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (window.scrollY >= (sectionTop - 120)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
-            });
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.replace('hide', 'show');
+            } else {
+                backToTopBtn.classList.replace('show', 'hide');
+            }
         });
 
-        // Mobile Menu
+        // Mobile Menu Toggle Logic
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
-        const mobileLinksElements = document.querySelectorAll('.mobile-link');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
 
         function closeMobileMenu() {
             mobileMenu.style.maxHeight = '0px';
@@ -711,30 +759,58 @@
                 mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
                 mobileMenu.style.opacity = '1';
                 menuIcon.classList.replace('ph-list', 'ph-x');
-            } else closeMobileMenu();
+            } else {
+                closeMobileMenu();
+            }
         });
-        mobileLinksElements.forEach(link => link.addEventListener('click', closeMobileMenu));
 
-        // State Data (Updated directly with V8 Data to ensure accuracy from start)
+        mobileLinks.forEach(link => { link.addEventListener('click', closeMobileMenu); });
+
+        // ScrollSpy Logic (Active Menu State)
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link, .mobile-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= (sectionTop - 120)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Reading Progress Bar logic
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("reading-progress").style.width = scrolled + "%";
+        });
+
         let siteData = {
             settings: { 
                 openDate: "2026-09-01T08:00:00", 
                 deadline: "2026-10-15T23:59:00", 
                 applyLink: "https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register", 
-                pdfLink: "https://example.com/announcement.pdf", 
-                manualLink: "https://example.com/manual.pdf" 
+                pdfLink: "https://example.com/announcement.pdf",
+                manualLink: "https://example.com/manual.pdf"
             },
             announcements: [],
             application_channels: [
                 { id: 1, icon: "users", color: "blue", title_th: "ประเภทนักเรียนทั่วไป", title_en: "General Students", desc_th: "สมัครออนไลน์ผ่านระบบ ischoolme, หรือยื่นด้วยตนเอง/ไปรษณีย์", desc_en: "Apply online via ischoolme, or submit in-person/mail", btn1_th: "เข้าสู่ระบบรับสมัคร", btn1_en: "Apply Now", btn1_link: "https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register", btn1_icon: "cursor-click", btn2_th: "โหลดฟอร์ม", btn2_en: "Form", btn2_link: "#", btn2_icon: "download-simple" },
-                { id: 2, icon: "arrow-circle-up", color: "blue", title_th: "โควตานักเรียน ม.ต้น สาธิตฯ", title_en: "IDS PSU Junior High", desc_th: "สมัครเข้าระบบผ่านเว็บไซต์หลักของโรงเรียนสาธิตฯ", desc_en: "Apply via the main school website portal", btn1_th: "เข้าสู่ระบบรับสมัคร", btn1_en: "Apply Now", btn1_link: "https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register", btn1_icon: "cursor-click", btn2_th: "", btn2_en: "", btn2_link: "", btn2_icon: "" },
-                { id: 3, icon: "handshake", color: "accent", title_th: "สวัสดิการบุคลากร ม.อ.", title_en: "PSU Staff Welfare", desc_th: "สมัครผ่านระบบออนไลน์ และส่งเอกสารรับรองเพิ่มเติมทางอีเมล", desc_en: "Apply online, and send staff documents via email", btn1_th: "เข้าสู่ระบบรับสมัคร", btn1_en: "Apply Now", btn1_link: "https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register", btn1_icon: "cursor-click", btn2_th: "ส่งเอกสาร", btn2_en: "Email Docs", btn2_link: "mailto:satit.cis@gmail.com", btn2_icon: "envelope-simple" },
-                { id: 4, icon: "medal", color: "accent", title_th: "ความสามารถพิเศษ (ม.1)", title_en: "Academic Excellence", desc_th: "สมัครผ่านระบบออนไลน์ และส่ง Portfolio เพิ่มเติมทางอีเมล", desc_en: "Apply online, and send Portfolio via email", btn1_th: "เข้าสู่ระบบรับสมัคร", btn1_en: "Apply Now", btn1_link: "https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register", btn1_icon: "cursor-click", btn2_th: "ส่ง Portfolio", btn2_en: "Email Port", btn2_link: "mailto:satit.cis@gmail.com", btn2_icon: "envelope-simple" }
+                { id: 2, icon: "arrow-circle-up", color: "blue", title_th: "โควตานักเรียน ม.ต้น สาธิตฯ", title_en: "IDS PSU Junior High", desc_th: "สมัครเรียนและกรอกข้อมูลเข้าระบบรับสมัครออนไลน์ทั่วไป", desc_en: "Apply directly via the general online admission system", btn1_th: "เข้าสู่ระบบรับสมัคร", btn1_en: "Apply Now", btn1_link: "https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register", btn1_icon: "cursor-click", btn2_th: "", btn2_en: "", btn2_link: "", btn2_icon: "" },
+                { id: 3, icon: "handshake", color: "accent", title_th: "สวัสดิการบุคลากร ม.อ.", title_en: "PSU Staff Welfare", desc_th: "สมัครเรียนและกรอกข้อมูลเข้าระบบรับสมัครออนไลน์ทั่วไป และส่งข้อมูลที่เกี่ยวข้องมาที่อีเมล", desc_en: "Apply online and send related welfare documents via email", btn1_th: "เข้าสู่ระบบรับสมัคร", btn1_en: "Apply Now", btn1_link: "https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register", btn1_icon: "cursor-click", btn2_th: "ส่งเอกสารทางอีเมล", btn2_en: "Email Docs", btn2_link: "mailto:satit.cis@gmail.com", btn2_icon: "envelope-simple" },
+                { id: 4, icon: "medal", color: "accent", title_th: "ความสามารถพิเศษ (ม.1)", title_en: "Academic Excellence", desc_th: "สมัครเรียนและกรอกข้อมูลเข้าระบบรับสมัครออนไลน์ทั่วไป และส่งแฟ้มผลงานมาที่อีเมล", desc_en: "Apply online and send your Portfolio via email", btn1_th: "เข้าสู่ระบบรับสมัคร", btn1_en: "Apply Now", btn1_link: "https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register", btn1_icon: "cursor-click", btn2_th: "ส่งผลงานทางอีเมล", btn2_en: "Email Portfolio", btn2_link: "mailto:satit.cis@gmail.com", btn2_icon: "envelope-simple" }
             ],
             timeline: [
                 { id: 1, date_th: "สิงหาคม 2569 เป็นต้นไป", date_en: "From Aug 2026", title_th: "ประชาสัมพันธ์", title_en: "PR Campaign", desc_th: "เผยแพร่ข้อมูลรับสมัครนักเรียนใหม่", desc_en: "Admissions information published", icon: "megaphone" },
                 { id: 2, date_th: "1 ก.ย. - 15 ต.ค. 2569", date_en: "Sep 1 - Oct 15, 2026", title_th: "รับสมัครและชำระเงิน", title_en: "Application & Payment", desc_th: "สมัครผ่านออนไลน์ หรือ ยื่นใบสมัครด้วยตนเอง/ไปรษณีย์ พร้อมชำระค่าสมัคร 300 บาท", desc_en: "Apply online or via mail/in-person. Pay 300 THB fee.", icon: "calendar-plus" },
-                { id: 3, date_th: "วันพุธ ที่ 21 ตุลาคม 2569", date_en: "Wed, Oct 21, 2026", title_th: "ประกาศรายชื่อผู้มีสิทธิ์สอบ", title_en: "Announcement of Eligible Candidates", desc_th: "แจ้งรายชื่อ เลขที่นั่งสอบ และห้องสอบ ทางเว็บไซต์โรงเรียน", desc_en: "Exam seating and rooms announced on website", icon: "list-numbers" },
+                { id: 3, date_th: "วันพุธ ที่ 21 ตุลาคม 2569", date_en: "Wed, Oct 21, 2026", title_th: "ประกาศรายชื่อผู้มีสิทธิ์สอบ", title_en: "Announcement of Candidates", desc_th: "แจ้งรายชื่อ เลขที่นั่งสอบ และห้องสอบ ทางเว็บไซต์โรงเรียน", desc_en: "Exam seating and rooms announced on website", icon: "list-numbers" },
                 { id: 4, date_th: "วันเสาร์ ที่ 7 พฤศจิกายน 2569", date_en: "Sat, Nov 7, 2026", title_th: "สอบข้อเขียนคัดเลือก", title_en: "Written Examination", desc_th: "เวลา 09.00 น. – 12.00 น. ณ สนามสอบโรงเรียนสาธิตวิทยาการอิสลาม ม.อ.", desc_en: "09:00 AM - 12:00 PM at IDS PSU", icon: "pencil-simple" },
                 { id: 5, date_th: "ภายใน 30 พฤศจิกายน 2569", date_en: "By Nov 30, 2026", title_th: "ประกาศผลการคัดเลือก", title_en: "Result Announcement", desc_th: "แจ้งผลการสอบข้อเขียนคัดเลือกผ่านระบบออนไลน์", desc_en: "Results announced via online system", icon: "confetti" },
                 { id: 6, date_th: "อังคาร ที่ 1 - ศุกร์ ที่ 4 ธันวาคม 2569", date_en: "Tue 1 - Fri 4 Dec, 2026", title_th: "ยืนยันสิทธิ์ออนไลน์", title_en: "Online Confirmation", desc_th: "ยืนยันผ่านระบบของเว็บไซต์โรงเรียน (หากพ้นกำหนดถือว่าสละสิทธิ์)", desc_en: "Confirm admission online. Unconfirmed status will be forfeited.", icon: "check-square-offset" },
@@ -745,9 +821,9 @@
                 { id: 2, q_th: "เรียนไป-กลับได้ไหม หรือบังคับอยู่หอพัก?", q_en: "Is boarding mandatory?", a_th: "ม.1 เลือกได้ทั้งแบบอยู่ประจำหรือไป-กลับ (ถ้าไป-กลับต้องอยู่กับครอบครัวหรือผู้ปกครองสายตรงเท่านั้น ห้ามอยู่หอพักเอกชน) ส่วนนักเรียน ม.4 ทุกคนบังคับอยู่ประจำที่หอพักของโรงเรียน 100% ครับ", a_en: "M.1 can choose to be day students (must live with direct parents) or boarders. M.4 students must be 100% boarders in the school dormitory." },
                 { id: 3, q_th: "มีทุนการศึกษาให้ไหม?", q_en: "Are there scholarships available?", a_th: "ปัจจุบันทางโรงเรียนยังไม่มีทุนการศึกษาสนับสนุนให้แก่นักเรียนใหม่ครับ", a_en: "There are currently no scholarships available for new students this academic year." },
                 { id: 4, q_th: "ต้องสอบคัดเลือกไหม และสอบวิชาอะไรบ้าง?", q_en: "Is there an entrance exam?", a_th: "มีการสอบคัดเลือกครับ โดยจะสอบ 3 วิชาหลัก ได้แก่ คณิตศาสตร์, วิทยาศาสตร์, และภาษาอังกฤษ", a_en: "Yes, applicants must take an entrance exam covering Mathematics, Science, and English." },
-                { id: 5, q_th: "มีค่าสมัครสอบไหม ชำระอย่างไร?", q_en: "Is there an application fee?", a_th: "ค่าสมัครสอบ 300 บาทครับ สามารถชำระเงินสดได้ที่โรงเรียน (กรณีสมัครด้วยตนเอง), แนบเงินสด (กรณีสมัครทางไปรษณีย์) หรือสแกน QR Code ผ่านแอปธนาคาร (กรณีสมัครออนไลน์)", a_en: "The application fee is 300 THB. It can be paid in cash, via mail, or via Mobile Banking QR Code for online applications." },
-                { id: 6, q_th: "ชำระค่าสมัครสอบทางออนไลน์แล้ว ต้องส่งสลิปไหม?", q_en: "Do I need to send the payment slip?", a_th: "ไม่ต้องส่ง/อัปโหลดสลิปครับ ระบบจะตัดยอดและมีเจ้าหน้าที่ตรวจสอบการชำระเงินของผู้สมัครโดยอัตโนมัติ", a_en: "No need to send or upload the slip. The system and our staff will verify your payment automatically." },
-                { id: 7, q_th: "ตรวจสอบสถานะการชำระเงินได้ที่ไหน?", q_en: "Where can I check payment status?", a_th: "สามารถตรวจสอบสถานะการยืนยันเงินได้เรียลไทม์ผ่านระบบรับสมัครนักเรียนออนไลน์โดยตรง", a_en: "You can check it anytime via the online admission system's 'Check Status' menu." },
+                { id: 5, q_th: "มีค่าสมัครสอบไหม ชำระอย่างไร?", q_en: "Is there an application fee?", a_th: "ค่าสมัครสอบ 300 บาทครับ สามารถชำระเงินสดได้ที่โรงเรียน (กรณีสมัครด้วยตนเอง), แนบเงินสด (กรณีสมัครทางไปรษณีย์) หรือสแกน QR Codeผ่านแอปธนาคาร (กรณีสมัครออนไลน์)", a_en: "The application fee is 300 THB. It can be paid in cash, via mail, or via Mobile Banking QR Code for online applications." },
+                { id: 6, q_th: "ชำระค่าสมัครสอบทางออนไลน์แล้ว ต้องส่งสลิปไหม?", q_en: "Do I need to send the payment slip?", a_th: "ไม่ต้องส่งสลิป/อัปโหลดสลิปครับ ระบบจะตัดยอดและมีเจ้าหน้าที่ตรวจสอบการชำระเงินของผู้สมัครโดยอัตโนมัติ", a_en: "No need to send or upload the slip. The system and our staff will verify your payment automatically." },
+                { id: 7, q_th: "ตรวจสอบสถานะการชำระเงินได้ที่ไหน?", q_en: "Where can I check payment status?", a_th: "สามารถตรวจสอบได้ตลอดเวลาผ่านระบบรับสมัครออนไลน์ เมนู 'ตรวจสอบสถานะ' เรียลไทม์", a_en: "You can check it anytime via the online admission system's 'Check Status' menu." },
                 { id: 8, q_th: "จะมีการเปิดรับสมัครรอบสองไหม?", q_en: "Will there be a second round?", a_th: "การเปิดรับสมัครรอบสอง จะพิจารณาจากจำนวนผู้ยืนยันสิทธิ์ในรอบแรกครับ หากได้นักเรียนครบตามจำนวนที่ประกาศรับแล้ว จะไม่มีการเปิดรับสมัครในรอบที่สองครับ", a_en: "A second round depends on the number of confirmed students from the first round. If the quota is met, there won't be a second round." }
             ]
         };
@@ -773,7 +849,7 @@
                 hl_1_title: "ด้านหลักสูตรการสอน", hl_1_desc: "ม.4 เน้นแผนการเรียนวิทย์-คณิต โดยแบ่งเป็นหลักสูตรทั่วไป และ หลักสูตร วมว. (กำกับโดยกระทรวง อว.)",
                 hl_2_title: "ด้านการพักอาศัย", hl_2_desc: "ม.1 เลือกได้ทั้งแบบ \"ประจำ\" และ \"ไป-กลับ\" (ต้องพักกับผู้ปกครองสายตรง) ส่วน ม.4 ต้องพักในหอพักของโรงเรียน 100%",
                 hl_3_title: "ขนาดชั้นเรียนดูแลทั่วถึง", hl_3_desc: "จำกัดขนาดชั้นเรียนอย่างเป็นระบบ ม.1 ห้องละ 35 คน และ ม.4 ห้องละ 37 คน เพื่อคุณภาพวิชาการและจริยธรรม",
-                hl_4_title: "ความโปร่งใสโครงสร้างค่าใช้จ่าย", hl_4_desc: "แจกแจงรายการค่าธรรมเนียมและบริการต่างๆ อย่างครบถ้วน ให้ผู้ปกครองวางแผนงบประมาณได้ระยะยาวโดยไม่มีค่าใช้จ่ายแฝง",
+                hl_4_title: "ความโปร่งใสโครงสร้างค่าใช้จ่าย", hl_4_desc: "แจกแจงรายการค่าธรรมเนียมและบริการต่างๆ อย่างครบถ้วนเป็นลายลักษณ์อักษร ให้ผู้ปกครองวางแผนงบประมาณได้ระยะยาวโดยไม่มีค่าใช้จ่ายแฝง (ปัจจุบันยังไม่มีทุนการศึกษาสำหรับนักเรียนใหม่)",
                 hl_5_title: "ระบบดิจิทัล 100%", hl_5_desc: "สมัครออนไลน์ ชำระเงินผ่าน Mobile Banking ด้วยบาร์โค้ด ไม่ต้องส่งสลิป เช็กสถานะได้เรียลไทม์",
 
                 quota_title: "สัดส่วนและโควตาการรับสมัคร", quota_desc: "ยอดรับนักเรียนใหม่ ประจำปีการศึกษา 2570",
@@ -795,14 +871,14 @@
                 exam_title: "รายละเอียดการสอบคัดเลือก", exam_date: "วันเสาร์ ที่ 7 พฤศจิกายน 2569",
                 ex_m_t: "09.00 - 10.00 น.", ex_m_d: "คณิตศาสตร์ (60 นาที)", ex_s_t: "10.15 - 11.15 น.", ex_s_d: "วิทยาศาสตร์ (60 นาที)", ex_e_t: "11.30 - 12.00 น.", ex_e_d: "ภาษาอังกฤษ (30 นาที)",
                 ex_100: "100 คะแนน", ex_50: "50 คะแนน",
-                ex_rule_title: "Checklist ก่อนวันสอบ", ex_rule_1: "แสดงบัตรประจำตัวนักเรียน บัตรประชาชน หรือบัตรที่มีรูปถ่ายชัดเจน", ex_rule_2: "แต่งกายด้วยเครื่องแบบนักเรียนของโรงเรียนปัจจุบัน (กศน. แต่งกายชุดสุภาพ)", ex_rule_3: "เตรียมเครื่องเขียนมาเอง (ปากกา ดินสอ ยางลบ น้ำยาลบคำผิด)",
+                ex_rule_title: "Checklist ก่อนวันสอบ", ex_rule_1: "แสดงบัตรประจำตัวนักเรียน หรือบัตรประชาชน ที่มีรูปถ่ายชัดเจน", ex_rule_2: "แต่งกายด้วยเครื่องแบบนักเรียนของโรงเรียนปัจจุบัน (กศน. แต่งกายชุดสุภาพ)", ex_rule_3: "เตรียมเครื่องเขียนมาเอง (ปากกา ดินสอ ยางลบ น้ำยาลบคำผิด)",
 
                 time_title: "กำหนดการและปฏิทินดำเนินงาน", time_desc: "บันทึกปฏิทินไว้เลย! กระบวนการคัดเลือก ปีการศึกษา 2570",
                 
-                fee_badge: "Cost Transparency", fee_title: "โครงสร้างค่าใช้จ่าย (ปีแรกเข้า)", fee_desc: "คุ้มค่า หมดกังวลเรื่องค่าใช้จ่ายจุกจิก เพราะรวมค่าอาหาร หอพัก และกิจกรรมพัฒนาผู้เรียนไว้แล้ว (เบื้องต้นจ่ายเพียงหมื่นแรกเพื่อยืนยันสิทธิ์)",
+                fee_badge: "Cost Transparency", fee_title: "โครงสร้างค่าใช้จ่าย (ปีแรกเข้า)", fee_desc: "โปร่งใส หมดกังวล เพราะโรงเรียนรวมค่าอาหาร 3 มื้อและหอพักไว้แล้ว (เบื้องต้นจ่ายเพียงหมื่นแรกเพื่อยืนยันสิทธิ์)",
                 fee_p1: "แบ่งชำระได้ 4 งวด/เทอม", fee_p2: "แบ่งชำระได้ 3 งวด/เทอม", fee_p3: "แบ่งชำระได้ 5 งวด/เทอม", fee_req: "บังคับอยู่หอ 100%",
-                fee_c1_title: "ม.1 ประจำหอพัก", fee_c1_desc: "รวมอาหาร 3 มื้อและหอพัก", fee_c2_title: "ม.1 ไป-กลับ", fee_c2_desc: "รวมอาหารกลางวันเฉพาะวันศุกร์", fee_c3_title: "ม.4 ประจำหอพัก", fee_c3_desc: "รวมอาหาร 3 มื้อและหอพัก",
-                fee_start: "ยอดชำระยืนยันสิทธิ์", fee_total: "ยอดรวมเทอม 1:", fee_detail_btn: "ดูแผนการแบ่งชำระเป็นงวดโดยละเอียดตลอดปี",
+                fee_c1_title: "ม.1 ประจำหอพัก", fee_c1_desc: "รวมอาหาร จ.-ส. 2 มื้อ (ศ. 3 มื้อ) และหอพัก", fee_c2_title: "ม.1 ไป-กลับ", fee_c2_desc: "รวมอาหารกลางวันเฉพาะวันศุกร์", fee_c3_title: "ม.4 ประจำหอพัก", fee_c3_desc: "รวมอาหาร จ.-ส. 2 มื้อ (ศ. 3 มื้อ) และหอพัก",
+                fee_start: "ยอดชำระยืนยันสิทธิ์", fee_total: "ยอดรวมเทอม 1:", fee_detail_btn: "ชำแหละค่าใช้จ่ายทั้งหมด (โครงสร้างค่าเทอม)", fee_detail_note: "ยอดค่าธรรมเนียมแรกเข้า (9,490 บาท) รวมอยู่ในเงิน 10,000 บาทงวดยืนยันสิทธิ์เรียบร้อยแล้ว ไม่ต้องจ่ายเพิ่ม",
 
                 faq_title: "FAQ / คำถามที่พบบ่อย", faq_desc: "ไขข้อกังวลใจสำหรับผู้ปกครองและนักเรียน",
                 sponsor_title: "ดำเนินการโดย", sticky_txt: "สาธิตอิสลาม ม.อ.", sticky_sub: "รับสมัคร ม.1 และ ม.4",
@@ -849,180 +925,20 @@
                 exam_title: "Exam Details", exam_date: "Saturday, Nov 7, 2026",
                 ex_m_t: "09:00 - 10:00", ex_m_d: "Mathematics (60 mins)", ex_s_t: "10:15 - 11:15", ex_s_d: "Science (60 mins)", ex_e_t: "11:30 - 12:00", ex_e_d: "English (30 mins)",
                 ex_100: "100 pts", ex_50: "50 pts",
-                ex_rule_title: "Exam Rules", ex_rule_1: "Present Student or National ID", ex_rule_2: "Wear current school uniform (or polite attire for NFE)", ex_rule_3: "Bring own stationeries (Pen, Pencil, Eraser, Correction fluid)",
+                ex_rule_title: "Exam Rules", ex_rule_1: "Present Student or National ID", ex_rule_2: "Wear current school uniform", ex_rule_3: "Bring own stationeries",
 
                 time_title: "Admissions Timeline", time_desc: "Save the dates! Academic Year 2027 selection process",
                 
                 fee_badge: "Cost Transparency", fee_title: "Fee Structure (First Year)", fee_desc: "Transparent fee breakdown. 3 meals and dorm are included. (Initial payment is 10,000 THB)",
                 fee_p1: "4 Installments/Term", fee_p2: "3 Installments/Term", fee_p3: "5 Installments/Term", fee_req: "100% Required",
                 fee_c1_title: "M.1 Boarding", fee_c1_desc: "Meals & Dorm Included", fee_c2_title: "M.1 Day", fee_c2_desc: "Friday's lunch included", fee_c3_title: "M.4 Boarding", fee_c3_desc: "Meals & Dorm Included",
-                fee_start: "Initial Confirmation Fee", fee_total: "Term 1 Total:", fee_detail_btn: "View Granular Payment Plans",
+                fee_start: "Initial Confirmation Fee", fee_total: "Term 1 Total:", fee_detail_btn: "View Granular Payment Breakdown", fee_detail_note: "Initial admission fee (9,490 THB) is paid once and included in the 10,000 THB confirmation installment.",
 
                 faq_title: "Frequently Asked Questions", faq_desc: "Clearing doubts for parents and students.",
                 sponsor_title: "Operated By", sticky_txt: "IDS PSU", sticky_sub: "M.1 & M.4 Admissions",
                 ft_title: "Islamic Sciences Demonstration School", ft_subtitle: "Prince of Songkla University, Pattani Campus", ft_contact: "Contact Us",
                 ft_address: "181 Charoenpradit Rd., Mueang, Pattani 94000", ft_copy: "© 2026 IDS PSU Pattani all rights reserved."
             }
-        };
-
-        const renderFeeDetails = () => {
-            const container = document.getElementById('fee-details-container');
-            const thHTML = `
-                <p class="text-xs text-yellow-500/80 bg-yellow-500/10 p-3 rounded-lg border border-yellow-500/20">* ค่าแรกเข้าชำระครั้งเดียวในปีแรก (9,490 บาท) รวมอยู่ในเงินงวดยืนยันสิทธิ์เรียบร้อยแล้ว</p>
-                <!-- M.1 Dorm -->
-                <div class="relative">
-                    <h4 class="font-bold text-white bg-slate-700 px-4 py-2 rounded-lg mb-4 flex justify-between items-center">
-                        <span>1. ม.1 แบบประจำหอพัก</span><span class="text-xs text-slate-300 font-normal">รวมเทอม 1: 60,490 ฿ | เทอม 2: 51,000 ฿</span>
-                    </h4>
-                    <div class="pl-2 border-l-2 border-slate-700 ml-2 space-y-6">
-                        <div class="relative pl-6">
-                            <div class="absolute left-[-5px] top-1.5 w-2 h-2 bg-psu-accent rounded-full ring-4 ring-slate-900"></div>
-                            <h5 class="text-psu-accent font-bold mb-3">เทอม 1</h5>
-                            <div class="grid sm:grid-cols-2 gap-3">
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 hover:border-psu-accent/50 transition">
-                                    <div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">งวดที่ 1: ยืนยันสิทธิ์</span><span class="text-green-400 font-bold">10,000 ฿</span></div><p class="text-[10px] text-slate-400">ค่าแรกเข้าและบำรุงห้องเรียนบางส่วน</p>
-                                </div>
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 hover:border-psu-accent/50 transition">
-                                    <div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">งวดที่ 2: ก่อนเปิดเรียน</span><span class="text-green-400 font-bold">31,000 ฿</span></div><p class="text-[10px] text-slate-400">ค่าพัฒนาการศึกษา, อาหาร, หอพัก</p>
-                                </div>
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 hover:border-psu-accent/50 transition">
-                                    <div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">งวดที่ 3: เดือนแรกที่เปิดเรียน</span><span class="text-green-400 font-bold">14,490 ฿</span></div><p class="text-[10px] text-slate-400">ค่าอาหารและบำรุงห้องเรียนส่วนที่เหลือ</p>
-                                </div>
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 hover:border-psu-accent/50 transition">
-                                    <div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">งวดที่ 4: ภายในภาคเรียน</span><span class="text-green-400 font-bold">5,000 ฿</span></div><p class="text-[10px] text-slate-400">ค่าทัศนศึกษานอกสถานที่</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="relative pl-6">
-                            <div class="absolute left-[-5px] top-1.5 w-2 h-2 bg-slate-400 rounded-full ring-4 ring-slate-900"></div>
-                            <h5 class="text-slate-300 font-bold mb-3">เทอม 2</h5>
-                            <div class="grid sm:grid-cols-2 gap-3">
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 hover:border-slate-500 transition">
-                                    <div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">งวดที่ 1: ก่อนเริ่มเทอม</span><span class="text-green-400 font-bold">31,000 ฿</span></div><p class="text-[10px] text-slate-400">ค่าพัฒนาฯ, บำรุงห้องเรียน, หอพัก</p>
-                                </div>
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 hover:border-slate-500 transition">
-                                    <div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">งวดที่ 2: ระหว่างเรียน (พ.ย.)</span><span class="text-green-400 font-bold">5,000 ฿</span></div><p class="text-[10px] text-slate-400">ค่าทัศนศึกษานอกสถานที่</p>
-                                </div>
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 hover:border-slate-500 transition sm:col-span-2">
-                                    <div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">งวดที่ 3: ระหว่างเรียน (ธ.ค.)</span><span class="text-green-400 font-bold">15,000 ฿</span></div><p class="text-[10px] text-slate-400">ค่าอาหารประจำเทอม</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- M.1 Day -->
-                <div class="relative mt-8">
-                    <h4 class="font-bold text-white bg-slate-700 px-4 py-2 rounded-lg mb-4 flex justify-between items-center">
-                        <span>2. ม.1 แบบไป-กลับ</span><span class="text-xs text-slate-300 font-normal">รวมเทอม 1: 40,990 ฿ | เทอม 2: 31,500 ฿</span>
-                    </h4>
-                    <div class="pl-2 border-l-2 border-slate-700 ml-2 space-y-6">
-                        <div class="relative pl-6">
-                            <div class="absolute left-[-5px] top-1.5 w-2 h-2 bg-psu-light rounded-full ring-4 ring-slate-900"></div>
-                            <h5 class="text-psu-light font-bold mb-3">เทอม 1</h5>
-                            <div class="grid sm:grid-cols-2 gap-3">
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 hover:border-psu-light/50 transition">
-                                    <div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">งวดที่ 1: ยืนยันสิทธิ์</span><span class="text-green-400 font-bold">10,000 ฿</span></div><p class="text-[10px] text-slate-400">ค่าแรกเข้าและบำรุงห้องเรียนบางส่วน</p>
-                                </div>
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 hover:border-psu-light/50 transition">
-                                    <div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">งวดที่ 2: ก่อนเปิดเรียน</span><span class="text-green-400 font-bold">25,990 ฿</span></div><p class="text-[10px] text-slate-400">ค่าพัฒนาฯ, ค่าอาหารเฉพาะวันศุกร์ (อาหารกลางวัน 1 มื้อ/สัปดาห์)</p>
-                                </div>
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 hover:border-psu-light/50 transition sm:col-span-2">
-                                    <div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">งวดที่ 3: ภายในภาคเรียน</span><span class="text-green-400 font-bold">5,000 ฿</span></div><p class="text-[10px] text-slate-400">ค่าทัศนศึกษานอกสถานที่</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="relative pl-6">
-                            <div class="absolute left-[-5px] top-1.5 w-2 h-2 bg-slate-400 rounded-full ring-4 ring-slate-900"></div>
-                            <h5 class="text-slate-300 font-bold mb-3">เทอม 2</h5>
-                            <div class="grid sm:grid-cols-2 gap-3">
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 hover:border-slate-500 transition">
-                                    <div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">งวดที่ 1: ก่อนเริ่มเทอม</span><span class="text-green-400 font-bold">26,500 ฿</span></div><p class="text-[10px] text-slate-400">ค่าพัฒนาฯ, ค่าอาหารเฉพาะวันศุกร์ (อาหารกลางวัน 1 มื้อ/สัปดาห์)</p>
-                                </div>
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 hover:border-slate-500 transition">
-                                    <div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">งวดที่ 2: ระหว่างเรียน (พ.ย.)</span><span class="text-green-400 font-bold">5,000 ฿</span></div><p class="text-[10px] text-slate-400">ค่าทัศนศึกษานอกสถานที่</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- M.4 Dorm -->
-                <div class="relative mt-8">
-                    <h4 class="font-bold text-white bg-slate-700 px-4 py-2 rounded-lg mb-4 flex justify-between items-center">
-                        <span>3. ม.4 แบบประจำหอพัก</span><span class="text-xs text-slate-300 font-normal">รวมเทอม 1: 68,990 ฿ | เทอม 2: 58,000 ฿</span>
-                    </h4>
-                    <div class="pl-2 border-l-2 border-slate-700 ml-2 space-y-6">
-                        <div class="relative pl-6">
-                            <div class="absolute left-[-5px] top-1.5 w-2 h-2 bg-psu-accent rounded-full ring-4 ring-slate-900"></div>
-                            <h5 class="text-psu-accent font-bold mb-3">เทอม 1</h5>
-                            <div class="grid sm:grid-cols-2 gap-3">
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 hover:border-psu-accent/50 transition">
-                                    <div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">งวดที่ 1: ยืนยันสิทธิ์</span><span class="text-green-400 font-bold">10,000 ฿</span></div><p class="text-[10px] text-slate-400">ค่าแรกเข้าและบำรุงห้องเรียนบางส่วน</p>
-                                </div>
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 hover:border-psu-accent/50 transition">
-                                    <div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">งวดที่ 2: เตรียมมอบตัว</span><span class="text-green-400 font-bold">9,500 ฿</span></div><p class="text-[10px] text-slate-400">ค่าหอพัก, ค่าประกันหอพักเสียหาย (แรกเข้าครั้งเดียว 1,500 ฿)</p>
-                                </div>
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 hover:border-psu-accent/50 transition">
-                                    <div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">งวดที่ 3: ก่อนเปิดภาคเรียน</span><span class="text-green-400 font-bold">25,000 ฿</span></div><p class="text-[10px] text-slate-400">ค่าพัฒนาการศึกษา, อาหารงวดแรก</p>
-                                </div>
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 hover:border-psu-accent/50 transition">
-                                    <div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">งวดที่ 4: เดือนแรกที่เปิดเรียน</span><span class="text-green-400 font-bold">14,490 ฿</span></div><p class="text-[10px] text-slate-400">ค่าบำรุงห้องเรียน, ค่าอาหารส่วนที่เหลือ</p>
-                                </div>
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 hover:border-psu-accent/50 transition sm:col-span-2">
-                                    <div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">งวดที่ 5: ภายในภาคเรียน</span><span class="text-green-400 font-bold">10,000 ฿</span></div><p class="text-[10px] text-slate-400">ค่าทัศนศึกษาแลกเปลี่ยนต่างประเทศ</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="relative pl-6">
-                            <div class="absolute left-[-5px] top-1.5 w-2 h-2 bg-slate-400 rounded-full ring-4 ring-slate-900"></div>
-                            <h5 class="text-slate-300 font-bold mb-3">เทอม 2</h5>
-                            <div class="grid sm:grid-cols-2 gap-3">
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 hover:border-slate-500 transition">
-                                    <div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">งวดที่ 1: ก่อนเริ่มเทอม</span><span class="text-green-400 font-bold">8,000 ฿</span></div><p class="text-[10px] text-slate-400">ค่าหอพักประจำภาคเรียนที่สอง</p>
-                                </div>
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 hover:border-slate-500 transition">
-                                    <div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">งวดที่ 2: ช่วงเปิดเรียน</span><span class="text-green-400 font-bold">25,000 ฿</span></div><p class="text-[10px] text-slate-400">ค่าพัฒนาการศึกษา, อาหารงวดแรก</p>
-                                </div>
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 hover:border-slate-500 transition">
-                                    <div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">งวดที่ 3: ระหว่างเรียน (พ.ย.)</span><span class="text-green-400 font-bold">10,000 ฿</span></div><p class="text-[10px] text-slate-400">ค่าทัศนศึกษาแลกเปลี่ยนต่างประเทศ</p>
-                                </div>
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 hover:border-slate-500 transition">
-                                    <div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">งวดที่ 4: ระหว่างเรียน (ธ.ค.)</span><span class="text-green-400 font-bold">15,000 ฿</span></div><p class="text-[10px] text-slate-400">ค่าบำรุงห้องเรียน, ค่าอาหารส่วนที่เหลือ</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            const enHTML = `
-                <p class="text-xs text-yellow-500/80 bg-yellow-500/10 p-3 rounded-lg border border-yellow-500/20">* Initial admission fee (9,490 THB) is paid once and included in the first confirmation installment.</p>
-                <div class="relative">
-                    <h4 class="font-bold text-white bg-slate-700 px-4 py-2 rounded-lg mb-4 flex justify-between items-center">
-                        <span>1. M.1 Boarding</span><span class="text-xs text-slate-300 font-normal">Term 1: 60,490 THB | Term 2: 51,000 THB</span>
-                    </h4>
-                    <div class="pl-2 border-l-2 border-slate-700 ml-2 space-y-6">
-                        <div class="relative pl-6">
-                            <div class="absolute left-[-5px] top-1.5 w-2 h-2 bg-psu-accent rounded-full ring-4 ring-slate-900"></div>
-                            <h5 class="text-psu-accent font-bold mb-3">Term 1</h5>
-                            <div class="grid sm:grid-cols-2 gap-3">
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700"><div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">Inst. 1: Confirmation</span><span class="text-green-400 font-bold">10,000 ฿</span></div></div>
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700"><div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">Inst. 2: Pre-semester</span><span class="text-green-400 font-bold">31,000 ฿</span></div></div>
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700"><div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">Inst. 3: 1st Month</span><span class="text-green-400 font-bold">14,490 ฿</span></div></div>
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700"><div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">Inst. 4: Mid-term</span><span class="text-green-400 font-bold">5,000 ฿</span></div></div>
-                            </div>
-                        </div>
-                        <div class="relative pl-6">
-                            <div class="absolute left-[-5px] top-1.5 w-2 h-2 bg-slate-400 rounded-full ring-4 ring-slate-900"></div>
-                            <h5 class="text-slate-300 font-bold mb-3">Term 2</h5>
-                            <div class="grid sm:grid-cols-2 gap-3">
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700"><div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">Inst. 1: Pre-semester</span><span class="text-green-400 font-bold">31,000 ฿</span></div></div>
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700"><div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">Inst. 2: Mid-term</span><span class="text-green-400 font-bold">5,000 ฿</span></div></div>
-                                <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700 sm:col-span-2"><div class="flex justify-between items-center mb-1"><span class="font-semibold text-slate-200 text-xs">Inst. 3: End of Year</span><span class="text-green-400 font-bold">15,000 ฿</span></div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            container.innerHTML = currentLang === 'th' ? thHTML : enHTML;
         };
 
         const loadDataFromGitHub = async () => {
@@ -1147,9 +1063,7 @@
                 </div>
             `).join('');
 
-            renderFeeDetails();
-
-            // FAQ
+            // FAQ with Enhanced UX
             document.getElementById('faq-container').innerHTML = siteData.faqs.map(item => `
                 <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow mb-4">
                     <button class="w-full text-left px-6 py-5 flex justify-between items-center bg-white hover:bg-slate-50 transition-colors focus:outline-none group" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180'); this.querySelector('span.faq-q').classList.toggle('text-psu-blue'); this.querySelector('.icon-bg').classList.toggle('bg-blue-50')">
@@ -1166,7 +1080,8 @@
             `).join('');
         };
 
-        const initCountdownAndButtons = () => {
+        // Date Check Logic for Buttons
+        const startCountdown = () => {
             setInterval(() => {
                 if(!siteData || !siteData.settings) return;
                 const now = new Date().getTime();
@@ -1217,8 +1132,9 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             loadDataFromGitHub();
-            initCountdownAndButtons(); 
+            startCountdown();
             
+            // Eligibility logic
             const all_cbs = Array.from(document.querySelectorAll('.eligibility-cb'));
             const m1_cbs = all_cbs.slice(0,3);
             const m4_cbs = all_cbs.slice(3,6);
