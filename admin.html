@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CMS Admin | สาธิตวิทยาการอิสลาม ม.อ.</title>
+    <title>CMS Admin | ระบบหลังบ้านสาธิต ม.อ.</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
     <script>
         tailwind.config = {
@@ -21,22 +21,28 @@
         }
     </script>
     <style>
-        body { font-family: 'Kanit', sans-serif; background-color: #f8fafc; }
+        body { background-color: #f8fafc; }
         .toast { animation: slideInRight 0.3s ease, fadeOut 0.5s ease 2.5s forwards; }
         @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+        /* ซ่อน Scrollbar ของ Sidebar เพื่อความคลีน */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     </style>
 </head>
-<body class="text-slate-800 min-h-screen flex flex-col relative">
+<body class="text-slate-800 min-h-screen flex flex-col relative font-sans">
 
     <div id="toast-container" class="fixed bottom-5 right-5 z-[10000] flex flex-col gap-2"></div>
 
+    <!-- Login Screen -->
     <div id="admin-login-screen" class="min-h-screen flex items-center justify-center p-4 bg-slate-900 absolute inset-0 z-50">
-        <div class="bg-white rounded-3xl shadow-2xl p-8 sm:p-10 w-full max-w-md">
+        <div class="bg-white rounded-3xl shadow-2xl p-8 sm:p-10 w-full max-w-md border-t-4 border-psu-accent">
             <div class="text-center mb-8">
                 <div class="w-20 h-20 bg-psu-blue/10 text-psu-blue rounded-full flex items-center justify-center mx-auto mb-4 text-4xl shadow-inner"><i class="ph-fill ph-lock-key"></i></div>
-                <h1 class="text-2xl font-bold text-slate-800">ระบบจัดการหลังบ้าน</h1>
-                <p class="text-slate-500 text-sm mt-1">เจ้าหน้าที่ฝ่ายรับสมัครนักเรียนใหม่</p>
+                <h1 class="text-2xl font-bold text-slate-800">ระบบจัดการข้อมูล</h1>
+                <p class="text-slate-500 text-sm mt-1">เว็บไซต์รับสมัครนักเรียน สาธิต ม.อ.</p>
             </div>
             <div class="space-y-4">
                 <input type="password" id="login-pass" class="w-full px-4 py-3.5 border-2 border-slate-200 rounded-2xl text-center font-bold tracking-widest text-lg focus:outline-none focus:border-psu-accent transition" placeholder="รหัส PIN" onkeypress="if(event.key === 'Enter') handleLogin()">
@@ -46,76 +52,131 @@
         </div>
     </div>
 
+    <!-- Dashboard Screen -->
     <div id="admin-dashboard-screen" class="hidden flex-col flex-1 pb-24">
         <header class="bg-psu-blue text-white sticky top-0 z-40 shadow-md">
-            <div class="max-w-6xl mx-auto px-4 h-16 flex justify-between items-center">
-                <h2 class="text-lg font-bold flex items-center gap-2"><i class="ph-fill ph-gear"></i> CMS Admin Control</h2>
-                <button onclick="handleLogout()" class="bg-red-500 hover:bg-red-600 px-4 py-1.5 rounded-lg text-sm font-bold transition flex items-center gap-1"><i class="ph-bold ph-sign-out"></i> ออกระบบ</button>
+            <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
+                <h2 class="text-lg font-bold flex items-center gap-2"><i class="ph-fill ph-sliders"></i> IDS Admin Control</h2>
+                <button onclick="handleLogout()" class="bg-red-500 hover:bg-red-600 px-4 py-1.5 rounded-lg text-sm font-bold transition flex items-center gap-1 active:scale-95"><i class="ph-bold ph-sign-out"></i> ออกระบบ</button>
             </div>
         </header>
 
-        <main class="max-w-6xl mx-auto px-4 py-8 w-full space-y-6">
-            
-            <div class="bg-blue-50 border border-blue-200 rounded-2xl p-5">
-                <h3 class="font-bold text-psu-blue mb-2"><i class="ph-bold ph-key"></i> 1. ตั้งค่าการอัปเดตผ่าน GitHub API</h3>
-                <p class="text-xs text-slate-600 mb-3">ระบบจะจดจำ Token ของคุณไว้ในเบราว์เซอร์ของคอมพิวเตอร์เครื่องนี้เท่านั้น (ปลอดภัยที่สุดสำหรับการแก้ไขแบบ Serverless)</p>
-                <div class="grid sm:grid-cols-3 gap-3">
-                    <input type="text" id="github-user" class="text-sm p-2.5 border rounded-xl" placeholder="GitHub Username">
-                    <input type="text" id="github-repo" class="text-sm p-2.5 border rounded-xl" placeholder="Repo Name (e.g., apply-ids)">
-                    <input type="password" id="github-token" class="text-sm p-2.5 border rounded-xl" placeholder="Personal Access Token">
+        <main class="max-w-7xl mx-auto px-4 py-8 w-full">
+            <div class="grid lg:grid-cols-12 gap-6">
+                <!-- Sidebar Navigation -->
+                <div class="lg:col-span-3 space-y-2 sticky top-24 h-fit">
+                    <button onclick="switchTab('tab-settings')" id="btn-tab-settings" class="admin-tab w-full text-left px-4 py-3 rounded-xl font-bold transition bg-psu-accent text-white shadow-sm flex items-center gap-2"><i class="ph-fill ph-gear"></i> 1. ตั้งค่าระบบ & ลิงก์</button>
+                    <button onclick="switchTab('tab-channels')" id="btn-tab-channels" class="admin-tab w-full text-left px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-200 transition flex items-center gap-2"><i class="ph-fill ph-cards"></i> 2. การ์ดช่องทางสมัคร</button>
+                    <button onclick="switchTab('tab-announce')" id="btn-tab-announce" class="admin-tab w-full text-left px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-200 transition flex items-center gap-2"><i class="ph-fill ph-megaphone"></i> 3. กระดานประกาศ</button>
+                    <button onclick="switchTab('tab-timeline')" id="btn-tab-timeline" class="admin-tab w-full text-left px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-200 transition flex items-center gap-2"><i class="ph-fill ph-calendar-blank"></i> 4. กำหนดการ (Timeline)</button>
+                    <button onclick="switchTab('tab-faq')" id="btn-tab-faq" class="admin-tab w-full text-left px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-200 transition flex items-center gap-2"><i class="ph-fill ph-chat-circle-question"></i> 5. FAQ (คำถามที่พบบ่อย)</button>
+                    <button onclick="switchTab('tab-fees')" id="btn-tab-fees" class="admin-tab w-full text-left px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-200 transition flex items-center gap-2"><i class="ph-fill ph-receipt"></i> 6. ค่าเทอม (Fee Builder)</button>
+                    <button onclick="switchTab('tab-github')" id="btn-tab-github" class="admin-tab w-full text-left px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-200 transition flex items-center gap-2 mt-8 border border-slate-200"><i class="ph-fill ph-github-logo"></i> ตั้งค่า API เชื่อมต่อ</button>
                 </div>
-            </div>
 
-            <div class="bg-white border rounded-2xl p-6 shadow-sm">
-                <h3 class="font-bold text-lg mb-4 text-psu-blue border-b pb-2">2. ตั้งค่าระบบและลิงก์</h3>
-                <div class="grid sm:grid-cols-2 gap-4 mb-4">
-                    <div><label class="block text-xs font-bold mb-1">เวลาเปิดรับสมัคร</label><input type="datetime-local" id="admin-open-date" class="w-full text-sm px-3 py-2 border rounded-xl" onchange="updateSettings('openDate', this.value)"></div>
-                    <div><label class="block text-xs font-bold mb-1">เวลาปิดรับสมัคร</label><input type="datetime-local" id="admin-deadline" class="w-full text-sm px-3 py-2 border rounded-xl" onchange="updateSettings('deadline', this.value)"></div>
-                </div>
-                <div class="space-y-3">
-                    <div><label class="block text-xs font-bold mb-1">ลิงก์ระบบสมัครออนไลน์ (ปุ่มหลัก ischoolme)</label><input type="text" id="admin-apply-link" class="w-full text-sm px-3 py-2 border rounded-xl" onchange="updateSettings('applyLink', this.value)"></div>
-                    <div><label class="block text-xs font-bold mb-1">ลิงก์ประกาศฉบับเต็ม (PDF) <span class="text-slate-400 font-normal">เว้นว่างไว้เพื่อซ่อนปุ่ม</span></label><input type="text" id="admin-pdf-link" class="w-full text-sm px-3 py-2 border rounded-xl" onchange="updateSettings('pdfLink', this.value)"></div>
-                    <div><label class="block text-xs font-bold mb-1">ลิงก์คู่มือการสมัคร (PDF) <span class="text-slate-400 font-normal">เว้นว่างไว้เพื่อซ่อนปุ่ม</span></label><input type="text" id="admin-manual-link" class="w-full text-sm px-3 py-2 border rounded-xl" onchange="updateSettings('manualLink', this.value)"></div>
-                </div>
-            </div>
+                <!-- Main Content Area -->
+                <div class="lg:col-span-9 space-y-6">
+                    
+                    <!-- Tab 1: Settings -->
+                    <div id="tab-settings" class="tab-content bg-white border rounded-2xl p-6 shadow-sm">
+                        <h3 class="font-bold text-xl mb-4 text-psu-blue border-b pb-2"><i class="ph-fill ph-gear"></i> 1. ตั้งค่าระบบและลิงก์หลัก</h3>
+                        <div class="grid sm:grid-cols-2 gap-4 mb-6">
+                            <div><label class="block text-xs font-bold mb-1 text-slate-500">เวลาเปิดรับสมัคร</label><input type="datetime-local" id="admin-open-date" class="w-full text-sm px-3 py-2 border rounded-xl focus:border-psu-accent outline-none" onchange="updateSettings('openDate', this.value)"></div>
+                            <div><label class="block text-xs font-bold mb-1 text-slate-500">เวลาปิดรับสมัคร</label><input type="datetime-local" id="admin-deadline" class="w-full text-sm px-3 py-2 border rounded-xl focus:border-psu-accent outline-none" onchange="updateSettings('deadline', this.value)"></div>
+                        </div>
+                        <div class="space-y-4">
+                            <div><label class="block text-xs font-bold mb-1 text-slate-500">ลิงก์ระบบสมัครออนไลน์ (ปุ่มหลักเข้า ischoolme)</label><input type="text" id="admin-apply-link" class="w-full text-sm px-3 py-2.5 border rounded-xl focus:border-psu-accent outline-none" onchange="updateSettings('applyLink', this.value)"></div>
+                            <div><label class="block text-xs font-bold mb-1 text-slate-500">ลิงก์ประกาศฉบับเต็ม (PDF) <span class="text-slate-400 font-normal">เว้นว่างไว้เพื่อซ่อนปุ่มอัตโนมัติ</span></label><input type="text" id="admin-pdf-link" class="w-full text-sm px-3 py-2.5 border rounded-xl focus:border-psu-accent outline-none" onchange="updateSettings('pdfLink', this.value)"></div>
+                            <div><label class="block text-xs font-bold mb-1 text-slate-500">ลิงก์คู่มือการสมัคร (PDF) <span class="text-slate-400 font-normal">เว้นว่างไว้เพื่อซ่อนปุ่มอัตโนมัติ</span></label><input type="text" id="admin-manual-link" class="w-full text-sm px-3 py-2.5 border rounded-xl focus:border-psu-accent outline-none" onchange="updateSettings('manualLink', this.value)"></div>
+                        </div>
+                    </div>
 
-            <div class="bg-white border rounded-2xl p-6 shadow-sm">
-                <div class="flex justify-between items-center border-b pb-2 mb-4">
-                    <h3 class="font-bold text-lg text-psu-blue">3. กระดานประกาศสำคัญ (Notice Board)</h3>
-                    <button onclick="addAnnouncementItem()" class="bg-psu-light text-white text-xs px-3 py-1.5 rounded-lg hover:bg-psu-blue transition"><i class="ph-bold ph-plus"></i> เพิ่มประกาศ</button>
-                </div>
-                <div id="admin-announcements-list" class="space-y-4"></div>
-            </div>
+                    <!-- Tab 2: Channels -->
+                    <div id="tab-channels" class="tab-content hidden bg-white border rounded-2xl p-6 shadow-sm">
+                        <div class="flex justify-between items-center border-b pb-2 mb-4">
+                            <h3 class="font-bold text-xl text-psu-blue"><i class="ph-fill ph-cards"></i> 2. การ์ดช่องทางการสมัคร</h3>
+                            <button onclick="addChannelItem()" class="bg-psu-light text-white text-xs px-3 py-1.5 rounded-lg hover:bg-psu-blue transition shadow-sm active:scale-95"><i class="ph-bold ph-plus"></i> เพิ่มการ์ด</button>
+                        </div>
+                        <div id="admin-channels-list" class="space-y-4"></div>
+                    </div>
 
-            <div class="bg-white border rounded-2xl p-6 shadow-sm">
-                <div class="flex justify-between items-center border-b pb-2 mb-4">
-                    <h3 class="font-bold text-lg text-psu-blue">4. ช่องทางการสมัครและลิงก์ (Cards)</h3>
-                    <button onclick="addChannelItem()" class="bg-psu-light text-white text-xs px-3 py-1.5 rounded-lg hover:bg-psu-blue transition"><i class="ph-bold ph-plus"></i> เพิ่มการ์ดใหม่</button>
-                </div>
-                <div id="admin-channels-list" class="space-y-4"></div>
-            </div>
+                    <!-- Tab 3: Announcements -->
+                    <div id="tab-announce" class="tab-content hidden bg-white border rounded-2xl p-6 shadow-sm">
+                        <div class="flex justify-between items-center border-b pb-2 mb-4">
+                            <h3 class="font-bold text-xl text-psu-blue"><i class="ph-fill ph-megaphone"></i> 3. กระดานประกาศสำคัญ</h3>
+                            <button onclick="addAnnouncementItem()" class="bg-psu-light text-white text-xs px-3 py-1.5 rounded-lg hover:bg-psu-blue transition shadow-sm active:scale-95"><i class="ph-bold ph-plus"></i> เพิ่มประกาศ</button>
+                        </div>
+                        <p class="text-xs text-slate-500 mb-4 bg-slate-50 p-2 rounded">หมวดนี้จะโชว์บนหน้าเว็บอัตโนมัติ ถ้าไม่มีข้อมูลประกาศเลย หมวดนี้จะถูกซ่อนไว้</p>
+                        <div id="admin-announcements-list" class="space-y-4"></div>
+                    </div>
 
-            <div class="bg-white border rounded-2xl p-6 shadow-sm">
-                <div class="flex justify-between items-center border-b pb-2 mb-4">
-                    <h3 class="font-bold text-lg text-psu-blue">5. กำหนดการ (Timeline)</h3>
-                    <button onclick="addTimelineItem()" class="bg-psu-light text-white text-xs px-3 py-1.5 rounded-lg hover:bg-psu-blue transition"><i class="ph-bold ph-plus"></i> เพิ่ม</button>
-                </div>
-                <div id="admin-timeline-list" class="space-y-3"></div>
-            </div>
+                    <!-- Tab 4: Timeline -->
+                    <div id="tab-timeline" class="tab-content hidden bg-white border rounded-2xl p-6 shadow-sm">
+                        <div class="flex justify-between items-center border-b pb-2 mb-4">
+                            <h3 class="font-bold text-xl text-psu-blue"><i class="ph-fill ph-calendar-blank"></i> 4. กำหนดการ (Timeline)</h3>
+                            <button onclick="addTimelineItem()" class="bg-psu-light text-white text-xs px-3 py-1.5 rounded-lg hover:bg-psu-blue transition shadow-sm active:scale-95"><i class="ph-bold ph-plus"></i> เพิ่ม</button>
+                        </div>
+                        <div id="admin-timeline-list" class="space-y-3"></div>
+                    </div>
 
-            <div class="bg-white border rounded-2xl p-6 shadow-sm">
-                <div class="flex justify-between items-center border-b pb-2 mb-4">
-                    <h3 class="font-bold text-lg text-psu-blue">6. คำถามที่พบบ่อย (FAQ)</h3>
-                    <button onclick="addFaqItem()" class="bg-psu-light text-white text-xs px-3 py-1.5 rounded-lg hover:bg-psu-blue transition"><i class="ph-bold ph-plus"></i> เพิ่ม</button>
+                    <!-- Tab 5: FAQ -->
+                    <div id="tab-faq" class="tab-content hidden bg-white border rounded-2xl p-6 shadow-sm">
+                        <div class="flex justify-between items-center border-b pb-2 mb-4">
+                            <h3 class="font-bold text-xl text-psu-blue"><i class="ph-fill ph-chat-circle-question"></i> 5. คำถามที่พบบ่อย (FAQ)</h3>
+                            <button onclick="addFaqItem()" class="bg-psu-light text-white text-xs px-3 py-1.5 rounded-lg hover:bg-psu-blue transition shadow-sm active:scale-95"><i class="ph-bold ph-plus"></i> เพิ่ม</button>
+                        </div>
+                        <div id="admin-faq-list" class="space-y-3"></div>
+                    </div>
+
+                    <!-- Tab 6: Fee Builder (Advanced) -->
+                    <div id="tab-fees" class="tab-content hidden bg-white border rounded-2xl p-6 shadow-sm">
+                        <div class="flex justify-between items-center border-b pb-2 mb-4">
+                            <h3 class="font-bold text-xl text-psu-blue"><i class="ph-fill ph-receipt"></i> 6. จัดการข้อมูลค่าเทอม (Fee Builder)</h3>
+                        </div>
+                        
+                        <div class="space-y-8">
+                            <!-- Cards -->
+                            <div>
+                                <h4 class="font-bold text-slate-700 bg-slate-100 p-2 rounded-lg mb-3">ตอนที่ 1: การ์ดสรุปยอดแรกเข้า 3 ใบ</h4>
+                                <div id="admin-fee-cards" class="space-y-3"></div>
+                            </div>
+                            
+                            <!-- Breakdown Receipt -->
+                            <div>
+                                <h4 class="font-bold text-slate-700 bg-slate-100 p-2 rounded-lg mb-3">ตอนที่ 2: โครงสร้างค่าใช้จ่าย (แบบชำแหละ)</h4>
+                                <div id="admin-fee-breakdown" class="space-y-4"></div>
+                            </div>
+
+                            <!-- Summary Table -->
+                            <div>
+                                <h4 class="font-bold text-slate-700 bg-slate-100 p-2 rounded-lg mb-3">ตอนที่ 3: ตารางสรุปยอดรวมรายปี (ล่างสุด)</h4>
+                                <div id="admin-fee-table" class="space-y-3"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 7: GitHub Settings -->
+                    <div id="tab-github" class="tab-content hidden bg-white border rounded-2xl p-6 shadow-sm border-t-4 border-slate-700">
+                        <h3 class="font-bold text-lg mb-2 text-slate-800"><i class="ph-fill ph-github-logo"></i> ตั้งค่าเชื่อมต่อฐานข้อมูล (GitHub API)</h3>
+                        <p class="text-xs text-slate-600 mb-4 bg-yellow-50 p-3 rounded-lg border border-yellow-200">
+                            <strong>คำแนะนำด้านความปลอดภัย:</strong> ระบบจะบันทึก Token ไว้ใน Local Storage ของเบราว์เซอร์เครื่องนี้เท่านั้น (ปลอดภัยที่สุด) 
+                            หากมีการเปลี่ยนเครื่องใช้งาน ต้องนำ Token มากรอกใหม่
+                        </p>
+                        <div class="grid sm:grid-cols-3 gap-3">
+                            <div><label class="block text-xs font-bold mb-1 text-slate-500">GitHub Username</label><input type="text" id="github-user" class="text-sm p-2.5 border rounded-xl w-full" placeholder="e.g. yourname"></div>
+                            <div><label class="block text-xs font-bold mb-1 text-slate-500">Repository Name</label><input type="text" id="github-repo" class="text-sm p-2.5 border rounded-xl w-full" placeholder="e.g. repo-name"></div>
+                            <div><label class="block text-xs font-bold mb-1 text-slate-500">Personal Access Token</label><input type="password" id="github-token" class="text-sm p-2.5 border rounded-xl w-full" placeholder="ghp_xxxxxxxxxxxx"></div>
+                        </div>
+                    </div>
+
                 </div>
-                <div id="admin-faq-list" class="space-y-3"></div>
             </div>
         </main>
 
         <div class="fixed bottom-0 left-0 w-full bg-white border-t border-slate-200 p-4 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] z-50">
-            <div class="max-w-6xl mx-auto flex flex-wrap justify-between items-center gap-3">
-                <button onclick="exportJSONForGithub()" class="bg-slate-700 hover:bg-slate-800 text-white font-bold px-5 py-3 rounded-xl text-sm transition"><i class="ph-bold ph-download-simple"></i> สำรองไฟล์ JSON แบบออฟไลน์</button>
-                <button onclick="syncToGitHubDirectly()" id="sync-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-3 rounded-xl shadow-lg active:scale-95 transition flex items-center gap-2"><i class="ph-bold ph-cloud-arrow-up text-lg"></i> บันทึกและอัปเดตหน้าเว็บทันที</button>
+            <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
+                <button onclick="exportJSONForGithub()" id="export-btn" class="bg-slate-700 hover:bg-slate-800 text-white font-bold px-5 py-3 rounded-xl text-sm transition flex items-center gap-2 active:scale-95"><i class="ph-bold ph-download-simple"></i> แบ็คอัปไฟล์ JSON (ออฟไลน์)</button>
+                <button onclick="syncToGitHubDirectly()" id="sync-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2 active:scale-95 text-base"><i class="ph-bold ph-cloud-arrow-up text-xl"></i> บันทึกและอัปเดตหน้าเว็บหลักทันที</button>
             </div>
         </div>
     </div>
@@ -130,7 +191,62 @@
             setTimeout(() => { toast.remove(); }, 3000);
         }
 
-        let siteData = { settings: {}, announcements: [], application_channels: [], timeline: [], faqs: [] };
+        let siteData = { settings: {}, announcements: [], application_channels: [], timeline: [], faqs: [], fees: { cards:[], breakdown:[], summary_table:[] } };
+
+        // Core Default Data if API fails
+        const loadDefaultData = () => {
+            siteData = {
+                settings: { openDate: "2026-09-01T08:00:00", deadline: "2026-10-15T23:59:00", applyLink: "https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register", pdfLink: "https://example.com/announcement.pdf", manualLink: "https://example.com/manual.pdf" },
+                announcements: [],
+                application_channels: [
+                    { id: 1, icon: "users", color: "blue", title_th: "ประเภทนักเรียนทั่วไป", title_en: "General Students", desc_th: "สมัครออนไลน์ผ่านระบบ ischoolme, หรือยื่นด้วยตนเอง/ไปรษณีย์", desc_en: "Apply online via ischoolme, or submit in-person/mail", btn1_th: "เข้าสู่ระบบรับสมัคร", btn1_en: "Apply Now", btn1_link: "https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register", btn1_icon: "cursor-click", btn2_th: "โหลดฟอร์ม", btn2_en: "Form", btn2_link: "#", btn2_icon: "download-simple" },
+                    { id: 2, icon: "arrow-circle-up", color: "blue", title_th: "โควตานักเรียน ม.ต้น สาธิตฯ", title_en: "IDS PSU Junior High", desc_th: "สมัครเรียนเข้าระบบผ่านเว็บไซต์หลักของโรงเรียนสาธิตฯ", desc_en: "Apply directly via the main school website portal", btn1_th: "เข้าสู่ระบบรับสมัคร", btn1_en: "Apply Now", btn1_link: "https://satitislam.psu.ac.th", btn1_icon: "cursor-click", btn2_th: "", btn2_en: "", btn2_link: "", btn2_icon: "" },
+                    { id: 3, icon: "handshake", color: "accent", title_th: "สวัสดิการบุคลากร ม.อ.", title_en: "PSU Staff Welfare", desc_th: "ดาวน์โหลดฟอร์ม กรอกข้อมูลแนบหลักฐานบัตรพนักงาน และส่งทางอีเมล", desc_en: "Download form, attach PSU Staff ID, and send via email", btn1_th: "เข้าสู่ระบบรับสมัคร", btn1_en: "Apply Now", btn1_link: "https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register", btn1_icon: "cursor-click", btn2_th: "ส่งเอกสารทางอีเมล", btn2_en: "Email Docs", btn2_link: "mailto:satit.cis@gmail.com", btn2_icon: "envelope-simple" },
+                    { id: 4, icon: "medal", color: "accent", title_th: "ความสามารถพิเศษ (ม.1)", title_en: "Academic Excellence", desc_th: "ดาวน์โหลดฟอร์ม แนบหลักฐาน/Portfolio และส่งทางอีเมล", desc_en: "Download form, attach Portfolio, and send via email", btn1_th: "เข้าสู่ระบบรับสมัคร", btn1_en: "Apply Now", btn1_link: "https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register", btn1_icon: "cursor-click", btn2_th: "ส่งผลงานทางอีเมล", btn2_en: "Email Portfolio", btn2_link: "mailto:satit.cis@gmail.com", btn2_icon: "envelope-simple" }
+                ],
+                timeline: [
+                    { id: 1, date_th: "สิงหาคม 2569 เป็นต้นไป", date_en: "From Aug 2026", title_th: "ประชาสัมพันธ์", title_en: "PR Campaign", desc_th: "เผยแพร่ข้อมูลรับสมัครนักเรียนใหม่", desc_en: "Admissions information published", icon: "megaphone" },
+                    { id: 2, date_th: "1 ก.ย. - 15 ต.ค. 2569", date_en: "Sep 1 - Oct 15, 2026", title_th: "รับสมัครและชำระเงิน", title_en: "Application & Payment", desc_th: "สมัครผ่านออนไลน์ หรือ ยื่นใบสมัครด้วยตนเอง/ไปรษณีย์ พร้อมชำระค่าสมัคร 300 บาท", desc_en: "Apply online or via mail/in-person. Pay 300 THB fee.", icon: "calendar-plus" },
+                    { id: 3, date_th: "วันพุธ ที่ 21 ตุลาคม 2569", date_en: "Wed, Oct 21, 2026", title_th: "ประกาศรายชื่อผู้มีสิทธิ์สอบ", title_en: "Announcement of Candidates", desc_th: "แจ้งรายชื่อ เลขที่นั่งสอบ และห้องสอบ ทางเว็บไซต์โรงเรียน", desc_en: "Exam seating and rooms announced on website", icon: "list-numbers" },
+                    { id: 4, date_th: "วันเสาร์ ที่ 7 พฤศจิกายน 2569", date_en: "Sat, Nov 7, 2026", title_th: "สอบข้อเขียนคัดเลือก", title_en: "Written Examination", desc_th: "เวลา 09.00 น. – 12.00 น. ณ สนามสอบโรงเรียนสาธิตวิทยาการอิสลาม ม.อ.", desc_en: "09:00 AM - 12:00 PM at IDS PSU", icon: "pencil-simple" },
+                    { id: 5, date_th: "ภายใน 30 พฤศจิกายน 2569", date_en: "By Nov 30, 2026", title_th: "ประกาศผลการคัดเลือก", title_en: "Result Announcement", desc_th: "แจ้งผลการสอบข้อเขียนคัดเลือกผ่านระบบออนไลน์", desc_en: "Results announced via online system", icon: "confetti" },
+                    { id: 6, date_th: "อังคาร ที่ 1 - ศุกร์ ที่ 4 ธันวาคม 2569", date_en: "Tue 1 - Fri 4 Dec, 2026", title_th: "ยืนยันสิทธิ์ออนไลน์", title_en: "Online Confirmation", desc_th: "ยืนยันผ่านระบบของเว็บไซต์โรงเรียน (หากพ้นกำหนดถือว่าสละสิทธิ์)", desc_en: "Confirm admission online. Unconfirmed status will be forfeited.", icon: "check-square-offset" },
+                    { id: 7, date_th: "วันเสาร์ ที่ 20 มีนาคม 2570", date_en: "Sat, Mar 20, 2027", title_th: "มอบตัวนักเรียนใหม่", title_en: "New Student Enrollment", desc_th: "ชำระเงินค่าธรรมเนียมแรกเข้าและเอกสารประกอบการมอบตัว", desc_en: "Pay initial fees and submit enrollment documents", icon: "student" }
+                ],
+                faqs: [
+                    { id: 1, q_th: "เปิดสอนระดับใดบ้างครับ?", q_en: "What grades are available?", a_th: "โรงเรียนเปิดสอน ม.1 และ ม.4 โดย ม.4 จะมี 2 หลักสูตรคือ หลักสูตรวิทยาศาสตร์-คณิตศาสตร์ทั่วไป และ หลักสูตรห้องเรียนวิทยาศาสตร์ โครงการ วมว.", a_en: "We offer Grade 7 (M.1) and Grade 10 (M.4). M.4 has 2 tracks: Science-Math and SCiUS program." },
+                    { id: 2, q_th: "เรียนไป-กลับได้ไหม หรือบังคับอยู่หอพัก?", q_en: "Is boarding mandatory?", a_th: "ม.1 เลือกได้ทั้งแบบอยู่ประจำหรือไป-กลับ (ถ้าไป-กลับต้องอยู่กับครอบครัวหรือผู้ปกครองสายตรงเท่านั้น ห้ามอยู่หอพักเอกชน) ส่วนนักเรียน ม.4 ทุกคนบังคับอยู่ประจำที่หอพักของโรงเรียน 100% ครับ", a_en: "M.1 can choose to be day students (must live with direct parents) or boarders. M.4 students must be 100% boarders in the school dormitory." },
+                    { id: 3, q_th: "มีทุนการศึกษาให้ไหม?", q_en: "Are there scholarships available?", a_th: "ปัจจุบันทางโรงเรียนยังไม่มีทุนการศึกษาสนับสนุนให้แก่นักเรียนใหม่ครับ", a_en: "There are currently no scholarships available for new students this academic year." }
+                ],
+                fees: {
+                    cards: [
+                        { id: "m1_dorm", title_th: "ม.1 ประจำหอพัก", title_en: "M.1 Boarding", desc_th: "รวมอาหาร จ.-ส. 2 มื้อ (ศ. 3 มื้อ) และหอพัก", desc_en: "Meals & Dorm Included", badge_th: "แบ่งชำระได้สูงสุด 4 งวด/เทอม", badge_en: "Up to 4 Installments/Term", price: "111,490", term1_total: "60,490", badge_color: "green", text_color: "psu-accent", is_required: false },
+                        { id: "m1_day", title_th: "ม.1 ไป-กลับ", title_en: "M.1 Day", desc_th: "รวมอาหารกลางวันเฉพาะวันศุกร์", desc_en: "Friday's lunch included", badge_th: "แบ่งชำระได้สูงสุด 3 งวด/เทอม", badge_en: "Up to 3 Installments/Term", price: "72,490", term1_total: "40,990", badge_color: "green", text_color: "psu-light", is_required: false },
+                        { id: "m4_dorm", title_th: "ม.4 ประจำหอพัก", title_en: "M.4 Boarding", desc_th: "รวมอาหาร จ.-ส. 2 มื้อ (ศ. 3 มื้อ) และหอพัก", desc_en: "Meals & Dorm Included", badge_th: "แบ่งชำระได้สูงสุด 5 งวด/เทอม", badge_en: "Up to 5 Installments/Term", price: "126,990", term1_total: "68,990", badge_color: "green", text_color: "psu-accent", is_required: true }
+                    ],
+                    breakdown: [
+                        { id: 1, icon: "backpack", color: "psu-accent", title_th: "1. ค่าธรรมเนียมแรกเข้า", title_en: "1. Initial Enrollment Fee", subtitle_th: "ชำระครั้งแรกครั้งเดียว (9,490 ฿)", subtitle_en: "One-time payment (9,490 THB)", items: [ { id:11, name_th: "โครงการปรับพื้นฐาน", name_en: "Pre-sessional Course", price: "5,000" }, { id:12, name_th: "กิฟเซต/เครื่องนอน", name_en: "Gift set / Bedding", price: "1,500" } ] },
+                        { id: 2, icon: "books", color: "psu-light", title_th: "2. ค่าการศึกษาและกิจกรรม", title_en: "2. Education & Activities", subtitle_th: "ชำระต่อภาคเรียน", subtitle_en: "Per Semester", items: [ { id:21, name_th: "ค่าพัฒนาคุณภาพการศึกษา", name_en: "Education Quality Development", price: "20,000" }, { id:22, name_th: "ค่าบำรุงห้องเรียน/สื่อ", name_en: "Classroom / Media Maintenance", price: "5,000" } ] },
+                        { id: 3, icon: "house-line", color: "green-400", title_th: "3. อาหารและหอพัก", title_en: "3. Meals & Dormitory", subtitle_th: "ชำระต่อภาคเรียน", subtitle_en: "Per Semester", items: [ { id:31, name_th: "อาหารนักเรียนประจำ", name_en: "Meals (Boarding)", price: "15,000", highlight: true }, { id:32, name_th: "อาหารนักเรียนไป-กลับ", name_en: "Meals (Day Student)", price: "1,500", highlight: true } ] }
+                    ],
+                    summary_table: [
+                        { id: 1, type_th: "ชั้น ม.1 - ประจำหอพัก", type_en: "M.1 - Boarding", term1: "60,490", term2: "51,000", total: "111,490" },
+                        { id: 2, type_th: "ชั้น ม.1 - ไป-กลับ", type_en: "M.1 - Day Student", term1: "40,990", term2: "31,500", total: "72,490" },
+                        { id: 3, type_th: "ชั้น ม.4 - ประจำหอพัก", type_en: "M.4 - Boarding", term1: "68,990", term2: "58,000", total: "126,990" }
+                    ]
+                }
+            };
+        };
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.admin-tab').forEach(el => { el.classList.remove('bg-psu-accent', 'text-white', 'shadow-sm'); el.classList.add('text-slate-600', 'hover:bg-slate-200'); });
+            
+            document.getElementById(tabId).classList.remove('hidden');
+            const btn = document.getElementById('btn-' + tabId);
+            btn.classList.remove('text-slate-600', 'hover:bg-slate-200');
+            btn.classList.add('bg-psu-accent', 'text-white', 'shadow-sm');
+        }
 
         function handleLogin() {
             if (document.getElementById('login-pass').value === 'Admin*scius2026') {
@@ -153,7 +269,6 @@
 
         const loadDataFromGitHub = async () => {
             try {
-                // To prevent caching during fetches
                 const response = await fetch(`site-data.json?v=${new Date().getTime()}`);
                 if (response.ok) {
                     const data = await response.json();
@@ -162,150 +277,161 @@
                     if(data.application_channels) siteData.application_channels = data.application_channels;
                     if(data.timeline) siteData.timeline = data.timeline;
                     if(data.faqs) siteData.faqs = data.faqs;
-                }
-            } catch (e) { console.log("Failed to fetch JSON. Using default blank state."); }
+                    if(data.fees) siteData.fees = data.fees;
+                } else { loadDefaultData(); }
+            } catch (e) { loadDefaultData(); }
             renderAdminPanel();
         };
 
         const renderAdminPanel = () => {
+            // 1. Settings
             document.getElementById('admin-open-date').value = siteData.settings.openDate || "";
             document.getElementById('admin-deadline').value = siteData.settings.deadline || "";
             document.getElementById('admin-apply-link').value = siteData.settings.applyLink || "";
             document.getElementById('admin-pdf-link').value = siteData.settings.pdfLink || "";
             document.getElementById('admin-manual-link').value = siteData.settings.manualLink || "";
 
-            // Announcements Render
-            document.getElementById('admin-announcements-list').innerHTML = (siteData.announcements || []).map((a, idx) => `
-                <div class="border border-slate-200 rounded-xl p-4 bg-slate-50 relative">
-                    <button onclick="deleteItem('announcements', ${idx})" class="absolute top-2 right-2 text-red-500 hover:text-red-700 bg-red-100 p-1.5 rounded transition"><i class="ph-bold ph-trash"></i></button>
-                    <div class="grid sm:grid-cols-3 gap-3 mb-2 pr-8">
-                        <div><label class="text-[10px] font-bold block text-slate-500">วันที่</label><input type="date" value="${a.date || ''}" onchange="updateData('announcements',${idx},'date',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm w-full outline-none focus:border-psu-accent"></div>
-                        <div class="sm:col-span-2"><label class="text-[10px] font-bold block text-slate-500">ประเภทสีการ์ด</label>
-                            <select onchange="updateData('announcements',${idx},'type',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm w-full bg-white outline-none focus:border-psu-accent">
-                                <option value="general" ${a.type==='general'?'selected':''}>ทั่วไป (สีน้ำเงิน - ข่าวสาร)</option>
-                                <option value="important" ${a.type==='important'?'selected':''}>สำคัญ/ด่วน (สีแดง - ประกาศผล)</option>
-                                <option value="success" ${a.type==='success'?'selected':''}>ยินดีด้วย (สีเขียว - ประกาศตัวจริง)</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="grid sm:grid-cols-2 gap-3 mb-2">
-                        <input type="text" value="${a.title_th || ''}" onchange="updateData('announcements',${idx},'title_th',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm w-full font-bold outline-none focus:border-psu-accent" placeholder="หัวข้อประกาศ (ภาษาไทย)">
-                        <input type="text" value="${a.title_en || ''}" onchange="updateData('announcements',${idx},'title_en',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm w-full font-bold outline-none focus:border-psu-accent" placeholder="Title (English)">
-                    </div>
-                    <input type="text" value="${a.link || ''}" onchange="updateData('announcements',${idx},'link',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm w-full outline-none focus:border-psu-accent" placeholder="ลิงก์ไปอ่าน (Google Drive PDF หรือ URL ข่าวเว็บโรงเรียน)">
-                </div>
-            `).join('');
-
-            // Application Channels Render
+            // 2. Channels
             document.getElementById('admin-channels-list').innerHTML = (siteData.application_channels || []).map((c, idx) => `
                 <div class="border border-slate-200 rounded-xl p-5 bg-slate-50 relative">
                     <button onclick="deleteItem('application_channels', ${idx})" class="absolute top-2 right-2 text-red-500 hover:text-red-700 bg-red-100 p-1.5 rounded transition"><i class="ph-bold ph-trash"></i></button>
                     <div class="grid sm:grid-cols-3 gap-3 mb-3 pr-8">
-                        <div>
-                            <label class="text-[10px] font-bold block text-slate-500">ไอคอน (Phosphor Icons)</label>
-                            <input type="text" value="${c.icon || ''}" onchange="updateData('application_channels',${idx},'icon',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm w-full outline-none focus:border-psu-accent" placeholder="e.g., users, medal">
-                        </div>
-                        <div class="sm:col-span-2">
-                            <label class="text-[10px] font-bold block text-slate-500">โทนสีของการ์ด</label>
+                        <div><label class="text-[10px] font-bold block text-slate-500">ไอคอน</label><input type="text" value="${c.icon || ''}" onchange="updateData('application_channels',${idx},'icon',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm w-full outline-none focus:border-psu-accent"></div>
+                        <div class="sm:col-span-2"><label class="text-[10px] font-bold block text-slate-500">โทนสี</label>
                             <select onchange="updateData('application_channels',${idx},'color',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm w-full bg-white outline-none focus:border-psu-accent">
-                                <option value="blue" ${c.color==='blue'?'selected':''}>กรมท่า (PSU Blue)</option>
-                                <option value="light" ${c.color==='light'?'selected':''}>น้ำเงิน (PSU Light)</option>
-                                <option value="accent" ${c.color==='accent'?'selected':''}>ฟ้า (PSU Accent)</option>
+                                <option value="blue" ${c.color==='blue'?'selected':''}>กรมท่า (Blue)</option>
+                                <option value="light" ${c.color==='light'?'selected':''}>น้ำเงิน (Light)</option>
+                                <option value="accent" ${c.color==='accent'?'selected':''}>ฟ้า (Accent)</option>
+                            </select></div>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-3 mb-2">
+                        <input type="text" value="${c.title_th || ''}" onchange="updateData('application_channels',${idx},'title_th',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm font-bold" placeholder="ชื่อโควตา (TH)">
+                        <input type="text" value="${c.title_en || ''}" onchange="updateData('application_channels',${idx},'title_en',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm font-bold" placeholder="Quota Name (EN)">
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-3 mb-3">
+                        <textarea onchange="updateData('application_channels',${idx},'desc_th',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm h-16">${c.desc_th || ''}</textarea>
+                        <textarea onchange="updateData('application_channels',${idx},'desc_en',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm h-16">${c.desc_en || ''}</textarea>
+                    </div>
+                    <div class="bg-white p-3 border rounded-lg grid sm:grid-cols-12 gap-2 mb-2"><div class="sm:col-span-3"><input type="text" value="${c.btn1_th || ''}" onchange="updateData('application_channels',${idx},'btn1_th',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="ปุ่มหลัก (TH)"></div><div class="sm:col-span-3"><input type="text" value="${c.btn1_en || ''}" onchange="updateData('application_channels',${idx},'btn1_en',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="Main Btn (EN)"></div><div class="sm:col-span-2"><input type="text" value="${c.btn1_icon || ''}" onchange="updateData('application_channels',${idx},'btn1_icon',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="Icon"></div><div class="sm:col-span-4"><input type="text" value="${c.btn1_link || ''}" onchange="updateData('application_channels',${idx},'btn1_link',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="Link URL"></div></div>
+                    <div class="bg-white p-3 border rounded-lg grid sm:grid-cols-12 gap-2"><div class="sm:col-span-3"><input type="text" value="${c.btn2_th || ''}" onchange="updateData('application_channels',${idx},'btn2_th',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="ปุ่มรอง (TH)"></div><div class="sm:col-span-3"><input type="text" value="${c.btn2_en || ''}" onchange="updateData('application_channels',${idx},'btn2_en',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="Sec Btn (EN)"></div><div class="sm:col-span-2"><input type="text" value="${c.btn2_icon || ''}" onchange="updateData('application_channels',${idx},'btn2_icon',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="Icon"></div><div class="sm:col-span-4"><input type="text" value="${c.btn2_link || ''}" onchange="updateData('application_channels',${idx},'btn2_link',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="Link URL"></div></div>
+                </div>
+            `).join('');
+
+            // 3. Announcements
+            document.getElementById('admin-announcements-list').innerHTML = (siteData.announcements || []).map((a, idx) => `
+                <div class="border border-slate-200 rounded-xl p-4 bg-slate-50 relative">
+                    <button onclick="deleteItem('announcements', ${idx})" class="absolute top-2 right-2 text-red-500 hover:text-red-700 bg-red-100 p-1.5 rounded transition"><i class="ph-bold ph-trash"></i></button>
+                    <div class="grid sm:grid-cols-3 gap-3 mb-2 pr-8">
+                        <div><input type="date" value="${a.date || ''}" onchange="updateData('announcements',${idx},'date',this.value)" class="border rounded-lg p-2 text-sm w-full outline-none focus:border-psu-accent"></div>
+                        <div class="sm:col-span-2">
+                            <select onchange="updateData('announcements',${idx},'type',this.value)" class="border rounded-lg p-2 text-sm w-full bg-white outline-none focus:border-psu-accent">
+                                <option value="general" ${a.type==='general'?'selected':''}>ทั่วไป (สีน้ำเงิน)</option>
+                                <option value="important" ${a.type==='important'?'selected':''}>สำคัญ/ด่วน (สีแดง)</option>
+                                <option value="success" ${a.type==='success'?'selected':''}>ยินดีด้วย (สีเขียว)</option>
                             </select>
                         </div>
                     </div>
                     <div class="grid sm:grid-cols-2 gap-3 mb-2">
-                        <input type="text" value="${c.title_th || ''}" onchange="updateData('application_channels',${idx},'title_th',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm font-bold outline-none focus:border-psu-accent" placeholder="ชื่อโควตา (TH)">
-                        <input type="text" value="${c.title_en || ''}" onchange="updateData('application_channels',${idx},'title_en',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm font-bold outline-none focus:border-psu-accent" placeholder="Quota Name (EN)">
+                        <input type="text" value="${a.title_th || ''}" onchange="updateData('announcements',${idx},'title_th',this.value)" class="border rounded-lg p-2 text-sm font-bold" placeholder="หัวข้อประกาศ (TH)">
+                        <input type="text" value="${a.title_en || ''}" onchange="updateData('announcements',${idx},'title_en',this.value)" class="border rounded-lg p-2 text-sm font-bold" placeholder="Title (EN)">
                     </div>
-                    <div class="grid sm:grid-cols-2 gap-3 mb-3">
-                        <textarea onchange="updateData('application_channels',${idx},'desc_th',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm h-16 outline-none focus:border-psu-accent" placeholder="คำอธิบาย (TH)">${c.desc_th || ''}</textarea>
-                        <textarea onchange="updateData('application_channels',${idx},'desc_en',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm h-16 outline-none focus:border-psu-accent" placeholder="Description (EN)">${c.desc_en || ''}</textarea>
-                    </div>
-                    <div class="bg-white p-3 border border-slate-200 rounded-lg grid sm:grid-cols-12 gap-2 mb-2 shadow-sm">
-                        <div class="sm:col-span-3"><input type="text" value="${c.btn1_th || ''}" onchange="updateData('application_channels',${idx},'btn1_th',this.value)" class="border rounded-md p-1.5 text-xs w-full outline-none focus:border-psu-accent" placeholder="ปุ่มหลัก (TH)"></div>
-                        <div class="sm:col-span-3"><input type="text" value="${c.btn1_en || ''}" onchange="updateData('application_channels',${idx},'btn1_en',this.value)" class="border rounded-md p-1.5 text-xs w-full outline-none focus:border-psu-accent" placeholder="Main Btn (EN)"></div>
-                        <div class="sm:col-span-2"><input type="text" value="${c.btn1_icon || ''}" onchange="updateData('application_channels',${idx},'btn1_icon',this.value)" class="border rounded-md p-1.5 text-xs w-full outline-none focus:border-psu-accent" placeholder="Icon (e.g. globe)"></div>
-                        <div class="sm:col-span-4"><input type="text" value="${c.btn1_link || ''}" onchange="updateData('application_channels',${idx},'btn1_link',this.value)" class="border rounded-md p-1.5 text-xs w-full outline-none focus:border-psu-accent" placeholder="Link URL or mailto:"></div>
-                    </div>
-                    <div class="bg-white p-3 border border-slate-200 rounded-lg grid sm:grid-cols-12 gap-2 shadow-sm">
-                        <div class="sm:col-span-3"><input type="text" value="${c.btn2_th || ''}" onchange="updateData('application_channels',${idx},'btn2_th',this.value)" class="border rounded-md p-1.5 text-xs w-full outline-none focus:border-psu-accent" placeholder="ปุ่มรอง (TH) ว่างไว้ถ้าไม่มี"></div>
-                        <div class="sm:col-span-3"><input type="text" value="${c.btn2_en || ''}" onchange="updateData('application_channels',${idx},'btn2_en',this.value)" class="border rounded-md p-1.5 text-xs w-full outline-none focus:border-psu-accent" placeholder="Sec Btn (EN)"></div>
-                        <div class="sm:col-span-2"><input type="text" value="${c.btn2_icon || ''}" onchange="updateData('application_channels',${idx},'btn2_icon',this.value)" class="border rounded-md p-1.5 text-xs w-full outline-none focus:border-psu-accent" placeholder="Icon"></div>
-                        <div class="sm:col-span-4"><input type="text" value="${c.btn2_link || ''}" onchange="updateData('application_channels',${idx},'btn2_link',this.value)" class="border rounded-md p-1.5 text-xs w-full outline-none focus:border-psu-accent" placeholder="Link URL or mailto:"></div>
-                    </div>
+                    <input type="text" value="${a.link || ''}" onchange="updateData('announcements',${idx},'link',this.value)" class="border rounded-lg p-2 text-sm w-full" placeholder="ลิงก์ไปอ่าน PDF">
                 </div>
             `).join('');
 
-            // Timeline Render
+            // 4. Timeline
             document.getElementById('admin-timeline-list').innerHTML = (siteData.timeline || []).map((t, idx) => `
-                <div class="border border-slate-200 rounded-xl p-4 bg-white relative shadow-sm">
-                    <button onclick="deleteItem('timeline', ${idx})" class="absolute top-2 right-2 text-red-500 hover:text-red-700 bg-red-50 p-1.5 rounded transition"><i class="ph-bold ph-trash"></i></button>
+                <div class="border border-slate-200 rounded-xl p-4 bg-slate-50 relative shadow-sm">
+                    <button onclick="deleteItem('timeline', ${idx})" class="absolute top-2 right-2 text-red-500 hover:text-red-700 bg-red-100 p-1.5 rounded transition"><i class="ph-bold ph-trash"></i></button>
                     <div class="grid sm:grid-cols-3 gap-2 mb-2 pr-8">
-                        <input type="text" value="${t.date_th || ''}" onchange="updateData('timeline',${idx},'date_th',this.value)" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full outline-none focus:border-psu-accent" placeholder="วันที่ (TH)">
-                        <input type="text" value="${t.date_en || ''}" onchange="updateData('timeline',${idx},'date_en',this.value)" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full outline-none focus:border-psu-accent" placeholder="Date (EN)">
-                        <input type="text" value="${t.icon || ''}" onchange="updateData('timeline',${idx},'icon',this.value)" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full outline-none focus:border-psu-accent" placeholder="Icon (e.g. confetti)">
+                        <input type="text" value="${t.date_th || ''}" onchange="updateData('timeline',${idx},'date_th',this.value)" class="border rounded-lg px-3 py-2 text-sm w-full" placeholder="วันที่ (TH)">
+                        <input type="text" value="${t.date_en || ''}" onchange="updateData('timeline',${idx},'date_en',this.value)" class="border rounded-lg px-3 py-2 text-sm w-full" placeholder="Date (EN)">
+                        <input type="text" value="${t.icon || ''}" onchange="updateData('timeline',${idx},'icon',this.value)" class="border rounded-lg px-3 py-2 text-sm w-full" placeholder="Icon">
                     </div>
                     <div class="grid sm:grid-cols-2 gap-2 mb-2">
-                        <input type="text" value="${t.title_th || ''}" onchange="updateData('timeline',${idx},'title_th',this.value)" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full font-bold outline-none focus:border-psu-accent" placeholder="หัวข้อ (TH)">
-                        <input type="text" value="${t.title_en || ''}" onchange="updateData('timeline',${idx},'title_en',this.value)" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full font-bold outline-none focus:border-psu-accent" placeholder="Title (EN)">
+                        <input type="text" value="${t.title_th || ''}" onchange="updateData('timeline',${idx},'title_th',this.value)" class="border rounded-lg px-3 py-2 text-sm font-bold" placeholder="หัวข้อ (TH)">
+                        <input type="text" value="${t.title_en || ''}" onchange="updateData('timeline',${idx},'title_en',this.value)" class="border rounded-lg px-3 py-2 text-sm font-bold" placeholder="Title (EN)">
                     </div>
                     <div class="grid sm:grid-cols-2 gap-2">
-                        <textarea onchange="updateData('timeline',${idx},'desc_th',this.value)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-500 h-16 outline-none focus:border-psu-accent" placeholder="รายละเอียด (TH)">${t.desc_th || ''}</textarea>
-                        <textarea onchange="updateData('timeline',${idx},'desc_en',this.value)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-500 h-16 outline-none focus:border-psu-accent" placeholder="Description (EN)">${t.desc_en || ''}</textarea>
+                        <textarea onchange="updateData('timeline',${idx},'desc_th',this.value)" class="border rounded-lg px-3 py-2 text-sm h-16" placeholder="รายละเอียด (TH)">${t.desc_th || ''}</textarea>
+                        <textarea onchange="updateData('timeline',${idx},'desc_en',this.value)" class="border rounded-lg px-3 py-2 text-sm h-16" placeholder="Description (EN)">${t.desc_en || ''}</textarea>
                     </div>
                 </div>
             `).join('');
 
-            // FAQ Render
+            // 5. FAQ
             document.getElementById('admin-faq-list').innerHTML = (siteData.faqs || []).map((f, idx) => `
-                <div class="border border-slate-200 rounded-xl p-4 bg-white relative shadow-sm">
-                    <button onclick="deleteItem('faqs', ${idx})" class="absolute top-2 right-2 text-red-500 hover:text-red-700 bg-red-50 p-1.5 rounded transition"><i class="ph-bold ph-trash"></i></button>
+                <div class="border border-slate-200 rounded-xl p-4 bg-slate-50 relative shadow-sm">
+                    <button onclick="deleteItem('faqs', ${idx})" class="absolute top-2 right-2 text-red-500 hover:text-red-700 bg-red-100 p-1.5 rounded transition"><i class="ph-bold ph-trash"></i></button>
                     <div class="grid sm:grid-cols-2 gap-2 mb-2 pr-8">
-                        <input type="text" value="${f.q_th || ''}" onchange="updateData('faqs',${idx},'q_th',this.value)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm font-bold outline-none focus:border-psu-accent" placeholder="คำถาม (TH)">
-                        <input type="text" value="${f.q_en || ''}" onchange="updateData('faqs',${idx},'q_en',this.value)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm font-bold outline-none focus:border-psu-accent" placeholder="Question (EN)">
+                        <input type="text" value="${f.q_th || ''}" onchange="updateData('faqs',${idx},'q_th',this.value)" class="border rounded-lg px-3 py-2 text-sm font-bold" placeholder="คำถาม (TH)">
+                        <input type="text" value="${f.q_en || ''}" onchange="updateData('faqs',${idx},'q_en',this.value)" class="border rounded-lg px-3 py-2 text-sm font-bold" placeholder="Question (EN)">
                     </div>
                     <div class="grid sm:grid-cols-2 gap-2">
-                        <textarea onchange="updateData('faqs',${idx},'a_th',this.value)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm h-16 outline-none focus:border-psu-accent" placeholder="คำตอบ (TH)">${f.a_th || ''}</textarea>
-                        <textarea onchange="updateData('faqs',${idx},'a_en',this.value)" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm h-16 outline-none focus:border-psu-accent" placeholder="Answer (EN)">${f.a_en || ''}</textarea>
+                        <textarea onchange="updateData('faqs',${idx},'a_th',this.value)" class="border rounded-lg px-3 py-2 text-sm h-16" placeholder="คำตอบ (TH)">${f.a_th || ''}</textarea>
+                        <textarea onchange="updateData('faqs',${idx},'a_en',this.value)" class="border rounded-lg px-3 py-2 text-sm h-16" placeholder="Answer (EN)">${f.a_en || ''}</textarea>
                     </div>
                 </div>
             `).join('');
+
+            // 6. Fees
+            if(siteData.fees) {
+                // 6.1 Cards
+                document.getElementById('admin-fee-cards').innerHTML = siteData.fees.cards.map((c, idx) => `
+                    <div class="border border-slate-300 rounded-xl p-4 bg-slate-50 grid grid-cols-2 gap-3 relative">
+                        <input type="text" value="${c.title_th}" onchange="updateFeeCard(${idx},'title_th',this.value)" class="border p-2 text-sm rounded font-bold" placeholder="หัวข้อ">
+                        <input type="text" value="${c.term1_total}" onchange="updateFeeCard(${idx},'term1_total',this.value)" class="border p-2 text-sm rounded" placeholder="ยอดรวมเทอม 1 (ไม่ต้องใส่ลูกน้ำ)">
+                        <input type="text" value="${c.badge_th}" onchange="updateFeeCard(${idx},'badge_th',this.value)" class="border p-2 text-sm rounded" placeholder="ข้อความป้ายกำกับ">
+                        <input type="text" value="${c.desc_th}" onchange="updateFeeCard(${idx},'desc_th',this.value)" class="border p-2 text-sm rounded" placeholder="คำอธิบายอาหาร">
+                    </div>
+                `).join('');
+
+                // 6.2 Breakdown
+                document.getElementById('admin-fee-breakdown').innerHTML = siteData.fees.breakdown.map((b, bIdx) => `
+                    <div class="border border-slate-300 rounded-xl p-4 bg-white shadow-sm">
+                        <div class="flex justify-between items-center mb-3">
+                            <input type="text" value="${b.title_th}" onchange="updateFeeSection(${bIdx},'title_th',this.value)" class="font-bold border-b outline-none w-1/2" placeholder="ชื่อหมวดหมู่">
+                            <button onclick="addFeeItem(${bIdx})" class="text-xs bg-slate-200 hover:bg-slate-300 px-2 py-1 rounded">เพิ่มรายการย่อย</button>
+                        </div>
+                        <div class="space-y-2 pl-4 border-l-2">
+                            ${b.items.map((item, iIdx) => `
+                                <div class="flex gap-2 items-center">
+                                    <input type="text" value="${item.name_th}" onchange="updateFeeItem(${bIdx},${iIdx},'name_th',this.value)" class="border p-1.5 text-xs rounded w-1/2" placeholder="ชื่อรายการ">
+                                    <input type="text" value="${item.price}" onchange="updateFeeItem(${bIdx},${iIdx},'price',this.value)" class="border p-1.5 text-xs rounded w-1/3" placeholder="ราคา">
+                                    <button onclick="removeFeeItem(${bIdx},${iIdx})" class="text-red-500 hover:bg-red-50 p-1 rounded"><i class="ph-bold ph-x"></i></button>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `).join('');
+
+                // 6.3 Summary Table
+                document.getElementById('admin-fee-table').innerHTML = siteData.fees.summary_table.map((r, idx) => `
+                    <div class="flex gap-2">
+                        <input type="text" value="${r.type_th}" onchange="updateFeeTable(${idx},'type_th',this.value)" class="border p-2 text-sm rounded w-2/5 font-bold" placeholder="ชื่อระดับชั้น">
+                        <input type="text" value="${r.term1}" onchange="updateFeeTable(${idx},'term1',this.value)" class="border p-2 text-sm rounded w-1/5" placeholder="เทอม 1">
+                        <input type="text" value="${r.term2}" onchange="updateFeeTable(${idx},'term2',this.value)" class="border p-2 text-sm rounded w-1/5" placeholder="เทอม 2">
+                        <input type="text" value="${r.total}" onchange="updateFeeTable(${idx},'total',this.value)" class="border p-2 text-sm rounded w-1/5 font-bold text-psu-accent" placeholder="รวม">
+                    </div>
+                `).join('');
+            }
         };
 
-        window.updateSettings = (k, v) => { siteData.settings[k] = v; renderAdminPanel(); };
-        window.updateData = (col, idx, f, v) => { siteData[col][idx][f] = v; renderAdminPanel(); };
+        window.updateSettings = (k, v) => { siteData.settings[k] = v; };
+        window.updateData = (col, idx, f, v) => { siteData[col][idx][f] = v; };
+        window.deleteItem = (col, idx) => { if(confirm('ต้องการลบรายการนี้ใช่หรือไม่?')) { siteData[col].splice(idx, 1); renderAdminPanel(); } };
         
-        window.deleteItem = (col, idx) => { 
-            if(confirm('ต้องการลบรายการนี้ใช่หรือไม่? การกระทำนี้ไม่สามารถย้อนกลับได้')) { 
-                siteData[col].splice(idx, 1); 
-                renderAdminPanel(); 
-            } 
-        };
+        window.addAnnouncementItem = () => { siteData.announcements.push({ id: Date.now(), date: "2026-10-21", type: "general", title_th: "ประกาศใหม่...", title_en: "New Notice...", link: "#" }); renderAdminPanel(); };
+        window.addChannelItem = () => { siteData.application_channels.push({ id: Date.now(), icon: "users", color: "blue", title_th: "โควตาใหม่", title_en: "New Quota", desc_th: "คำอธิบาย...", desc_en: "Description...", btn1_th: "ปุ่มหลัก", btn1_en: "Main Btn", btn1_link: "#", btn1_icon: "link", btn2_th: "", btn2_en: "", btn2_link: "", btn2_icon: "" }); renderAdminPanel(); };
+        window.addTimelineItem = () => { siteData.timeline.push({ id: Date.now(), date_th: "วันที่...", date_en: "Date...", title_th: "หัวข้อใหม่", title_en: "New Title", desc_th: "", desc_en: "", icon: "calendar" }); renderAdminPanel(); };
+        window.addFaqItem = () => { siteData.faqs.push({ id: Date.now(), q_th: "คำถามใหม่?", q_en: "New Question?", a_th: "", a_en: "" }); renderAdminPanel(); };
 
-        window.addAnnouncementItem = () => {
-            siteData.announcements = siteData.announcements || [];
-            siteData.announcements.push({ id: Date.now(), date: "2026-10-21", type: "general", title_th: "ประกาศใหม่...", title_en: "New Notice...", link: "#" });
-            renderAdminPanel();
-        };
-
-        window.addChannelItem = () => {
-            siteData.application_channels = siteData.application_channels || [];
-            siteData.application_channels.push({ id: Date.now(), icon: "users", color: "blue", title_th: "โควตาใหม่", title_en: "New Quota", desc_th: "คำอธิบาย...", desc_en: "Description...", btn1_th: "ปุ่มหลัก", btn1_en: "Main Btn", btn1_link: "#", btn1_icon: "link", btn2_th: "", btn2_en: "", btn2_link: "", btn2_icon: "" });
-            renderAdminPanel();
-        };
-
-        window.addTimelineItem = () => {
-            siteData.timeline = siteData.timeline || [];
-            siteData.timeline.push({ id: Date.now(), date_th: "วันที่...", date_en: "Date...", title_th: "หัวข้อใหม่", title_en: "New Title", desc_th: "", desc_en: "", icon: "calendar" });
-            renderAdminPanel();
-        };
-
-        window.addFaqItem = () => {
-            siteData.faqs = siteData.faqs || [];
-            siteData.faqs.push({ id: Date.now(), q_th: "คำถามใหม่?", q_en: "New Question?", a_th: "", a_en: "" });
-            renderAdminPanel();
-        };
+        window.updateFeeCard = (idx, f, v) => { siteData.fees.cards[idx][f] = v; };
+        window.updateFeeSection = (idx, f, v) => { siteData.fees.breakdown[idx][f] = v; };
+        window.updateFeeItem = (bIdx, iIdx, f, v) => { siteData.fees.breakdown[bIdx].items[iIdx][f] = v; };
+        window.addFeeItem = (bIdx) => { siteData.fees.breakdown[bIdx].items.push({ name_th: "รายการใหม่", name_en:"New Item", price: "0" }); renderAdminPanel(); };
+        window.removeFeeItem = (bIdx, iIdx) => { siteData.fees.breakdown[bIdx].items.splice(iIdx, 1); renderAdminPanel(); };
+        window.updateFeeTable = (idx, f, v) => { siteData.fees.summary_table[idx][f] = v; };
 
         window.exportJSONForGithub = () => {
             const dataStr = JSON.stringify(siteData, null, 2);
@@ -313,28 +439,22 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a'); a.href = url; a.download = 'site-data.json';
             document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
-            showToast("ดาวน์โหลดไฟล์ JSON สำเร็จ สามารถนำไปอัปโหลดทับได้เลย", "success");
+            showToast("ดาวน์โหลดไฟล์สำรองสำเร็จ", "success");
         };
 
-        // GitHub API Integration
         window.syncToGitHubDirectly = async () => {
             const user = document.getElementById('github-user').value.trim();
             const repo = document.getElementById('github-repo').value.trim();
             const token = document.getElementById('github-token').value.trim();
 
             if (!user || !repo || !token) { 
-                showToast("กรุณากรอกข้อมูล GitHub ให้ครบถ้วนทั้ง 3 ช่อง", "error"); 
-                return; 
+                showToast("กรุณากรอกข้อมูล GitHub ให้ครบทั้ง 3 ช่อง", "error"); return; 
             }
-            
-            // Save securely in local storage
-            localStorage.setItem('gh_user', user); 
-            localStorage.setItem('gh_repo', repo); 
-            localStorage.setItem('gh_token', token);
+            localStorage.setItem('gh_user', user); localStorage.setItem('gh_repo', repo); localStorage.setItem('gh_token', token);
 
             const btn = document.getElementById('sync-btn');
             const origHTML = btn.innerHTML;
-            btn.innerHTML = `<i class="fas fa-spinner fa-spin text-lg"></i> กำลังอัปเดต...`;
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin text-xl"></i> กำลังบันทึก...`;
             btn.disabled = true;
 
             try {
@@ -342,56 +462,29 @@
                 const apiUrl = `https://api.github.com/repos/${user}/${repo}/contents/${path}`;
                 let sha = '';
                 
-                // 1. Get current SHA hash required by Github to update a file
-                const getRes = await fetch(apiUrl, { 
-                    headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' } 
-                });
-                
-                if (getRes.ok) {
-                    sha = (await getRes.json()).sha;
-                }
+                const getRes = await fetch(apiUrl, { headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' } });
+                if (getRes.ok) sha = (await getRes.json()).sha;
 
-                // 2. Base64 Encode the JSON safely (handling Thai characters)
                 const jsonString = JSON.stringify(siteData, null, 2);
                 const bytes = new TextEncoder().encode(jsonString);
-                let binString = ""; 
-                bytes.forEach((b) => binString += String.fromCharCode(b));
+                let binString = ""; bytes.forEach((b) => binString += String.fromCharCode(b));
                 const contentBase64 = btoa(binString);
 
-                // 3. PUT request to Github
                 const putRes = await fetch(apiUrl, {
                     method: 'PUT',
-                    headers: { 
-                        'Authorization': `token ${token}`, 
-                        'Accept': 'application/vnd.github.v3+json', 
-                        'Content-Type': 'application/json' 
-                    },
-                    body: JSON.stringify({ 
-                        message: 'Updated site-data via Admin CMS', 
-                        content: contentBase64, 
-                        sha: sha !== '' ? sha : undefined 
-                    })
+                    headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: 'Update site-data via Fee Builder', content: contentBase64, sha: sha !== '' ? sha : undefined })
                 });
 
-                if (putRes.ok) {
-                    showToast("อัปเดตข้อมูลขึ้นเว็บไซต์หลักสำเร็จแล้ว!", "success");
-                } else {
-                    const error = await putRes.json();
-                    console.error(error);
-                    showToast("เกิดข้อผิดพลาด: สิทธิ์การเข้าถึง Token ไม่ถูกต้อง", "error");
-                }
+                if (putRes.ok) showToast("อัปเดตข้อมูลขึ้นเว็บไซต์สำเร็จ!", "success");
+                else showToast("สิทธิ์ Token ของ GitHub ไม่ถูกต้อง", "error");
             } catch (err) {
-                console.error(err);
-                showToast("ไม่สามารถอัปเดตได้ ตรวจสอบการเชื่อมต่ออินเทอร์เน็ต", "error");
+                showToast("ขัดข้อง! ตรวจสอบการเชื่อมต่ออินเทอร์เน็ต", "error");
             } finally {
-                setTimeout(() => { 
-                    btn.innerHTML = origHTML; 
-                    btn.disabled = false; 
-                }, 2000);
+                setTimeout(() => { btn.innerHTML = origHTML; btn.disabled = false; }, 2000);
             }
         };
 
-        // Load saved credentials on startup
         document.addEventListener('DOMContentLoaded', () => {
             if(localStorage.getItem('gh_user')) document.getElementById('github-user').value = localStorage.getItem('gh_user');
             if(localStorage.getItem('gh_repo')) document.getElementById('github-repo').value = localStorage.getItem('gh_repo');
