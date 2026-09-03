@@ -784,11 +784,15 @@
                 if (response.ok) {
                     const data = await response.json();
                     if(data.settings) siteData.settings = data.settings;
-                    if(data.timeline) siteData.timeline = data.timeline;
-                    if(data.faqs) siteData.faqs = data.faqs;
+                    if(data.timeline && data.timeline.length > 0) siteData.timeline = data.timeline;
+                    if(data.faqs && data.faqs.length > 0) siteData.faqs = data.faqs;
                     if(data.announcements) siteData.announcements = data.announcements;
-                    if(data.application_channels) siteData.application_channels = data.application_channels;
-                    if(data.fees) siteData.fees = data.fees;
+                    if(data.application_channels && data.application_channels.length > 0) siteData.application_channels = data.application_channels;
+                    
+                    // ป้องกันข้อมูลค่าเทอมหาย: เช็คว่าในไฟล์ JSON มีข้อมูลค่าเทอมหรือไม่ ถ้าไม่มีให้ใช้ข้อมูลตั้งต้นที่ฝังไว้
+                    if(data.fees && data.fees.cards && data.fees.cards.length > 0) {
+                        siteData.fees = data.fees;
+                    }
                 }
             } catch (e) { console.log("Using Default Data."); }
             document.getElementById('loading-overlay').style.display = 'none';
