@@ -6,7 +6,16 @@
     "pdfLink": "https://satitislam.psu.ac.th/files/com_g_regis/2026-08_27d09d94109fc4f.pdf",
     "manualLink": "https://drive.google.com/file/d/1wj42TOs9Bnt_QGsS64L-NL4UKGbs0cNv/view?usp=sharing"
   },
-  "announcements": [],
+  "announcements": [
+    {
+      "id": 1788405215659,
+      "date": "2026-10-21",
+      "type": "general",
+      "title_th": "ประกาศใหม่...",
+      "title_en": "New Notice...",
+      "link": "#"
+    }
+  ],
   "application_channels": [
     {
       "id": 1788344309353,
@@ -210,5 +219,10 @@
       "a_th": "การเปิดรับสมัครรอบสอง จะพิจารณาจากจำนวนผู้ยืนยันสิทธิ์ในรอบแรกครับ หากได้นักเรียนครบตามจำนวนที่ประกาศรับแล้ว จะไม่มีการเปิดรับสมัครในรอบที่สองครับ",
       "a_en": "A second round depends on the number of confirmed students from the first round. If the quota is met, there won't be a second round."
     }
-  ]
+  ],
+  "fees": {
+    "cards": [],
+    "breakdown": [],
+    "summary_table": []
+  }
 }
