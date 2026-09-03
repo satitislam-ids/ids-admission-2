@@ -269,17 +269,28 @@
 
         const loadDataFromGitHub = async () => {
             try {
+                // เรียกข้อมูลตั้งต้น (Default) ขึ้นมาเตรียมรอไว้ก่อนเสมอ เพื่อป้องกันช่องโหว่จากการดึง JSON เก่าที่ไม่มีข้อมูล
+                loadDefaultData();
+
                 const response = await fetch(`site-data.json?v=${new Date().getTime()}`);
                 if (response.ok) {
                     const data = await response.json();
+                    
+                    // เอาข้อมูลจาก JSON มาทับข้อมูลตั้งต้น "เฉพาะกรณีที่มีข้อมูลอยู่จริง"
                     if(data.settings) siteData.settings = data.settings;
                     if(data.announcements) siteData.announcements = data.announcements;
-                    if(data.application_channels) siteData.application_channels = data.application_channels;
-                    if(data.timeline) siteData.timeline = data.timeline;
-                    if(data.faqs) siteData.faqs = data.faqs;
-                    if(data.fees) siteData.fees = data.fees;
-                } else { loadDefaultData(); }
-            } catch (e) { loadDefaultData(); }
+                    if(data.application_channels && data.application_channels.length > 0) siteData.application_channels = data.application_channels;
+                    if(data.timeline && data.timeline.length > 0) siteData.timeline = data.timeline;
+                    if(data.faqs && data.faqs.length > 0) siteData.faqs = data.faqs;
+                    
+                    // ส่วนป้องกันค่าเทอมหาย: ถ้าในไฟล์ JSON บน Github มี array ค่าเทอม ให้ดึงมาใช้ ถ้าไม่มี(หรือกลวง) ให้ใช้ Default ที่โหลดรอไว้ตอนแรก
+                    if(data.fees && data.fees.cards && data.fees.cards.length > 0) {
+                        siteData.fees = data.fees;
+                    }
+                }
+            } catch (e) { 
+                console.log("No existing JSON, using default."); 
+            }
             renderAdminPanel();
         };
 
