@@ -212,8 +212,594 @@
     }
   ],
   "fees": {
-    "cards": [],
-    "breakdown": [],
-    "summary_table": []
+    "cards": [
+      {
+        "id": "m1_dorm",
+        "title_th": "ม.1 ประจำหอพัก",
+        "title_en": "M.1 Boarding",
+        "desc_th": "รวมอาหาร จ.-ส. 2 มื้อ (ศ. 3 มื้อ) และหอพัก",
+        "desc_en": "Meals & Dorm Included",
+        "badge_th": "แบ่งชำระได้สูงสุด 4 งวด/เทอม",
+        "badge_en": "Up to 4 Installments/Term",
+        "price": "111,490",
+        "term1_total": "60,490",
+        "badge_color": "green",
+        "text_color": "psu-accent",
+        "is_required": false
+      },
+      {
+        "id": "m1_day",
+        "title_th": "ม.1 ไป-กลับ",
+        "title_en": "M.1 Day",
+        "desc_th": "รวมอาหารกลางวันเฉพาะวันศุกร์",
+        "desc_en": "Friday's lunch included",
+        "badge_th": "แบ่งชำระได้สูงสุด 3 งวด/เทอม",
+        "badge_en": "Up to 3 Installments/Term",
+        "price": "72,490",
+        "term1_total": "40,990",
+        "badge_color": "green",
+        "text_color": "psu-light",
+        "is_required": false
+      },
+      {
+        "id": "m4_dorm",
+        "title_th": "ม.4 ประจำหอพัก",
+        "title_en": "M.4 Boarding",
+        "desc_th": "รวมอาหาร จ.-ส. 2 มื้อ (ศ. 3 มื้อ) และหอพัก",
+        "desc_en": "Meals & Dorm Included",
+        "badge_th": "แบ่งชำระได้สูงสุด 5 งวด/เทอม",
+        "badge_en": "Up to 5 Installments/Term",
+        "price": "126,990",
+        "term1_total": "68,990",
+        "badge_color": "green",
+        "text_color": "psu-accent",
+        "is_required": true
+      }
+    ],
+    "breakdown": [
+      {
+        "id": 1,
+        "icon": "backpack",
+        "color": "psu-accent",
+        "title_th": "1. ค่าธรรมเนียมแรกเข้า",
+        "title_en": "1. Initial Enrollment Fee",
+        "subtitle_th": "ชำระครั้งแรกครั้งเดียว (10,000 ฿)",
+        "subtitle_en": "One-time payment (10,000 THB)",
+        "items": [
+          {
+            "name_th": "โครงการปรับพื้นฐาน",
+            "name_en": "Pre-sessional Course",
+            "price": "5,450"
+          },
+          {
+            "name_th": "กิฟเซต/เครื่องนอน",
+            "name_en": "Gift set / Bedding",
+            "price": "1,500"
+          },
+          {
+            "name_th": "ประกันทรัพย์สิน (คืนตอนจบ)",
+            "name_en": "Property deposit (Refundable)",
+            "price": "1,500"
+          },
+          {
+            "name_th": "ประกันอุบัติเหตุรายปี",
+            "name_en": "Annual Accident Insurance",
+            "price": "450"
+          },
+          {
+            "name_th": "สมาชิกหอสมุด JF Kennedy",
+            "name_en": "JF Kennedy Library Fee",
+            "price": "750"
+          },
+          {
+            "name_th": "บัตรประจำตัวนักเรียน",
+            "name_en": "Student ID Card",
+            "price": "350"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "icon": "books",
+        "color": "psu-light",
+        "title_th": "2. ค่าการศึกษาและกิจกรรม",
+        "title_en": "2. Education & Activities",
+        "subtitle_th": "ชำระต่อภาคเรียน",
+        "subtitle_en": "Per Semester",
+        "items": [
+          {
+            "name_th": "ค่าพัฒนาคุณภาพการศึกษา",
+            "name_en": "Education Quality Development",
+            "price": "20,000"
+          },
+          {
+            "name_th": "ค่าบำรุงห้องเรียน/สื่อ",
+            "name_en": "Classroom / Media Maintenance",
+            "price": "5,000"
+          },
+          {
+            "name_th": "ทัศนศึกษา (ม.1)",
+            "name_en": "Field Trip (M.1)",
+            "price": "5,000",
+            "is_separator": true
+          },
+          {
+            "name_th": "ทัศนศึกษา ตปท. (ม.4)",
+            "name_en": "Overseas Field Trip (M.4)",
+            "price": "10,000"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "icon": "house-line",
+        "color": "green-400",
+        "title_th": "3. อาหารและหอพัก",
+        "title_en": "3. Meals & Dormitory",
+        "subtitle_th": "ชำระต่อภาคเรียน",
+        "subtitle_en": "Per Semester",
+        "items": [
+          {
+            "name_th": "อาหารนักเรียนประจำ",
+            "name_en": "Meals (Boarding)",
+            "price": "15,000",
+            "highlight": true
+          },
+          {
+            "name_th": "อาหารนักเรียนไป-กลับ",
+            "name_en": "Meals (Day Student)",
+            "price": "1,500",
+            "highlight": true
+          },
+          {
+            "name_th": "หอพักปกติ (ม.1)",
+            "name_en": "Dormitory (M.1)",
+            "price": "6,000",
+            "is_separator": true
+          },
+          {
+            "name_th": "หอพักปกติ (ม.4)",
+            "name_en": "Dormitory (M.4)",
+            "price": "8,000"
+          },
+          {
+            "name_th": "*ประกันหอพัก ม.4 (แรกเข้า)",
+            "name_en": "*M.4 Dorm deposit (Initial)",
+            "price": "1,500",
+            "is_muted": true
+          }
+        ]
+      }
+    ],
+    "summary_table": [
+      {
+        "id": 1,
+        "type_th": "ชั้น ม.1 - ประจำหอพัก",
+        "type_en": "M.1 - Boarding",
+        "term1": "61,000",
+        "term2": "51,000",
+        "total": "112,000"
+      },
+      {
+        "id": 2,
+        "type_th": "ชั้น ม.1 - ไป-กลับ",
+        "type_en": "M.1 - Day Student",
+        "term1": "41,500",
+        "term2": "31,500",
+        "total": "73,000"
+      },
+      {
+        "id": 3,
+        "type_th": "ชั้น ม.4 - ประจำหอพัก",
+        "type_en": "M.4 - Boarding",
+        "term1": "69,500",
+        "term2": "58,000",
+        "total": "127,500"
+      }
+    ]
+  },
+  "syllabus": {
+    "m1": {
+      "math": [
+        {
+          "title_th": "จำนวนและพีชคณิต",
+          "title_en": "Number & Algebra",
+          "icon": "ph-math-operations",
+          "items_th": [
+            "จำนวนเต็ม",
+            "เศษส่วน",
+            "ทศนิยม",
+            "อัตราส่วน",
+            "สัดส่วน",
+            "ร้อยละ",
+            "บัญญัติไตรยางศ์",
+            "ห.ร.ม. และ ค.ร.น.",
+            "การบวก ลบ คูณ หาร จำนวนเต็ม เศษส่วน ทศนิยม",
+            "การประยุกต์โจทย์ปัญหา ห.ร.ม. และ ค.ร.น.",
+            "สมการและการแก้โจทย์ปัญหาสมการ",
+            "แบบรูปและความสัมพันธ์"
+          ],
+          "items_en": [
+            "Integers",
+            "Fractions",
+            "Decimals",
+            "Ratio",
+            "Proportion",
+            "Percentage",
+            "Cross-multiplication",
+            "GCD & LCM",
+            "Basic Operations",
+            "GCD & LCM Applications",
+            "Equations & Word Problems",
+            "Patterns & Relationships"
+          ]
+        },
+        {
+          "title_th": "การวัดและเรขาคณิต",
+          "title_en": "Measurement & Geometry",
+          "icon": "ph-ruler",
+          "items_th": [
+            "มุมและเส้นขนาน",
+            "สมบัติของเส้นขนาน",
+            "ความยาวรอบรูปและพื้นที่ รูปสามเหลี่ยม",
+            "ความยาวรอบรูปและพื้นที่ รูปสี่เหลี่ยม",
+            "ความยาวรอบรูปและพื้นที่ รูปวงกลม",
+            "ความยาวรอบรูปและพื้นที่ รูปหลายเหลี่ยม",
+            "ปริมาตรและความจุของทรงกระบอก",
+            "ปริมาตรและความจุของปริซึม",
+            "ลูกบาศก์",
+            "การแปลงหน่วยมาตราต่าง ๆ (ความยาว, พื้นที่, น้ำหนัก, เวลา)"
+          ],
+          "items_en": [
+            "Angles & Parallel lines",
+            "Properties of parallel lines",
+            "Perimeter & Area (Triangle)",
+            "Perimeter & Area (Quadrilateral)",
+            "Perimeter & Area (Circle)",
+            "Perimeter & Area (Polygon)",
+            "Volume & Capacity (Cylinder)",
+            "Volume & Capacity (Prism)",
+            "Cube",
+            "Unit conversion (Length, Area, Weight, Time)"
+          ]
+        },
+        {
+          "title_th": "สถิติและความน่าจะเป็น",
+          "title_en": "Statistics & Probability",
+          "icon": "ph-chart-pie-slice",
+          "items_th": [
+            "การนำเสนอและการอ่านข้อมูลโดยใช้ตาราง",
+            "การอ่านและวิเคราะห์แผนภูมิแท่ง",
+            "การอ่านและวิเคราะห์กราฟเส้น",
+            "การอ่านและวิเคราะห์แผนภูมิวงกลม"
+          ],
+          "items_en": [
+            "Data presentation & Table reading",
+            "Bar chart analysis",
+            "Line graph analysis",
+            "Pie chart analysis"
+          ]
+        }
+      ],
+      "sci": [
+        {
+          "title_th": "วิทยาศาสตร์ ม.1 (Topics)",
+          "title_en": "Science M.1 Topics",
+          "icon": "ph-flask",
+          "items_th": [
+            "โครงสร้างและหน้าที่ของพืชดอก",
+            "การสังเคราะห์ด้วยแสงของพืช",
+            "ห่วงโซ่อาหาร",
+            "ความสัมพันธ์ระหว่างสิ่งมีชีวิต",
+            "พันธุกรรม",
+            "แรงโน้มถ่วงของโลก",
+            "แรงลัพธ์",
+            "แสงและการมองเห็น",
+            "การเปลี่ยนสถานะของสาร",
+            "การละลายของสาร",
+            "ระบบสุริยะ",
+            "ปรากฏการณ์ทางดาราศาสตร์"
+          ],
+          "items_en": [
+            "Structure and function of flowering plants",
+            "Photosynthesis",
+            "Food chain",
+            "Organism relationships",
+            "Genetics",
+            "Earth's gravity",
+            "Resultant force",
+            "Light and vision",
+            "State of matter changes",
+            "Solubility",
+            "Solar system",
+            "Astronomical phenomena"
+          ]
+        }
+      ],
+      "eng": [
+        {
+          "title_th": "Vocabulary (คำศัพท์)",
+          "title_en": "Vocabulary",
+          "icon": "ph-text-aa",
+          "obj_th": "วัดความรู้และความเข้าใจความหมายของคำศัพท์ภาษาอังกฤษที่ใช้ในชีวิตประจำวันและในบริบทที่พบได้ในระดับประถมศึกษาตอนปลาย",
+          "obj_en": "Test knowledge and understanding of daily English vocabulary found in upper primary level contexts.",
+          "scope_th": [
+            "การรู้ความหมายของคำศัพท์",
+            "การจำแนกประเภทและจัดกลุ่มคำศัพท์",
+            "การนำคำศัพท์ไปประยุกต์ใช้ในประโยค",
+            "การประยุกต์ใช้คำศัพท์ในสถานการณ์ต่าง ๆ"
+          ],
+          "scope_en": [
+            "Knowing word meanings",
+            "Classifying and grouping words",
+            "Applying words in sentences",
+            "Using vocabulary in various situations"
+          ]
+        },
+        {
+          "title_th": "Structure (โครงสร้างและไวยากรณ์)",
+          "title_en": "Structure & Grammar",
+          "icon": "ph-brackets-curly",
+          "obj_th": "วัดความเข้าใจหลักไวยากรณ์ภาษาอังกฤษพื้นฐานที่จำเป็นต่อการสื่อสารและการอ่าน",
+          "obj_en": "Test understanding of basic English grammar essential for communication and reading.",
+          "scope_th": [
+            "Parts of Speech: Noun, Pronoun, Verb, Adjective, Adverb, Preposition, Conjunction",
+            "การเลือกใช้รูปคำ (Word Form) และโครงสร้างประโยคได้ถูกต้อง",
+            "การประยุกต์ใช้ไวยากรณ์ในบริบทต่าง ๆ (Grammar in Context)"
+          ],
+          "scope_en": [
+            "Parts of Speech: Noun, Pronoun, Verb, Adjective, Adverb, Preposition, Conjunction",
+            "Correct usage of Word Forms and sentence structures",
+            "Grammar in Context"
+          ]
+        },
+        {
+          "title_th": "Expression (การใช้ภาษาเพื่อสื่อสาร)",
+          "title_en": "Expression",
+          "icon": "ph-chats-circle",
+          "obj_th": "วัดความสามารถในการเลือกใช้ภาษาอังกฤษให้เหมาะสมกับสถานการณ์ในชีวิตประจำวัน",
+          "obj_en": "Test the ability to choose appropriate English for daily life situations.",
+          "scope_th": [
+            "การสนทนาทักทายและการกล่าวลา (Greetings and Farewells)",
+            "การทำความเข้าใจบริบทของสถานการณ์ต่าง ๆ",
+            "การเลือกใช้สำนวน (Idioms/Expressions) หรือประโยคที่เหมาะสมและเป็นธรรมชาติ"
+          ],
+          "scope_en": [
+            "Greetings and Farewells",
+            "Understanding context of various situations",
+            "Choosing appropriate Idioms/Expressions naturally"
+          ]
+        },
+        {
+          "title_th": "Reading (การอ่านเพื่อความเข้าใจ)",
+          "title_en": "Reading Comprehension",
+          "icon": "ph-book-open-text",
+          "obj_th": "วัดความสามารถในการอ่านและทำความเข้าใจข้อความภาษาอังกฤษ",
+          "obj_en": "Test the ability to read and comprehend English texts.",
+          "scope_th": [
+            "การอ่านข้อความภาษาอังกฤษในระดับพื้นฐาน",
+            "การอ่านข้อความภาษาอังกฤษในระดับปานกลาง",
+            "การอ่านเพื่อจับใจความสำคัญ ตอบคำถาม และสรุปใจความจากบทอ่าน"
+          ],
+          "scope_en": [
+            "Reading basic English texts",
+            "Reading intermediate English texts",
+            "Reading for main ideas, answering questions, and summarizing"
+          ]
+        }
+      ]
+    },
+    "m4": {
+      "math": [
+        {
+          "title_th": "จำนวนและพีชคณิต",
+          "title_en": "Number & Algebra",
+          "icon": "ph-math-operations",
+          "items_th": [
+            "จำนวนเต็ม",
+            "จำนวนจริง",
+            "เศษส่วนและทศนิยม",
+            "เลขยกกำลัง",
+            "อัตราส่วน",
+            "สัดส่วน",
+            "ร้อยละ",
+            "สมการเชิงเส้นตัวแปรเดียว",
+            "กราฟและความสัมพันธ์เชิงเส้น",
+            "ฟังก์ชันกำลังสอง",
+            "พหุนามดีกรีสอง",
+            "พหุนามดีกรีมากกว่าสอง",
+            "ระบบสมการเชิงเส้นสองตัวแปร"
+          ],
+          "items_en": [
+            "Integers",
+            "Real Numbers",
+            "Fractions & Decimals",
+            "Exponents",
+            "Ratio",
+            "Proportion",
+            "Percentage",
+            "Linear Equations (One variable)",
+            "Graphs & Linear relationships",
+            "Quadratic functions",
+            "Polynomials (Degree 2)",
+            "Polynomials (Degree > 2)",
+            "System of linear equations (Two variables)"
+          ]
+        },
+        {
+          "title_th": "การวัดและเรขาคณิต",
+          "title_en": "Measurement & Geometry",
+          "icon": "ph-ruler",
+          "items_th": [
+            "รูปเรขาคณิตสองมิติและสามมิติ",
+            "เส้นขนาน",
+            "ปริซึม",
+            "ทรงกระบอก",
+            "พีระมิด",
+            "วงกลม",
+            "ทรงกลม",
+            "การแปลงทางเรขาคณิต",
+            "การเท่ากันทุกประการของรูปสามเหลี่ยม",
+            "รูปสามเหลี่ยมคล้าย",
+            "ทฤษฎีบทปีทาโกรัส",
+            "อัตราส่วนตรีโกณมิติ"
+          ],
+          "items_en": [
+            "2D & 3D Geometry",
+            "Parallel lines",
+            "Prisms",
+            "Cylinders",
+            "Pyramids",
+            "Circles",
+            "Spheres",
+            "Geometric transformations",
+            "Congruence of triangles",
+            "Similarity of triangles",
+            "Pythagorean theorem",
+            "Trigonometric ratios"
+          ]
+        },
+        {
+          "title_th": "สถิติและความน่าจะเป็น",
+          "title_en": "Statistics & Probability",
+          "icon": "ph-chart-pie-slice",
+          "items_th": [
+            "ข้อมูล",
+            "ค่ากลางของข้อมูล",
+            "การกระจายของข้อมูล",
+            "แผนภาพกล่อง",
+            "แผนภูมิรูปภาพ",
+            "แผนภูมิแท่ง",
+            "แผนภูมิวงกลม",
+            "กราฟเส้น",
+            "แผนภาพจุด",
+            "แผนภาพต้น-ใบ",
+            "ฮิสโตแกรม",
+            "ความน่าจะเป็น",
+            "โอกาสของเหตุการณ์"
+          ],
+          "items_en": [
+            "Data",
+            "Measures of central tendency",
+            "Data dispersion",
+            "Box plots",
+            "Pictograms",
+            "Bar charts",
+            "Pie charts",
+            "Line graphs",
+            "Dot plots",
+            "Stem-and-leaf plots",
+            "Histograms",
+            "Probability",
+            "Event occurrence"
+          ]
+        }
+      ],
+      "sci": [
+        {
+          "title_th": "วิทยาศาสตร์ ม.4 (Topics)",
+          "title_en": "Science M.4 Topics",
+          "icon": "ph-flask",
+          "items_th": [
+            "เซลล์และออร์แกเนล",
+            "ชีวิตของพืช",
+            "ร่างกายมนุษย์",
+            "การเคลื่อนที่และแรง",
+            "พลังงานความร้อน",
+            "แสง",
+            "สารและสมบัติของสาร",
+            "การแยกสาร",
+            "โครงสร้างของโลก",
+            "ภัยพิบัติ",
+            "อวกาศ"
+          ],
+          "items_en": [
+            "Cells and organelles",
+            "Plant life",
+            "Human body",
+            "Motion and forces",
+            "Thermal energy",
+            "Light",
+            "Matter and its properties",
+            "Separation of mixtures",
+            "Earth's structure",
+            "Natural disasters",
+            "Space"
+          ]
+        }
+      ],
+      "eng": [
+        {
+          "title_th": "Vocabulary (คำศัพท์)",
+          "title_en": "Vocabulary",
+          "icon": "ph-text-aa",
+          "obj_th": "วัดความรู้และความเข้าใจความหมายของคำศัพท์ภาษาอังกฤษที่ใช้ในชีวิตประจำวันและในบริบทที่พบได้ในระดับมัธยมศึกษาตอนต้น",
+          "obj_en": "Test knowledge and understanding of daily English vocabulary found in junior high level contexts.",
+          "scope_th": [
+            "การรู้ความหมายของคำศัพท์",
+            "การจำแนกประเภทและจัดกลุ่มคำศัพท์",
+            "การนำคำศัพท์ไปประยุกต์ใช้ในประโยค",
+            "การประยุกต์ใช้คำศัพท์ในสถานการณ์ต่าง ๆ"
+          ],
+          "scope_en": [
+            "Knowing word meanings",
+            "Classifying and grouping words",
+            "Applying words in sentences",
+            "Using vocabulary in various situations"
+          ]
+        },
+        {
+          "title_th": "Structure (โครงสร้างและไวยากรณ์)",
+          "title_en": "Structure & Grammar",
+          "icon": "ph-brackets-curly",
+          "obj_th": "วัดความเข้าใจหลักไวยากรณ์ภาษาอังกฤษพื้นฐานที่จำเป็นต่อการสื่อสารและการอ่าน",
+          "obj_en": "Test understanding of basic English grammar essential for communication and reading.",
+          "scope_th": [
+            "Parts of Speech: Noun, Pronoun, Verb, Adjective, Adverb, Preposition, Conjunction",
+            "การเลือกใช้รูปคำ (Word Form) และโครงสร้างประโยคได้ถูกต้อง",
+            "การประยุกต์ใช้ไวยากรณ์ในบริบทต่าง ๆ (Grammar in Context)"
+          ],
+          "scope_en": [
+            "Parts of Speech: Noun, Pronoun, Verb, Adjective, Adverb, Preposition, Conjunction",
+            "Correct usage of Word Forms and sentence structures",
+            "Grammar in Context"
+          ]
+        },
+        {
+          "title_th": "Expression (การใช้ภาษาเพื่อสื่อสาร)",
+          "title_en": "Expression",
+          "icon": "ph-chats-circle",
+          "obj_th": "วัดความสามารถในการเลือกใช้ภาษาอังกฤษให้เหมาะสมกับสถานการณ์ในชีวิตประจำวัน",
+          "obj_en": "Test the ability to choose appropriate English for daily life situations.",
+          "scope_th": [
+            "การสนทนาทักทายและการกล่าวลา (Greetings and Farewells)",
+            "การทำความเข้าใจบริบทของสถานการณ์ต่าง ๆ",
+            "การเลือกใช้สำนวน (Idioms/Expressions) หรือประโยคที่เหมาะสมและเป็นธรรมชาติ"
+          ],
+          "scope_en": [
+            "Greetings and Farewells",
+            "Understanding context of various situations",
+            "Choosing appropriate Idioms/Expressions naturally"
+          ]
+        },
+        {
+          "title_th": "Reading (การอ่านเพื่อความเข้าใจ)",
+          "title_en": "Reading Comprehension",
+          "icon": "ph-book-open-text",
+          "obj_th": "วัดความสามารถในการอ่านและทำความเข้าใจข้อความภาษาอังกฤษ",
+          "obj_en": "Test the ability to read and comprehend English texts.",
+          "scope_th": [
+            "การอ่านข้อความภาษาอังกฤษในระดับพื้นฐาน",
+            "การอ่านข้อความภาษาอังกฤษในระดับปานกลาง",
+            "การอ่านเพื่อจับใจความสำคัญ ตอบคำถาม และสรุปใจความจากบทอ่าน"
+          ],
+          "scope_en": [
+            "Reading basic English texts",
+            "Reading intermediate English texts",
+            "Reading for main ideas, answering questions, and summarizing"
+          ]
+        }
+      ]
+    }
   }
 }
