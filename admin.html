@@ -15,17 +15,16 @@
             theme: {
                 extend: {
                     fontFamily: { sans: ['Kanit', 'sans-serif'] },
-                    colors: { 'psu-blue': '#002C6A', 'psu-light': '#0055A5', 'psu-accent': '#00AEEF' }
+                    colors: { 'psu-blue': '#002C6A', 'psu-light': '#0055A5', 'psu-accent': '#00AEEF', 'islamic-green': '#198754' }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #f8fafc; }
+        body { background-color: #f8fafc; font-family: 'Kanit', sans-serif; }
         .toast { animation: slideInRight 0.3s ease, fadeOut 0.5s ease 2.5s forwards; }
         @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
-        /* ซ่อน Scrollbar ของ Sidebar เพื่อความคลีน */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #f1f5f9; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
@@ -71,6 +70,7 @@
                     <button onclick="switchTab('tab-timeline')" id="btn-tab-timeline" class="admin-tab w-full text-left px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-200 transition flex items-center gap-2"><i class="ph-fill ph-calendar-blank"></i> 4. กำหนดการ (Timeline)</button>
                     <button onclick="switchTab('tab-faq')" id="btn-tab-faq" class="admin-tab w-full text-left px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-200 transition flex items-center gap-2"><i class="ph-fill ph-chat-circle-question"></i> 5. FAQ (คำถามที่พบบ่อย)</button>
                     <button onclick="switchTab('tab-fees')" id="btn-tab-fees" class="admin-tab w-full text-left px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-200 transition flex items-center gap-2"><i class="ph-fill ph-receipt"></i> 6. ค่าเทอม (Fee Builder)</button>
+                    <button onclick="switchTab('tab-syllabus')" id="btn-tab-syllabus" class="admin-tab w-full text-left px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-200 transition flex items-center gap-2"><i class="ph-fill ph-books"></i> 7. ขอบเขตเนื้อหาสอบ</button>
                     <button onclick="switchTab('tab-github')" id="btn-tab-github" class="admin-tab w-full text-left px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-200 transition flex items-center gap-2 mt-8 border border-slate-200"><i class="ph-fill ph-github-logo"></i> ตั้งค่า API เชื่อมต่อ</button>
                 </div>
 
@@ -88,6 +88,13 @@
                             <div><label class="block text-xs font-bold mb-1 text-slate-500">ลิงก์ระบบสมัครออนไลน์ (ปุ่มหลักเข้า ischoolme)</label><input type="text" id="admin-apply-link" class="w-full text-sm px-3 py-2.5 border rounded-xl focus:border-psu-accent outline-none" onchange="updateSettings('applyLink', this.value)"></div>
                             <div><label class="block text-xs font-bold mb-1 text-slate-500">ลิงก์ประกาศฉบับเต็ม (PDF) <span class="text-slate-400 font-normal">เว้นว่างไว้เพื่อซ่อนปุ่มอัตโนมัติ</span></label><input type="text" id="admin-pdf-link" class="w-full text-sm px-3 py-2.5 border rounded-xl focus:border-psu-accent outline-none" onchange="updateSettings('pdfLink', this.value)"></div>
                             <div><label class="block text-xs font-bold mb-1 text-slate-500">ลิงก์คู่มือการสมัคร (PDF) <span class="text-slate-400 font-normal">เว้นว่างไว้เพื่อซ่อนปุ่มอัตโนมัติ</span></label><input type="text" id="admin-manual-link" class="w-full text-sm px-3 py-2.5 border rounded-xl focus:border-psu-accent outline-none" onchange="updateSettings('manualLink', this.value)"></div>
+                            
+                            <div class="p-4 bg-slate-50 border rounded-xl space-y-3 mt-4">
+                                <h4 class="font-bold text-sm text-slate-700"><i class="ph-fill ph-file-pdf text-red-500"></i> ลิงก์เอกสารอ้างอิงและตารางอื่นๆ (ซ่อนปุ่มอัตโนมัติเมื่อเว้นว่าง)</h4>
+                                <div><label class="block text-[10px] font-bold mb-1 text-slate-500">ลิงก์ตารางโครงสร้างค่าใช้จ่าย (Fee Structure PDF)</label><input type="text" id="admin-fee-pdf" class="w-full text-sm px-3 py-2 border rounded-lg focus:border-psu-accent outline-none" onchange="updateSettings('feePdfLink', this.value)"></div>
+                                <div><label class="block text-[10px] font-bold mb-1 text-slate-500">ลิงก์ขอบเขตเนื้อหาสอบของ ม.1 (Syllabus PDF)</label><input type="text" id="admin-syllabus-m1" class="w-full text-sm px-3 py-2 border rounded-lg focus:border-psu-accent outline-none" onchange="updateSettings('syllabusPdfM1', this.value)"></div>
+                                <div><label class="block text-[10px] font-bold mb-1 text-slate-500">ลิงก์ขอบเขตเนื้อหาสอบของ ม.4 (Syllabus PDF)</label><input type="text" id="admin-syllabus-m4" class="w-full text-sm px-3 py-2 border rounded-lg focus:border-psu-accent outline-none" onchange="updateSettings('syllabusPdfM4', this.value)"></div>
+                            </div>
                         </div>
                     </div>
 
@@ -128,26 +135,23 @@
                         <div id="admin-faq-list" class="space-y-3"></div>
                     </div>
 
-                    <!-- Tab 6: Fee Builder (Advanced) -->
+                    <!-- Tab 6: Fee Builder (Bilingual) -->
                     <div id="tab-fees" class="tab-content hidden bg-white border rounded-2xl p-6 shadow-sm">
                         <div class="flex justify-between items-center border-b pb-2 mb-4">
                             <h3 class="font-bold text-xl text-psu-blue"><i class="ph-fill ph-receipt"></i> 6. จัดการข้อมูลค่าเทอม (Fee Builder)</h3>
                         </div>
                         
                         <div class="space-y-8">
-                            <!-- Cards -->
                             <div>
                                 <h4 class="font-bold text-slate-700 bg-slate-100 p-2 rounded-lg mb-3">ตอนที่ 1: การ์ดสรุปยอดแรกเข้า 3 ใบ</h4>
-                                <div id="admin-fee-cards" class="space-y-3"></div>
+                                <div id="admin-fee-cards" class="space-y-4"></div>
                             </div>
                             
-                            <!-- Breakdown Receipt -->
                             <div>
-                                <h4 class="font-bold text-slate-700 bg-slate-100 p-2 rounded-lg mb-3">ตอนที่ 2: โครงสร้างค่าใช้จ่าย (แบบชำแหละ)</h4>
+                                <h4 class="font-bold text-slate-700 bg-slate-100 p-2 rounded-lg mb-3">ตอนที่ 2: โครงสร้างค่าใช้จ่าย (แบบชำแหละใบเสร็จ)</h4>
                                 <div id="admin-fee-breakdown" class="space-y-4"></div>
                             </div>
 
-                            <!-- Summary Table -->
                             <div>
                                 <h4 class="font-bold text-slate-700 bg-slate-100 p-2 rounded-lg mb-3">ตอนที่ 3: ตารางสรุปยอดรวมรายปี (ล่างสุด)</h4>
                                 <div id="admin-fee-table" class="space-y-3"></div>
@@ -155,7 +159,24 @@
                         </div>
                     </div>
 
-                    <!-- Tab 7: GitHub Settings -->
+                    <!-- Tab 7: Syllabus Editor -->
+                    <div id="tab-syllabus" class="tab-content hidden bg-white border rounded-2xl p-6 shadow-sm">
+                        <div class="flex justify-between items-center border-b pb-2 mb-4">
+                            <h3 class="font-bold text-xl text-psu-blue"><i class="ph-fill ph-books"></i> 7. จัดการขอบเขตเนื้อหาสอบ (Syllabus)</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-4 bg-yellow-50 border border-yellow-200 p-3 rounded-lg"><i class="ph-fill ph-info"></i> <strong>วิธีใช้งาน:</strong> เลือกหมวดหมู่ที่ต้องการแก้ไขด้านล่าง คุณสามารถพิมพ์ 1 หัวข้อต่อ 1 บรรทัด (กด Enter เพื่อขึ้นบรรทัดใหม่) ระบบจะนำไปสร้างเป็นป้ายคำบนหน้าเว็บให้อัตโนมัติ</p>
+                        
+                        <div class="flex justify-center gap-2 mb-6 border-b pb-4">
+                            <button onclick="adminSetSylLvl('m1')" id="btn-syl-lvl-m1" class="bg-psu-blue text-white px-6 py-2 rounded-full font-bold text-sm shadow-sm transition">ระดับชั้น ม.1</button>
+                            <button onclick="adminSetSylLvl('m4')" id="btn-syl-lvl-m4" class="bg-slate-200 text-slate-600 px-6 py-2 rounded-full font-bold text-sm shadow-sm transition hover:bg-slate-300">ระดับชั้น ม.4</button>
+                        </div>
+                        
+                        <div id="admin-syllabus-editor-container" class="space-y-6">
+                            <!-- JS Will Inject Textareas for Math, Science, and English -->
+                        </div>
+                    </div>
+
+                    <!-- Tab 8: GitHub Settings -->
                     <div id="tab-github" class="tab-content hidden bg-white border rounded-2xl p-6 shadow-sm border-t-4 border-slate-700">
                         <h3 class="font-bold text-lg mb-2 text-slate-800"><i class="ph-fill ph-github-logo"></i> ตั้งค่าเชื่อมต่อฐานข้อมูล (GitHub API)</h3>
                         <p class="text-xs text-slate-600 mb-4 bg-yellow-50 p-3 rounded-lg border border-yellow-200">
@@ -191,12 +212,18 @@
             setTimeout(() => { toast.remove(); }, 3000);
         }
 
-        let siteData = { settings: {}, announcements: [], application_channels: [], timeline: [], faqs: [], fees: { cards:[], breakdown:[], summary_table:[] } };
+        let siteData = {};
 
-        // Core Default Data if API fails
+        // 🟢 Core Default Data (Master Database) 🟢
         const loadDefaultData = () => {
             siteData = {
-                settings: { openDate: "2026-09-01T08:00:00", deadline: "2026-10-15T23:59:00", applyLink: "https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register", pdfLink: "https://example.com/announcement.pdf", manualLink: "https://example.com/manual.pdf" },
+                settings: { 
+                    openDate: "2026-09-01T08:00:00", deadline: "2026-10-15T23:59:00", 
+                    applyLink: "https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register", 
+                    pdfLink: "https://example.com/announcement.pdf", manualLink: "https://example.com/manual.pdf",
+                    syllabusPdfM1: "https://example.com/syllabus_m1.pdf", syllabusPdfM4: "https://example.com/syllabus_m4.pdf",
+                    feePdfLink: "https://example.com/fee_structure.pdf"
+                },
                 announcements: [],
                 application_channels: [
                     { id: 1, icon: "users", color: "blue", title_th: "ประเภทนักเรียนทั่วไป", title_en: "General Students", desc_th: "สมัครออนไลน์ผ่านระบบ ischoolme, หรือยื่นด้วยตนเอง/ไปรษณีย์", desc_en: "Apply online via ischoolme, or submit in-person/mail", btn1_th: "เข้าสู่ระบบรับสมัคร", btn1_en: "Apply Now", btn1_link: "https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register", btn1_icon: "cursor-click", btn2_th: "โหลดฟอร์ม", btn2_en: "Form", btn2_link: "#", btn2_icon: "download-simple" },
@@ -225,15 +252,49 @@
                         { id: "m4_dorm", title_th: "ม.4 ประจำหอพัก", title_en: "M.4 Boarding", desc_th: "รวมอาหาร จ.-ส. 2 มื้อ (ศ. 3 มื้อ) และหอพัก", desc_en: "Meals & Dorm Included", badge_th: "แบ่งชำระได้สูงสุด 5 งวด/เทอม", badge_en: "Up to 5 Installments/Term", price: "126,990", term1_total: "68,990", badge_color: "green", text_color: "psu-accent", is_required: true }
                     ],
                     breakdown: [
-                        { id: 1, icon: "backpack", color: "psu-accent", title_th: "1. ค่าธรรมเนียมแรกเข้า", title_en: "1. Initial Enrollment Fee", subtitle_th: "ชำระครั้งแรกครั้งเดียว (9,490 ฿)", subtitle_en: "One-time payment (9,490 THB)", items: [ { id:11, name_th: "โครงการปรับพื้นฐาน", name_en: "Pre-sessional Course", price: "5,000" }, { id:12, name_th: "กิฟเซต/เครื่องนอน", name_en: "Gift set / Bedding", price: "1,500" } ] },
-                        { id: 2, icon: "books", color: "psu-light", title_th: "2. ค่าการศึกษาและกิจกรรม", title_en: "2. Education & Activities", subtitle_th: "ชำระต่อภาคเรียน", subtitle_en: "Per Semester", items: [ { id:21, name_th: "ค่าพัฒนาคุณภาพการศึกษา", name_en: "Education Quality Development", price: "20,000" }, { id:22, name_th: "ค่าบำรุงห้องเรียน/สื่อ", name_en: "Classroom / Media Maintenance", price: "5,000" } ] },
-                        { id: 3, icon: "house-line", color: "green-400", title_th: "3. อาหารและหอพัก", title_en: "3. Meals & Dormitory", subtitle_th: "ชำระต่อภาคเรียน", subtitle_en: "Per Semester", items: [ { id:31, name_th: "อาหารนักเรียนประจำ", name_en: "Meals (Boarding)", price: "15,000", highlight: true }, { id:32, name_th: "อาหารนักเรียนไป-กลับ", name_en: "Meals (Day Student)", price: "1,500", highlight: true } ] }
+                        { id: 1, icon: "backpack", color: "psu-accent", title_th: "1. ค่าธรรมเนียมแรกเข้า", title_en: "1. Initial Enrollment Fee", subtitle_th: "ชำระครั้งแรกครั้งเดียว (9,490 ฿)", subtitle_en: "One-time payment (9,490 THB)", items: [ { name_th: "โครงการปรับพื้นฐาน", name_en: "Pre-sessional Course", price: "5,000" }, { name_th: "กิฟเซต/เครื่องนอน", name_en: "Gift set / Bedding", price: "1,500" }, { name_th: "ประกันทรัพย์สิน (คืนตอนจบ)", name_en: "Property deposit (Refundable)", price: "1,500" }, { name_th: "ประกันอุบัติเหตุรายปี", name_en: "Annual Accident Insurance", price: "390" }, { name_th: "สมาชิกหอสมุด JF Kennedy", name_en: "JF Kennedy Library Fee", price: "750" }, { name_th: "บัตรประจำตัวนักเรียน", name_en: "Student ID Card", price: "350" } ] },
+                        { id: 2, icon: "books", color: "psu-light", title_th: "2. ค่าการศึกษาและกิจกรรม", title_en: "2. Education & Activities", subtitle_th: "ชำระต่อภาคเรียน", subtitle_en: "Per Semester", items: [ { name_th: "ค่าพัฒนาคุณภาพการศึกษา", name_en: "Education Quality Development", price: "20,000" }, { name_th: "ค่าบำรุงห้องเรียน/สื่อ", name_en: "Classroom / Media Maintenance", price: "5,000" }, { name_th: "ทัศนศึกษา (ม.1)", name_en: "Field Trip (M.1)", price: "5,000", is_separator: true }, { name_th: "ทัศนศึกษา ตปท. (ม.4)", name_en: "Overseas Field Trip (M.4)", price: "10,000" } ] },
+                        { id: 3, icon: "house-line", color: "green-400", title_th: "3. อาหารและหอพัก", title_en: "3. Meals & Dormitory", subtitle_th: "ชำระต่อภาคเรียน", subtitle_en: "Per Semester", items: [ { name_th: "อาหารนักเรียนประจำ", name_en: "Meals (Boarding)", price: "15,000", highlight: true }, { name_th: "อาหารนักเรียนไป-กลับ", name_en: "Meals (Day Student)", price: "1,500", highlight: true }, { name_th: "หอพักปกติ (ม.1)", name_en: "Dormitory (M.1)", price: "6,000", is_separator: true }, { name_th: "หอพักปกติ (ม.4)", name_en: "Dormitory (M.4)", price: "8,000" }, { name_th: "*ประกันหอพัก ม.4 (แรกเข้า)", name_en: "*M.4 Dorm deposit (Initial)", price: "1,500", is_muted: true } ] }
                     ],
                     summary_table: [
                         { id: 1, type_th: "ชั้น ม.1 - ประจำหอพัก", type_en: "M.1 - Boarding", term1: "60,490", term2: "51,000", total: "111,490" },
                         { id: 2, type_th: "ชั้น ม.1 - ไป-กลับ", type_en: "M.1 - Day Student", term1: "40,990", term2: "31,500", total: "72,490" },
                         { id: 3, type_th: "ชั้น ม.4 - ประจำหอพัก", type_en: "M.4 - Boarding", term1: "68,990", term2: "58,000", total: "126,990" }
                     ]
+                },
+                syllabus: {
+                    m1: {
+                        math: [
+                            { title_th: "จำนวนและพีชคณิต", title_en: "Number & Algebra", icon: "ph-math-operations", items_th: ["จำนวนเต็ม", "เศษส่วน", "ทศนิยม", "อัตราส่วน", "สัดส่วน", "ร้อยละ", "บัญญัติไตรยางศ์", "ห.ร.ม. และ ค.ร.น.", "การบวก ลบ คูณ หาร จำนวนเต็ม เศษส่วน ทศนิยม", "การประยุกต์โจทย์ปัญหา ห.ร.ม. และ ค.ร.น.", "สมการและการแก้โจทย์ปัญหาสมการ", "แบบรูปและความสัมพันธ์"], items_en: ["Integers", "Fractions", "Decimals", "Ratio", "Proportion", "Percentage", "Cross-multiplication", "GCD & LCM", "Basic Operations", "GCD & LCM Applications", "Equations & Word Problems", "Patterns & Relationships"] },
+                            { title_th: "การวัดและเรขาคณิต", title_en: "Measurement & Geometry", icon: "ph-ruler", items_th: ["มุมและเส้นขนาน", "สมบัติของเส้นขนาน", "ความยาวรอบรูปและพื้นที่ รูปสามเหลี่ยม", "ความยาวรอบรูปและพื้นที่ รูปสี่เหลี่ยม", "ความยาวรอบรูปและพื้นที่ รูปวงกลม", "ความยาวรอบรูปและพื้นที่ รูปหลายเหลี่ยม", "ปริมาตรและความจุของทรงกระบอก", "ปริมาตรและความจุของปริซึม", "ลูกบาศก์", "การแปลงหน่วยมาตราต่าง ๆ (ความยาว, พื้นที่, น้ำหนัก, เวลา)"], items_en: ["Angles & Parallel lines", "Properties of parallel lines", "Perimeter & Area (Triangle)", "Perimeter & Area (Quadrilateral)", "Perimeter & Area (Circle)", "Perimeter & Area (Polygon)", "Volume & Capacity (Cylinder)", "Volume & Capacity (Prism)", "Cube", "Unit conversion (Length, Area, Weight, Time)"] },
+                            { title_th: "สถิติและความน่าจะเป็น", title_en: "Statistics & Probability", icon: "ph-chart-pie-slice", items_th: ["การนำเสนอและการอ่านข้อมูลโดยใช้ตาราง", "การอ่านและวิเคราะห์แผนภูมิแท่ง", "การอ่านและวิเคราะห์กราฟเส้น", "การอ่านและวิเคราะห์แผนภูมิวงกลม"], items_en: ["Data presentation & Table reading", "Bar chart analysis", "Line graph analysis", "Pie chart analysis"] }
+                        ],
+                        sci: [
+                            { title_th: "วิทยาศาสตร์ ม.1 (Topics)", title_en: "Science M.1 Topics", icon: "ph-flask", items_th: ["โครงสร้างและหน้าที่ของพืชดอก", "การสังเคราะห์ด้วยแสงของพืช", "ห่วงโซ่อาหาร", "ความสัมพันธ์ระหว่างสิ่งมีชีวิต", "พันธุกรรม", "แรงโน้มถ่วงของโลก", "แรงลัพธ์", "แสงและการมองเห็น", "การเปลี่ยนสถานะของสาร", "การละลายของสาร", "ระบบสุริยะ", "ปรากฏการณ์ทางดาราศาสตร์"], items_en: ["Structure and function of flowering plants", "Photosynthesis", "Food chain", "Organism relationships", "Genetics", "Earth's gravity", "Resultant force", "Light and vision", "State of matter changes", "Solubility", "Solar system", "Astronomical phenomena"] }
+                        ],
+                        eng: [
+                            { title_th: "Vocabulary (คำศัพท์)", title_en: "Vocabulary", icon: "ph-text-aa", obj_th: "วัดความรู้และความเข้าใจความหมายของคำศัพท์ภาษาอังกฤษที่ใช้ในชีวิตประจำวันและในบริบทที่พบได้ในระดับประถมศึกษาตอนปลาย", obj_en: "Test knowledge and understanding of daily English vocabulary found in upper primary level contexts.", scope_th: ["การรู้ความหมายของคำศัพท์", "การจำแนกประเภทและจัดกลุ่มคำศัพท์", "การนำคำศัพท์ไปประยุกต์ใช้ในประโยค", "การประยุกต์ใช้คำศัพท์ในสถานการณ์ต่าง ๆ"], scope_en: ["Knowing word meanings", "Classifying and grouping words", "Applying words in sentences", "Using vocabulary in various situations"] },
+                            { title_th: "Structure (โครงสร้างและไวยากรณ์)", title_en: "Structure & Grammar", icon: "ph-brackets-curly", obj_th: "วัดความเข้าใจหลักไวยากรณ์ภาษาอังกฤษพื้นฐานที่จำเป็นต่อการสื่อสารและการอ่าน", obj_en: "Test understanding of basic English grammar essential for communication and reading.", scope_th: ["Parts of Speech: Noun, Pronoun, Verb, Adjective, Adverb, Preposition, Conjunction", "การเลือกใช้รูปคำ (Word Form) และโครงสร้างประโยคได้ถูกต้อง", "การประยุกต์ใช้ไวยากรณ์ในบริบทต่าง ๆ (Grammar in Context)"], scope_en: ["Parts of Speech: Noun, Pronoun, Verb, Adjective, Adverb, Preposition, Conjunction", "Correct usage of Word Forms and sentence structures", "Grammar in Context"] },
+                            { title_th: "Expression (การใช้ภาษาเพื่อสื่อสาร)", title_en: "Expression", icon: "ph-chats-circle", obj_th: "วัดความสามารถในการเลือกใช้ภาษาอังกฤษให้เหมาะสมกับสถานการณ์ในชีวิตประจำวัน", obj_en: "Test the ability to choose appropriate English for daily life situations.", scope_th: ["การสนทนาทักทายและการกล่าวลา (Greetings and Farewells)", "การทำความเข้าใจบริบทของสถานการณ์ต่าง ๆ", "การเลือกใช้สำนวน (Idioms/Expressions) หรือประโยคที่เหมาะสมและเป็นธรรมชาติ"], scope_en: ["Greetings and Farewells", "Understanding context of various situations", "Choosing appropriate Idioms/Expressions naturally"] },
+                            { title_th: "Reading (การอ่านเพื่อความเข้าใจ)", title_en: "Reading Comprehension", icon: "ph-book-open-text", obj_th: "วัดความสามารถในการอ่านและทำความเข้าใจข้อความภาษาอังกฤษ", obj_en: "Test the ability to read and comprehend English texts.", scope_th: ["การอ่านข้อความภาษาอังกฤษในระดับพื้นฐาน", "การอ่านข้อความภาษาอังกฤษในระดับปานกลาง", "การอ่านเพื่อจับใจความสำคัญ ตอบคำถาม และสรุปใจความจากบทอ่าน"], scope_en: ["Reading basic English texts", "Reading intermediate English texts", "Reading for main ideas, answering questions, and summarizing"] }
+                        ]
+                    },
+                    m4: {
+                        math: [
+                            { title_th: "จำนวนและพีชคณิต", title_en: "Number & Algebra", icon: "ph-math-operations", items_th: ["จำนวนเต็ม", "จำนวนจริง", "เศษส่วนและทศนิยม", "เลขยกกำลัง", "อัตราส่วน", "สัดส่วน", "ร้อยละ", "สมการเชิงเส้นตัวแปรเดียว", "กราฟและความสัมพันธ์เชิงเส้น", "ฟังก์ชันกำลังสอง", "พหุนามดีกรีสอง", "พหุนามดีกรีมากกว่าสอง", "ระบบสมการเชิงเส้นสองตัวแปร"], items_en: ["Integers", "Real Numbers", "Fractions & Decimals", "Exponents", "Ratio", "Proportion", "Percentage", "Linear Equations (One variable)", "Graphs & Linear relationships", "Quadratic functions", "Polynomials (Degree 2)", "Polynomials (Degree > 2)", "System of linear equations (Two variables)"] },
+                            { title_th: "การวัดและเรขาคณิต", title_en: "Measurement & Geometry", icon: "ph-ruler", items_th: ["รูปเรขาคณิตสองมิติและสามมิติ", "เส้นขนาน", "ปริซึม", "ทรงกระบอก", "พีระมิด", "วงกลม", "ทรงกลม", "การแปลงทางเรขาคณิต", "การเท่ากันทุกประการของรูปสามเหลี่ยม", "รูปสามเหลี่ยมคล้าย", "ทฤษฎีบทปีทาโกรัส", "อัตราส่วนตรีโกณมิติ"], items_en: ["2D & 3D Geometry", "Parallel lines", "Prisms", "Cylinders", "Pyramids", "Circles", "Spheres", "Geometric transformations", "Congruence of triangles", "Similarity of triangles", "Pythagorean theorem", "Trigonometric ratios"] },
+                            { title_th: "สถิติและความน่าจะเป็น", title_en: "Statistics & Probability", icon: "ph-chart-pie-slice", items_th: ["ข้อมูล", "ค่ากลางของข้อมูล", "การกระจายของข้อมูล", "แผนภาพกล่อง", "แผนภูมิรูปภาพ", "แผนภูมิแท่ง", "แผนภูมิวงกลม", "กราฟเส้น", "แผนภาพจุด", "แผนภาพต้น-ใบ", "ฮิสโตแกรม", "ความน่าจะเป็น", "โอกาสของเหตุการณ์"], items_en: ["Data", "Measures of central tendency", "Data dispersion", "Box plots", "Pictograms", "Bar charts", "Pie charts", "Line graphs", "Dot plots", "Stem-and-leaf plots", "Histograms", "Probability", "Event occurrence"] }
+                        ],
+                        sci: [
+                            { title_th: "วิทยาศาสตร์ ม.4 (Topics)", title_en: "Science M.4 Topics", icon: "ph-flask", items_th: ["เซลล์และออร์แกเนล", "ชีวิตของพืช", "ร่างกายมนุษย์", "การเคลื่อนที่และแรง", "พลังงานความร้อน", "แสง", "สารและสมบัติของสาร", "การแยกสาร", "โครงสร้างของโลก", "ภัยพิบัติ", "อวกาศ"], items_en: ["Cells and organelles", "Plant life", "Human body", "Motion and forces", "Thermal energy", "Light", "Matter and its properties", "Separation of mixtures", "Earth's structure", "Natural disasters", "Space"] }
+                        ],
+                        eng: [
+                            { title_th: "Vocabulary (คำศัพท์)", title_en: "Vocabulary", icon: "ph-text-aa", obj_th: "วัดความรู้และความเข้าใจความหมายของคำศัพท์ภาษาอังกฤษที่ใช้ในชีวิตประจำวันและในบริบทที่พบได้ในระดับมัธยมศึกษาตอนต้น", obj_en: "Test knowledge and understanding of daily English vocabulary found in junior high level contexts.", scope_th: ["การรู้ความหมายของคำศัพท์", "การจำแนกประเภทและจัดกลุ่มคำศัพท์", "การนำคำศัพท์ไปประยุกต์ใช้ในประโยค", "การประยุกต์ใช้คำศัพท์ในสถานการณ์ต่าง ๆ"], scope_en: ["Knowing word meanings", "Classifying and grouping words", "Applying words in sentences", "Using vocabulary in various situations"] },
+                            { title_th: "Structure (โครงสร้างและไวยากรณ์)", title_en: "Structure & Grammar", icon: "ph-brackets-curly", obj_th: "วัดความเข้าใจหลักไวยากรณ์ภาษาอังกฤษพื้นฐานที่จำเป็นต่อการสื่อสารและการอ่าน", obj_en: "Test understanding of basic English grammar essential for communication and reading.", scope_th: ["Parts of Speech: Noun, Pronoun, Verb, Adjective, Adverb, Preposition, Conjunction", "การเลือกใช้รูปคำ (Word Form) และโครงสร้างประโยคได้ถูกต้อง", "การประยุกต์ใช้ไวยากรณ์ในบริบทต่าง ๆ (Grammar in Context)"], scope_en: ["Parts of Speech: Noun, Pronoun, Verb, Adjective, Adverb, Preposition, Conjunction", "Correct usage of Word Forms and sentence structures", "Grammar in Context"] },
+                            { title_th: "Expression (การใช้ภาษาเพื่อสื่อสาร)", title_en: "Expression", icon: "ph-chats-circle", obj_th: "วัดความสามารถในการเลือกใช้ภาษาอังกฤษให้เหมาะสมกับสถานการณ์ในชีวิตประจำวัน", obj_en: "Test the ability to choose appropriate English for daily life situations.", scope_th: ["การสนทนาทักทายและการกล่าวลา (Greetings and Farewells)", "การทำความเข้าใจบริบทของสถานการณ์ต่าง ๆ", "การเลือกใช้สำนวน (Idioms/Expressions) หรือประโยคที่เหมาะสมและเป็นธรรมชาติ"], scope_en: ["Greetings and Farewells", "Understanding context of various situations", "Choosing appropriate Idioms/Expressions naturally"] },
+                            { title_th: "Reading (การอ่านเพื่อความเข้าใจ)", title_en: "Reading Comprehension", icon: "ph-book-open-text", obj_th: "วัดความสามารถในการอ่านและทำความเข้าใจข้อความภาษาอังกฤษ", obj_en: "Test the ability to read and comprehend English texts.", scope_th: ["การอ่านข้อความภาษาอังกฤษในระดับพื้นฐาน", "การอ่านข้อความภาษาอังกฤษในระดับปานกลาง", "การอ่านเพื่อจับใจความสำคัญ ตอบคำถาม และสรุปใจความจากบทอ่าน"], scope_en: ["Reading basic English texts", "Reading intermediate English texts", "Reading for main ideas, answering questions, and summarizing"] }
+                        ]
+                    }
                 }
             };
         };
@@ -268,30 +329,90 @@
         }
 
         const loadDataFromGitHub = async () => {
+            loadDefaultData(); // สำรองข้อมูล Default เผื่อดึงไม่สำเร็จ หรือโครงสร้างมาไม่ครบ
             try {
-                // เรียกข้อมูลตั้งต้น (Default) ขึ้นมาเตรียมรอไว้ก่อนเสมอ เพื่อป้องกันช่องโหว่จากการดึง JSON เก่าที่ไม่มีข้อมูล
-                loadDefaultData();
-
                 const response = await fetch(`site-data.json?v=${new Date().getTime()}`);
                 if (response.ok) {
                     const data = await response.json();
-                    
-                    // เอาข้อมูลจาก JSON มาทับข้อมูลตั้งต้น "เฉพาะกรณีที่มีข้อมูลอยู่จริง"
                     if(data.settings) siteData.settings = data.settings;
                     if(data.announcements) siteData.announcements = data.announcements;
-                    if(data.application_channels && data.application_channels.length > 0) siteData.application_channels = data.application_channels;
-                    if(data.timeline && data.timeline.length > 0) siteData.timeline = data.timeline;
-                    if(data.faqs && data.faqs.length > 0) siteData.faqs = data.faqs;
-                    
-                    // ส่วนป้องกันค่าเทอมหาย: ถ้าในไฟล์ JSON บน Github มี array ค่าเทอม ให้ดึงมาใช้ ถ้าไม่มี(หรือกลวง) ให้ใช้ Default ที่โหลดรอไว้ตอนแรก
-                    if(data.fees && data.fees.cards && data.fees.cards.length > 0) {
-                        siteData.fees = data.fees;
-                    }
+                    if(data.application_channels) siteData.application_channels = data.application_channels;
+                    if(data.timeline) siteData.timeline = data.timeline;
+                    if(data.faqs) siteData.faqs = data.faqs;
+                    if(data.fees && data.fees.cards && data.fees.cards.length > 0) siteData.fees = data.fees;
+                    if(data.syllabus && data.syllabus.m1) siteData.syllabus = data.syllabus;
                 }
-            } catch (e) { 
-                console.log("No existing JSON, using default."); 
-            }
+            } catch (e) { console.log("Using Default Data."); }
             renderAdminPanel();
+        };
+
+        // 🟢 ส่วนควบคุมหน้าแอดมิน (Syllabus Editor) 🟢
+        let adminSylLvl = 'm1';
+        window.adminSetSylLvl = (lvl) => {
+            adminSylLvl = lvl;
+            document.getElementById('btn-syl-lvl-m1').className = lvl === 'm1' ? "bg-psu-blue text-white px-6 py-2 rounded-full font-bold text-sm shadow-sm transition" : "bg-slate-200 text-slate-600 px-6 py-2 rounded-full font-bold text-sm shadow-sm transition hover:bg-slate-300";
+            document.getElementById('btn-syl-lvl-m4').className = lvl === 'm4' ? "bg-psu-blue text-white px-6 py-2 rounded-full font-bold text-sm shadow-sm transition" : "bg-slate-200 text-slate-600 px-6 py-2 rounded-full font-bold text-sm shadow-sm transition hover:bg-slate-300";
+            renderAdminSyllabusEditor();
+        };
+
+        const renderAdminSyllabusEditor = () => {
+            const container = document.getElementById('admin-syllabus-editor-container');
+            const data = siteData.syllabus[adminSylLvl];
+            let html = '';
+
+            // Math Editor (Bilingual)
+            html += `<div class="bg-blue-50/50 border border-blue-100 p-5 rounded-2xl mb-4"><h4 class="font-bold text-psu-blue mb-3 border-b pb-2"><i class="ph-fill ph-calculator"></i> วิชาคณิตศาสตร์ (Math)</h4>`;
+            data.math.forEach((g, gIdx) => {
+                html += `
+                <div class="mb-4 bg-white p-3 border rounded-lg shadow-sm">
+                    <label class="block text-sm font-bold text-slate-800 mb-2">${g.title_th} / ${g.title_en}</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div><label class="text-[10px] text-slate-500 font-bold block mb-1">เนื้อหา (TH - พิมพ์แยกบรรทัด)</label><textarea onchange="updateSyllabusList('math', ${gIdx}, 'items_th', this.value)" class="w-full text-xs p-2 border rounded h-24 outline-none focus:border-psu-blue">${g.items_th.join('\n')}</textarea></div>
+                        <div><label class="text-[10px] text-slate-500 font-bold block mb-1">Topics (EN - Line separated)</label><textarea onchange="updateSyllabusList('math', ${gIdx}, 'items_en', this.value)" class="w-full text-xs p-2 border rounded h-24 outline-none focus:border-psu-blue">${g.items_en.join('\n')}</textarea></div>
+                    </div>
+                </div>`;
+            });
+            html += `</div>`;
+
+            // Science Editor (Bilingual)
+            html += `<div class="bg-green-50/50 border border-green-100 p-5 rounded-2xl mb-4"><h4 class="font-bold text-islamic-green mb-3 border-b pb-2"><i class="ph-fill ph-flask"></i> วิชาวิทยาศาสตร์ (Science)</h4>`;
+            data.sci.forEach((g, gIdx) => {
+                html += `
+                <div class="mb-4 bg-white p-3 border rounded-lg shadow-sm">
+                    <div class="grid grid-cols-2 gap-3">
+                        <div><label class="text-[10px] text-slate-500 font-bold block mb-1">เนื้อหา (TH - พิมพ์แยกบรรทัด)</label><textarea onchange="updateSyllabusList('sci', ${gIdx}, 'items_th', this.value)" class="w-full text-xs p-2 border rounded h-32 outline-none focus:border-green-500">${g.items_th.join('\n')}</textarea></div>
+                        <div><label class="text-[10px] text-slate-500 font-bold block mb-1">Topics (EN - Line separated)</label><textarea onchange="updateSyllabusList('sci', ${gIdx}, 'items_en', this.value)" class="w-full text-xs p-2 border rounded h-32 outline-none focus:border-green-500">${g.items_en.join('\n')}</textarea></div>
+                    </div>
+                </div>`;
+            });
+            html += `</div>`;
+
+            // English Editor (Bilingual)
+            html += `<div class="bg-slate-50 border border-slate-200 p-5 rounded-2xl"><h4 class="font-bold text-slate-800 mb-3 border-b pb-2"><i class="ph-fill ph-translate"></i> วิชาภาษาอังกฤษ (English)</h4>`;
+            data.eng.forEach((g, gIdx) => {
+                html += `<div class="mb-4 bg-white p-3 border rounded-lg shadow-sm">
+                    <label class="block text-sm font-bold text-slate-800 mb-2">${g.title_th} / ${g.title_en}</label>
+                    <div class="grid grid-cols-2 gap-3 mb-2">
+                        <div><label class="text-[10px] text-slate-500 font-bold block mb-1">จุดประสงค์ (TH)</label><textarea onchange="updateSyllabusField('eng', ${gIdx}, 'obj_th', this.value)" class="w-full text-xs p-2 border rounded h-16 outline-none focus:border-slate-800">${g.obj_th}</textarea></div>
+                        <div><label class="text-[10px] text-slate-500 font-bold block mb-1">Objective (EN)</label><textarea onchange="updateSyllabusField('eng', ${gIdx}, 'obj_en', this.value)" class="w-full text-xs p-2 border rounded h-16 outline-none focus:border-slate-800">${g.obj_en}</textarea></div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div><label class="text-[10px] text-slate-500 font-bold block mb-1">ขอบเขตเนื้อหา (TH - พิมพ์แยกบรรทัด)</label><textarea onchange="updateSyllabusList('eng', ${gIdx}, 'scope_th', this.value)" class="w-full text-xs p-2 border rounded h-20 outline-none focus:border-slate-800">${g.scope_th.join('\n')}</textarea></div>
+                        <div><label class="text-[10px] text-slate-500 font-bold block mb-1">Scope (EN - Line separated)</label><textarea onchange="updateSyllabusList('eng', ${gIdx}, 'scope_en', this.value)" class="w-full text-xs p-2 border rounded h-20 outline-none focus:border-slate-800">${g.scope_en.join('\n')}</textarea></div>
+                    </div>
+                </div>`;
+            });
+            html += `</div>`;
+
+            container.innerHTML = html;
+        };
+
+        window.updateSyllabusList = (subject, groupIdx, field, val) => {
+            const list = val.split('\n').map(s => s.trim()).filter(s => s !== '');
+            siteData.syllabus[adminSylLvl][subject][groupIdx][field] = list;
+        };
+        window.updateSyllabusField = (subject, groupIdx, field, val) => {
+            siteData.syllabus[adminSylLvl][subject][groupIdx][field] = val.trim();
         };
 
         const renderAdminPanel = () => {
@@ -301,6 +422,9 @@
             document.getElementById('admin-apply-link').value = siteData.settings.applyLink || "";
             document.getElementById('admin-pdf-link').value = siteData.settings.pdfLink || "";
             document.getElementById('admin-manual-link').value = siteData.settings.manualLink || "";
+            document.getElementById('admin-fee-pdf').value = siteData.settings.feePdfLink || "";
+            document.getElementById('admin-syllabus-m1').value = siteData.settings.syllabusPdfM1 || "";
+            document.getElementById('admin-syllabus-m4').value = siteData.settings.syllabusPdfM4 || "";
 
             // 2. Channels
             document.getElementById('admin-channels-list').innerHTML = (siteData.application_channels || []).map((c, idx) => `
@@ -320,11 +444,21 @@
                         <input type="text" value="${c.title_en || ''}" onchange="updateData('application_channels',${idx},'title_en',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm font-bold" placeholder="Quota Name (EN)">
                     </div>
                     <div class="grid sm:grid-cols-2 gap-3 mb-3">
-                        <textarea onchange="updateData('application_channels',${idx},'desc_th',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm h-16">${c.desc_th || ''}</textarea>
-                        <textarea onchange="updateData('application_channels',${idx},'desc_en',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm h-16">${c.desc_en || ''}</textarea>
+                        <textarea onchange="updateData('application_channels',${idx},'desc_th',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm h-16" placeholder="คำอธิบาย (TH)">${c.desc_th || ''}</textarea>
+                        <textarea onchange="updateData('application_channels',${idx},'desc_en',this.value)" class="border border-slate-300 rounded-lg p-2 text-sm h-16" placeholder="Description (EN)">${c.desc_en || ''}</textarea>
                     </div>
-                    <div class="bg-white p-3 border rounded-lg grid sm:grid-cols-12 gap-2 mb-2"><div class="sm:col-span-3"><input type="text" value="${c.btn1_th || ''}" onchange="updateData('application_channels',${idx},'btn1_th',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="ปุ่มหลัก (TH)"></div><div class="sm:col-span-3"><input type="text" value="${c.btn1_en || ''}" onchange="updateData('application_channels',${idx},'btn1_en',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="Main Btn (EN)"></div><div class="sm:col-span-2"><input type="text" value="${c.btn1_icon || ''}" onchange="updateData('application_channels',${idx},'btn1_icon',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="Icon"></div><div class="sm:col-span-4"><input type="text" value="${c.btn1_link || ''}" onchange="updateData('application_channels',${idx},'btn1_link',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="Link URL"></div></div>
-                    <div class="bg-white p-3 border rounded-lg grid sm:grid-cols-12 gap-2"><div class="sm:col-span-3"><input type="text" value="${c.btn2_th || ''}" onchange="updateData('application_channels',${idx},'btn2_th',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="ปุ่มรอง (TH)"></div><div class="sm:col-span-3"><input type="text" value="${c.btn2_en || ''}" onchange="updateData('application_channels',${idx},'btn2_en',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="Sec Btn (EN)"></div><div class="sm:col-span-2"><input type="text" value="${c.btn2_icon || ''}" onchange="updateData('application_channels',${idx},'btn2_icon',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="Icon"></div><div class="sm:col-span-4"><input type="text" value="${c.btn2_link || ''}" onchange="updateData('application_channels',${idx},'btn2_link',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="Link URL"></div></div>
+                    <div class="bg-white p-3 border rounded-lg grid sm:grid-cols-12 gap-2 mb-2">
+                        <div class="sm:col-span-3"><input type="text" value="${c.btn1_th || ''}" onchange="updateData('application_channels',${idx},'btn1_th',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="ปุ่มหลัก (TH)"></div>
+                        <div class="sm:col-span-3"><input type="text" value="${c.btn1_en || ''}" onchange="updateData('application_channels',${idx},'btn1_en',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="Main Btn (EN)"></div>
+                        <div class="sm:col-span-2"><input type="text" value="${c.btn1_icon || ''}" onchange="updateData('application_channels',${idx},'btn1_icon',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="Icon"></div>
+                        <div class="sm:col-span-4"><input type="text" value="${c.btn1_link || ''}" onchange="updateData('application_channels',${idx},'btn1_link',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="Link URL"></div>
+                    </div>
+                    <div class="bg-white p-3 border rounded-lg grid sm:grid-cols-12 gap-2">
+                        <div class="sm:col-span-3"><input type="text" value="${c.btn2_th || ''}" onchange="updateData('application_channels',${idx},'btn2_th',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="ปุ่มรอง (TH)"></div>
+                        <div class="sm:col-span-3"><input type="text" value="${c.btn2_en || ''}" onchange="updateData('application_channels',${idx},'btn2_en',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="Sec Btn (EN)"></div>
+                        <div class="sm:col-span-2"><input type="text" value="${c.btn2_icon || ''}" onchange="updateData('application_channels',${idx},'btn2_icon',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="Icon"></div>
+                        <div class="sm:col-span-4"><input type="text" value="${c.btn2_link || ''}" onchange="updateData('application_channels',${idx},'btn2_link',this.value)" class="border rounded-md p-1.5 text-xs w-full" placeholder="Link URL"></div>
+                    </div>
                 </div>
             `).join('');
 
@@ -385,30 +519,45 @@
                 </div>
             `).join('');
 
-            // 6. Fees
+            // 6. Fees (Bilingual Support Fix)
             if(siteData.fees) {
                 // 6.1 Cards
                 document.getElementById('admin-fee-cards').innerHTML = siteData.fees.cards.map((c, idx) => `
-                    <div class="border border-slate-300 rounded-xl p-4 bg-slate-50 grid grid-cols-2 gap-3 relative">
-                        <input type="text" value="${c.title_th}" onchange="updateFeeCard(${idx},'title_th',this.value)" class="border p-2 text-sm rounded font-bold" placeholder="หัวข้อ">
-                        <input type="text" value="${c.term1_total}" onchange="updateFeeCard(${idx},'term1_total',this.value)" class="border p-2 text-sm rounded" placeholder="ยอดรวมเทอม 1 (ไม่ต้องใส่ลูกน้ำ)">
-                        <input type="text" value="${c.badge_th}" onchange="updateFeeCard(${idx},'badge_th',this.value)" class="border p-2 text-sm rounded" placeholder="ข้อความป้ายกำกับ">
-                        <input type="text" value="${c.desc_th}" onchange="updateFeeCard(${idx},'desc_th',this.value)" class="border p-2 text-sm rounded" placeholder="คำอธิบายอาหาร">
+                    <div class="border border-slate-300 rounded-xl p-4 bg-slate-50 relative">
+                        <div class="grid sm:grid-cols-2 gap-2 mb-2">
+                            <div><label class="text-[10px] text-slate-500">ชื่อ (TH)</label><input type="text" value="${c.title_th}" onchange="updateFeeCard(${idx},'title_th',this.value)" class="border p-2 text-xs w-full rounded font-bold"></div>
+                            <div><label class="text-[10px] text-slate-500">Title (EN)</label><input type="text" value="${c.title_en}" onchange="updateFeeCard(${idx},'title_en',this.value)" class="border p-2 text-xs w-full rounded font-bold"></div>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-2 mb-2">
+                            <div><label class="text-[10px] text-slate-500">คำอธิบายอาหาร (TH)</label><input type="text" value="${c.desc_th}" onchange="updateFeeCard(${idx},'desc_th',this.value)" class="border p-2 text-xs w-full rounded"></div>
+                            <div><label class="text-[10px] text-slate-500">Description (EN)</label><input type="text" value="${c.desc_en}" onchange="updateFeeCard(${idx},'desc_en',this.value)" class="border p-2 text-xs w-full rounded"></div>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-2 mb-2">
+                            <div><label class="text-[10px] text-slate-500">ป้ายกำกับแบ่งชำระ (TH)</label><input type="text" value="${c.badge_th}" onchange="updateFeeCard(${idx},'badge_th',this.value)" class="border p-2 text-xs w-full rounded"></div>
+                            <div><label class="text-[10px] text-slate-500">Badge (EN)</label><input type="text" value="${c.badge_en}" onchange="updateFeeCard(${idx},'badge_en',this.value)" class="border p-2 text-xs w-full rounded"></div>
+                        </div>
+                        <div><label class="text-[10px] text-slate-500">ยอดรวมเทอม 1 (ตัวเลขใส่ลูกน้ำได้เลย)</label><input type="text" value="${c.term1_total}" onchange="updateFeeCard(${idx},'term1_total',this.value)" class="border p-2 text-xs w-full rounded bg-white"></div>
                     </div>
                 `).join('');
 
                 // 6.2 Breakdown
                 document.getElementById('admin-fee-breakdown').innerHTML = siteData.fees.breakdown.map((b, bIdx) => `
                     <div class="border border-slate-300 rounded-xl p-4 bg-white shadow-sm">
-                        <div class="flex justify-between items-center mb-3">
-                            <input type="text" value="${b.title_th}" onchange="updateFeeSection(${bIdx},'title_th',this.value)" class="font-bold border-b outline-none w-1/2" placeholder="ชื่อหมวดหมู่">
-                            <button onclick="addFeeItem(${bIdx})" class="text-xs bg-slate-200 hover:bg-slate-300 px-2 py-1 rounded">เพิ่มรายการย่อย</button>
+                        <div class="flex justify-between items-center mb-3 border-b pb-2">
+                            <div class="w-full grid sm:grid-cols-2 gap-2 pr-4">
+                                <div><label class="text-[10px] text-slate-500 block">ชื่อหมวด (TH)</label><input type="text" value="${b.title_th}" onchange="updateFeeSection(${bIdx},'title_th',this.value)" class="font-bold border p-1 rounded text-sm w-full outline-none"></div>
+                                <div><label class="text-[10px] text-slate-500 block">Title (EN)</label><input type="text" value="${b.title_en}" onchange="updateFeeSection(${bIdx},'title_en',this.value)" class="font-bold border p-1 rounded text-sm w-full outline-none"></div>
+                                <div><label class="text-[10px] text-slate-500 block">ซับไตเติล (TH)</label><input type="text" value="${b.subtitle_th}" onchange="updateFeeSection(${bIdx},'subtitle_th',this.value)" class="border p-1 rounded text-xs w-full outline-none"></div>
+                                <div><label class="text-[10px] text-slate-500 block">Subtitle (EN)</label><input type="text" value="${b.subtitle_en}" onchange="updateFeeSection(${bIdx},'subtitle_en',this.value)" class="border p-1 rounded text-xs w-full outline-none"></div>
+                            </div>
+                            <button onclick="addFeeItem(${bIdx})" class="text-[10px] font-bold bg-slate-200 hover:bg-slate-300 px-3 py-2 rounded shrink-0 self-start mt-4"><i class="ph-bold ph-plus"></i> เพิ่มรายการ</button>
                         </div>
-                        <div class="space-y-2 pl-4 border-l-2">
+                        <div class="space-y-2 pl-2 border-l-2 border-slate-200">
                             ${b.items.map((item, iIdx) => `
-                                <div class="flex gap-2 items-center">
-                                    <input type="text" value="${item.name_th}" onchange="updateFeeItem(${bIdx},${iIdx},'name_th',this.value)" class="border p-1.5 text-xs rounded w-1/2" placeholder="ชื่อรายการ">
-                                    <input type="text" value="${item.price}" onchange="updateFeeItem(${bIdx},${iIdx},'price',this.value)" class="border p-1.5 text-xs rounded w-1/3" placeholder="ราคา">
+                                <div class="flex gap-2 items-center bg-slate-50 p-1 rounded">
+                                    <input type="text" value="${item.name_th}" onchange="updateFeeItem(${bIdx},${iIdx},'name_th',this.value)" class="border p-1.5 text-xs rounded w-2/5" placeholder="ชื่อรายการ (TH)">
+                                    <input type="text" value="${item.name_en}" onchange="updateFeeItem(${bIdx},${iIdx},'name_en',this.value)" class="border p-1.5 text-xs rounded w-2/5" placeholder="Item Name (EN)">
+                                    <input type="text" value="${item.price}" onchange="updateFeeItem(${bIdx},${iIdx},'price',this.value)" class="border p-1.5 text-xs rounded w-1/5" placeholder="ราคา">
                                     <button onclick="removeFeeItem(${bIdx},${iIdx})" class="text-red-500 hover:bg-red-50 p-1 rounded"><i class="ph-bold ph-x"></i></button>
                                 </div>
                             `).join('')}
@@ -418,14 +567,18 @@
 
                 // 6.3 Summary Table
                 document.getElementById('admin-fee-table').innerHTML = siteData.fees.summary_table.map((r, idx) => `
-                    <div class="flex gap-2">
-                        <input type="text" value="${r.type_th}" onchange="updateFeeTable(${idx},'type_th',this.value)" class="border p-2 text-sm rounded w-2/5 font-bold" placeholder="ชื่อระดับชั้น">
-                        <input type="text" value="${r.term1}" onchange="updateFeeTable(${idx},'term1',this.value)" class="border p-2 text-sm rounded w-1/5" placeholder="เทอม 1">
-                        <input type="text" value="${r.term2}" onchange="updateFeeTable(${idx},'term2',this.value)" class="border p-2 text-sm rounded w-1/5" placeholder="เทอม 2">
-                        <input type="text" value="${r.total}" onchange="updateFeeTable(${idx},'total',this.value)" class="border p-2 text-sm rounded w-1/5 font-bold text-psu-accent" placeholder="รวม">
+                    <div class="flex flex-wrap sm:flex-nowrap gap-2 bg-slate-50 p-2 rounded border border-slate-200">
+                        <input type="text" value="${r.type_th}" onchange="updateFeeTable(${idx},'type_th',this.value)" class="border p-2 text-xs rounded w-full sm:w-1/4 font-bold" placeholder="ระดับชั้น (TH)">
+                        <input type="text" value="${r.type_en}" onchange="updateFeeTable(${idx},'type_en',this.value)" class="border p-2 text-xs rounded w-full sm:w-1/4 font-bold" placeholder="Grade (EN)">
+                        <input type="text" value="${r.term1}" onchange="updateFeeTable(${idx},'term1',this.value)" class="border p-2 text-xs rounded w-1/3 sm:w-1/6" placeholder="เทอม 1">
+                        <input type="text" value="${r.term2}" onchange="updateFeeTable(${idx},'term2',this.value)" class="border p-2 text-xs rounded w-1/3 sm:w-1/6" placeholder="เทอม 2">
+                        <input type="text" value="${r.total}" onchange="updateFeeTable(${idx},'total',this.value)" class="border p-2 text-xs rounded w-1/3 sm:w-1/6 font-bold text-psu-accent" placeholder="รวม">
                     </div>
                 `).join('');
             }
+
+            // 7. Syllabus
+            renderAdminSyllabusEditor();
         };
 
         window.updateSettings = (k, v) => { siteData.settings[k] = v; };
@@ -484,7 +637,7 @@
                 const putRes = await fetch(apiUrl, {
                     method: 'PUT',
                     headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: 'Update site-data via Fee Builder', content: contentBase64, sha: sha !== '' ? sha : undefined })
+                    body: JSON.stringify({ message: 'Update site-data via Admin Panel', content: contentBase64, sha: sha !== '' ? sha : undefined })
                 });
 
                 if (putRes.ok) showToast("อัปเดตข้อมูลขึ้นเว็บไซต์สำเร็จ!", "success");
