@@ -434,26 +434,30 @@
           "items_th": [
             "มุมและเส้นขนาน",
             "สมบัติของเส้นขนาน",
-            "ความยาวรอบรูปและพื้นที่ รูปสามเหลี่ยม",
-            "ความยาวรอบรูปและพื้นที่ รูปสี่เหลี่ยม",
-            "ความยาวรอบรูปและพื้นที่ รูปวงกลม",
-            "ความยาวรอบรูปและพื้นที่ รูปหลายเหลี่ยม",
-            "ปริมาตรและความจุของทรงกระบอก",
-            "ปริมาตรและความจุของปริซึม",
+            "ความยาวรอบรูปและพื้นที่",
+            "รูปสามเหลี่ยม",
+            "รูปสี่เหลี่ยม",
+            "รูปวงกลม",
+            "รูปหลายเหลี่ยม",
+            "ปริมาตรและความจุของทรงกระบอกและปริซึม",
             "ลูกบาศก์",
-            "การแปลงหน่วยมาตราต่าง ๆ (ความยาว, พื้นที่, น้ำหนัก, เวลา)"
+            "การแปลงหน่วย",
+            "มาตราต่าง ๆ",
+            "ความยาว พื้นที่ น้ำหนัก เวลา"
           ],
           "items_en": [
-            "Angles & Parallel lines",
-            "Properties of parallel lines",
-            "Perimeter & Area (Triangle)",
-            "Perimeter & Area (Quadrilateral)",
-            "Perimeter & Area (Circle)",
-            "Perimeter & Area (Polygon)",
-            "Volume & Capacity (Cylinder)",
-            "Volume & Capacity (Prism)",
+            "Angles and Parallel Lines",
+            "Properties of Parallel Lines",
+            "Perimeter and Area",
+            "Triangle / Triangles",
+            "Quadrilateral / Quadrilaterals",
+            "Circle / Circles",
+            "Polygon / Polygons",
+            "Volume and Capacity of Cylinders and Prisms",
             "Cube",
-            "Unit conversion (Length, Area, Weight, Time)"
+            "Unit Conversion",
+            "Units of Measurement",
+            "Length, Area, Weight and Time"
           ]
         },
         {
