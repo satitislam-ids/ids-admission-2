@@ -467,14 +467,14 @@
           "items_th": [
             "การนำเสนอและการอ่านข้อมูลโดยใช้ตาราง",
             "การอ่านและวิเคราะห์แผนภูมิแท่ง",
-            "การอ่านและวิเคราะห์กราฟเส้น",
-            "การอ่านและวิเคราะห์แผนภูมิวงกลม"
+            "กราฟเส้น",
+            "แผนภูมิวงกลม"
           ],
           "items_en": [
-            "Data presentation & Table reading",
-            "Bar chart analysis",
-            "Line graph analysis",
-            "Pie chart analysis"
+            "Data Presentation and Interpretation Using Tables",
+            "Reading and Interpreting Bar Charts",
+            "Line Graph / Line Chart",
+            "Pie Chart"
           ]
         }
       ],
