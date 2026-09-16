@@ -727,18 +727,16 @@
           "title_en": "Vocabulary",
           "icon": "ph-text-aa",
           "obj_th": "วัดความรู้และความเข้าใจความหมายของคำศัพท์ภาษาอังกฤษที่ใช้ในชีวิตประจำวันและในบริบทที่พบได้ในระดับมัธยมศึกษาตอนต้น",
-          "obj_en": "Test knowledge and understanding of daily English vocabulary found in junior high level contexts.",
+          "obj_en": "English vocabulary used in daily life and contexts appropriate to the lower-secondary level.",
           "scope_th": [
             "การรู้ความหมายของคำศัพท์",
-            "การจำแนกประเภทและจัดกลุ่มคำศัพท์",
-            "การนำคำศัพท์ไปประยุกต์ใช้ในประโยค",
-            "การประยุกต์ใช้คำศัพท์ในสถานการณ์ต่าง ๆ"
+            "การจำแนกคำศัพท์",
+            "การนำคำศัพท์ไปใช้ในประโยคหรือสถานการณ์ต่าง ๆ"
           ],
           "scope_en": [
-            "Knowing word meanings",
-            "Classifying and grouping words",
-            "Applying words in sentences",
-            "Using vocabulary in various situations"
+            "Understanding word meanings",
+            "Classifying vocabulary",
+            "Using vocabulary in sentences or various situations"
           ]
         },
         {
@@ -749,13 +747,13 @@
           "obj_en": "Test understanding of basic English grammar essential for communication and reading.",
           "scope_th": [
             "Parts of Speech: Noun, Pronoun, Verb, Adjective, Adverb, Preposition, Conjunction",
-            "การเลือกใช้รูปคำ (Word Form) และโครงสร้างประโยคได้ถูกต้อง",
-            "การประยุกต์ใช้ไวยากรณ์ในบริบทต่าง ๆ (Grammar in Context)"
+            "การเลือกใช้รูปคำและโครงสร้างประโยคได้ถูกต้อง",
+            "การประยุกต์ใช้ไวยากรณ์ในบริบท"
           ],
           "scope_en": [
             "Parts of Speech: Noun, Pronoun, Verb, Adjective, Adverb, Preposition, Conjunction",
-            "Correct usage of Word Forms and sentence structures",
-            "Grammar in Context"
+            "Correct use of word forms and sentence structures",
+            "Applying grammar in context"
           ]
         },
         {
@@ -765,22 +763,20 @@
           "obj_th": "วัดความสามารถในการเลือกใช้ภาษาอังกฤษให้เหมาะสมกับสถานการณ์ในชีวิตประจำวัน",
           "obj_en": "Test the ability to choose appropriate English for daily life situations.",
           "scope_th": [
-            "การสนทนาทักทายและการกล่าวลา (Greetings and Farewells)",
-            "การทำความเข้าใจบริบทของสถานการณ์ต่าง ๆ",
-            "การเลือกใช้สำนวน (Idioms/Expressions) หรือประโยคที่เหมาะสมและเป็นธรรมชาติ"
+            "การทักทายและการกล่าวลา",
+            "การเข้าใจสถานการณ์และเลือกใช้สำนวนหรือประโยคที่เหมาะสมและเป็นธรรมชาติ"
           ],
           "scope_en": [
-            "Greetings and Farewells",
-            "Understanding context of various situations",
-            "Choosing appropriate Idioms/Expressions naturally"
+            "Greetings and farewells",
+            "Understanding situations and choosing appropriate and natural expressions or sentences"
           ]
         },
         {
           "title_th": "Reading (การอ่านเพื่อความเข้าใจ)",
           "title_en": "Reading Comprehension",
           "icon": "ph-book-open-text",
-          "obj_th": "วัดความสามารถในการอ่านและทำความเข้าใจข้อความภาษาอังกฤษ",
-          "obj_en": "Test the ability to read and comprehend English texts.",
+          "obj_th": "วัดความสามารถในการอ่านและทำความเข้าใจข้อความภาษาอังกฤษในระดับพื้นฐานถึงปานกลาง",
+          "obj_en": "Assess the ability to read and understand English texts at the basic to intermediate level.",
           "scope_th": [
             "การอ่านข้อความภาษาอังกฤษในระดับพื้นฐาน",
             "การอ่านข้อความภาษาอังกฤษในระดับปานกลาง",
