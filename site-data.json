@@ -40,8 +40,8 @@
       "btn1_en": "Apply Now",
       "btn1_link": "https://ischoolme.com/ischoolme/sathit/register_student.php?menu=register",
       "btn1_icon": "ph-bold ph-cursor-click",
-      "btn2_th": "",
-      "btn2_en": "",
+      "btn2_th": "โหลดฟอร์ม",
+      "btn2_en": "Form",
       "btn2_link": "",
       "btn2_icon": "ph-bold ph-download-simple"
     },
@@ -409,32 +409,22 @@
           "title_en": "Number & Algebra",
           "icon": "ph-math-operations",
           "items_th": [
-            "จำนวนเต็ม",
-            "เศษส่วน",
-            "ทศนิยม",
-            "อัตราส่วน",
-            "สัดส่วน",
-            "ร้อยละ",
+            "การบวก ลบ คูณ หาร จำนวนเต็ม",
+            "เศษส่วน ทศนิยม",
+            "อัตราส่วน สัดส่วน ร้อยละ",
             "บัญญัติไตรยางศ์",
             "ห.ร.ม. และ ค.ร.น.",
-            "การบวก ลบ คูณ หาร จำนวนเต็ม เศษส่วน ทศนิยม",
-            "การประยุกต์โจทย์ปัญหา ห.ร.ม. และ ค.ร.น.",
             "สมการและการแก้โจทย์ปัญหาสมการ",
             "แบบรูปและความสัมพันธ์"
           ],
           "items_en": [
-            "Integers",
-            "Fractions",
-            "Decimals",
-            "Ratio",
-            "Proportion",
-            "Percentage",
-            "Cross-multiplication",
-            "GCD & LCM",
-            "Basic Operations",
-            "GCD & LCM Applications",
-            "Equations & Word Problems",
-            "Patterns & Relationships"
+            "Addition, Subtraction, Multiplication and Division of Integers",
+            "Fractions and Decimals",
+            "Ratios, Proportions and Percentages",
+            "Rule of Three",
+            "Greatest Common Divisor (GCD) and Least Common Multiple (LCM)",
+            "Equations and Solving Equation Problems",
+            "Patterns and Relationships"
           ]
         },
         {
