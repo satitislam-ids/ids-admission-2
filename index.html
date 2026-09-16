@@ -1161,7 +1161,17 @@
                         <li class="flex items-start gap-2"><i class="ph-bold ph-caret-right text-psu-accent mt-1 shrink-0"></i> <span data-i18n="fee_future_m2_boarding">${i18n[currentLang].fee_future_m2_boarding}</span></li>
                         <li class="flex items-start gap-2"><i class="ph-bold ph-caret-right text-psu-accent mt-1 shrink-0"></i> <span data-i18n="fee_future_m2_day">${i18n[currentLang].fee_future_m2_day}</span></li>
                         <li class="flex items-start gap-2"><i class="ph-bold ph-caret-right text-psu-accent mt-1 shrink-0"></i> <span data-i18n="fee_future_m5">${i18n[currentLang].fee_future_m5}</span></li>
+                        <li class="flex items-start gap-2"><i class="ph-bold ph-caret-right text-psu-accent mt-1 shrink-0"></i> <span data-i18n="fee_future_m6">${i18n[currentLang].fee_future_m6}</span></li>
                     </ul>
+                </div>
+                
+                <!-- LINE Notification Box -->
+                <div class="mt-4 bg-emerald-900/30 border border-emerald-500/30 rounded-xl p-5 relative overflow-hidden flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl shrink-0 relative z-10"><i class="fab fa-line"></i></div>
+                    <div class="relative z-10">
+                        <h4 class="text-emerald-400 font-bold mb-1"><span data-i18n="fee_payment_method_title">${i18n[currentLang].fee_payment_method_title}</span></h4>
+                        <p class="text-sm text-emerald-100/80 leading-relaxed" data-i18n="fee_payment_method_desc">${i18n[currentLang].fee_payment_method_desc}</p>
+                    </div>
                 </div>
                 `;
                 document.getElementById('fee-details-container').innerHTML = breakdownHTML + tableHTML;
