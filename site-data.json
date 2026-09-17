@@ -364,17 +364,6 @@
             "name_th": "หอพักปกติ (ม.4)",
             "name_en": "Dormitory (M.4)",
             "price": "8,000"
-          },
-          {
-            "name_th": "*ประกันหอพัก ม.4 (แรกเข้า)",
-            "name_en": "*M.4 Dorm deposit (Initial)",
-            "price": "1,500",
-            "is_muted": true
-          },
-          {
-            "name_th": "เทสส",
-            "name_en": "New Item",
-            "price": "85163"
           }
         ]
       }
