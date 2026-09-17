@@ -275,13 +275,13 @@
             "price": "5,450"
           },
           {
-            "name_th": "กิฟเซต/เครื่องนอน",
-            "name_en": "Gift set / Bedding",
+            "name_th": "ค่ากิฟต์เซตนักเรียนใหม่",
+            "name_en": "New Student Gift Set",
             "price": "1,500"
           },
           {
-            "name_th": "ประกันทรัพย์สิน (คืนตอนจบ)",
-            "name_en": "Property deposit (Refundable)",
+            "name_th": "ค่าประกันทรัพย์สินเสียหาย (คืนตอนจบ)",
+            "name_en": "Property Damage Deposit (Refundable)",
             "price": "1,500"
           },
           {
@@ -290,7 +290,7 @@
             "price": "450"
           },
           {
-            "name_th": "สมาชิกหอสมุด JF Kennedy",
+            "name_th": "สมาชิกหอสมุดจอห์นเอฟ เคนเนดี้",
             "name_en": "JF Kennedy Library Fee",
             "price": "750"
           },
@@ -316,19 +316,19 @@
             "price": "20,000"
           },
           {
-            "name_th": "ค่าบำรุงห้องเรียน/สื่อ",
-            "name_en": "Classroom / Media Maintenance",
+            "name_th": "ค่าบำรุงห้องเรียนและสื่อการเรียนรู้",
+            "name_en": "Classroom and Learning Materials Maintenance",
             "price": "5,000"
           },
           {
-            "name_th": "ทัศนศึกษา (ม.1)",
+            "name_th": "ค่าทัศนศึกษา (ม.1)",
             "name_en": "Field Trip (M.1)",
             "price": "5,000",
             "is_separator": true
           },
           {
-            "name_th": "ทัศนศึกษา ตปท. (ม.4)",
-            "name_en": "Overseas Field Trip (M.4)",
+            "name_th": "ค่าทัศนศึกษา ณ ต่างประเทศ (ม.4)",
+            "name_en": "Overseas Exchange Field Trip (M.4)",
             "price": "10,000"
           }
         ]
@@ -370,6 +370,11 @@
             "name_en": "*M.4 Dorm deposit (Initial)",
             "price": "1,500",
             "is_muted": true
+          },
+          {
+            "name_th": "รายการใหม่",
+            "name_en": "New Item",
+            "price": "0"
           }
         ]
       }
