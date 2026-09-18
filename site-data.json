@@ -703,12 +703,14 @@
           "scope_th": [
             "การรู้ความหมายของคำศัพท์",
             "การจำแนกคำศัพท์",
-            "การนำคำศัพท์ไปใช้ในประโยคหรือสถานการณ์ต่าง ๆ"
+            "การนำคำศัพท์ไปใช้ในประโยค",
+            "การนำคำศัพท์ไปใช้ในสถานการณ์ต่าง ๆ"
           ],
           "scope_en": [
             "Understanding word meanings",
             "Classifying vocabulary",
-            "Using vocabulary in sentences or various situations"
+            "Using vocabulary in sentences",
+            "Using vocabulary in different situations"
           ]
         },
         {
@@ -724,7 +726,7 @@
           ],
           "scope_en": [
             "Parts of Speech: Noun, Pronoun, Verb, Adjective, Adverb, Preposition, Conjunction",
-            "Correct use of word forms and sentence structures",
+            "Using appropriate word forms and sentence structures correctly",
             "Applying grammar in context"
           ]
         },
