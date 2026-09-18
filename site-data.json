@@ -583,34 +583,26 @@
           "title_en": "Number & Algebra",
           "icon": "ph-math-operations",
           "items_th": [
-            "จำนวนเต็ม",
-            "จำนวนจริง",
+            "จำนวนเต็ม และจำนวนจริง",
             "เศษส่วนและทศนิยม",
             "เลขยกกำลัง",
-            "อัตราส่วน",
-            "สัดส่วน",
-            "ร้อยละ",
+            "อัตราส่วน สัดส่วน ร้อยละ",
             "สมการเชิงเส้นตัวแปรเดียว",
             "กราฟและความสัมพันธ์เชิงเส้น",
             "ฟังก์ชันกำลังสอง",
-            "พหุนามดีกรีสอง",
-            "พหุนามดีกรีมากกว่าสอง",
+            "พหุนามดีกรีสอง และมากกว่าสอง",
             "ระบบสมการเชิงเส้นสองตัวแปร"
           ],
           "items_en": [
-            "Integers",
-            "Real Numbers",
-            "Fractions & Decimals",
-            "Exponents",
-            "Ratio",
-            "Proportion",
-            "Percentage",
-            "Linear Equations (One variable)",
-            "Graphs & Linear relationships",
-            "Quadratic functions",
-            "Polynomials (Degree 2)",
-            "Polynomials (Degree > 2)",
-            "System of linear equations (Two variables)"
+            "Integers and Real Numbers",
+            "Fractions and Decimals",
+            "Exponents / Powers",
+            "Ratio, Proportion and Percentage",
+            "Linear Equation with One Variable",
+            "Graphs and Linear Relationships",
+            "Quadratic Function",
+            "Quadratic and Higher-Degree Polynomials",
+            "System of Linear Equations in Two Variables"
           ]
         },
         {
@@ -620,30 +612,22 @@
           "items_th": [
             "รูปเรขาคณิตสองมิติและสามมิติ",
             "เส้นขนาน",
-            "ปริซึม",
-            "ทรงกระบอก",
-            "พีระมิด",
-            "วงกลม",
-            "ทรงกลม",
+            "ปริซึม ทรงกระบอก พีระมิด วงกลม ทรงกลม",
             "การแปลงทางเรขาคณิต",
             "การเท่ากันทุกประการของรูปสามเหลี่ยม",
             "รูปสามเหลี่ยมคล้าย",
-            "ทฤษฎีบทปีทาโกรัส",
+            "กฎของบทพีทาโกรัส",
             "อัตราส่วนตรีโกณมิติ"
           ],
           "items_en": [
-            "2D & 3D Geometry",
-            "Parallel lines",
-            "Prisms",
-            "Cylinders",
-            "Pyramids",
-            "Circles",
-            "Spheres",
-            "Geometric transformations",
-            "Congruence of triangles",
-            "Similarity of triangles",
-            "Pythagorean theorem",
-            "Trigonometric ratios"
+            "Two-Dimensional and Three-Dimensional Geometric Figures",
+            "Parallel Lines",
+            "Prisms, Cylinders, Pyramids, Circles and Spheres",
+            "Geometric Transformations",
+            "Congruence of Triangles",
+            "Similar Triangles",
+            "Pythagoras' theorem",
+            "Trigonometric Ratios"
           ]
         },
         {
@@ -651,9 +635,7 @@
           "title_en": "Statistics & Probability",
           "icon": "ph-chart-pie-slice",
           "items_th": [
-            "ข้อมูล",
-            "ค่ากลางของข้อมูล",
-            "การกระจายของข้อมูล",
+            "ข้อมูล ค่ากลาง และการกระจายของข้อมูล",
             "แผนภาพกล่อง",
             "แผนภูมิรูปภาพ",
             "แผนภูมิแท่ง",
@@ -662,23 +644,19 @@
             "แผนภาพจุด",
             "แผนภาพต้น-ใบ",
             "ฮิสโตแกรม",
-            "ความน่าจะเป็น",
-            "โอกาสของเหตุการณ์"
+            "ความน่าจะเป็น และโอกาสของเหตุการณ์"
           ],
           "items_en": [
-            "Data",
-            "Measures of central tendency",
-            "Data dispersion",
-            "Box plots",
-            "Pictograms",
-            "Bar charts",
-            "Pie charts",
-            "Line graphs",
-            "Dot plots",
-            "Stem-and-leaf plots",
-            "Histograms",
-            "Probability",
-            "Event occurrence"
+            "Data, Central Tendency and Data Distribution",
+            "Box Plot / Box-and-Whisker Plot",
+            "Pictograph",
+            "Bar Chart / Bar Graph",
+            "Pie Chart",
+            "Line Graph / Line Chart",
+            "Dot Plot",
+            "Stem-and-Leaf Plot",
+            "Histogram",
+            "Probability and Likelihood of Events"
           ]
         }
       ],
@@ -688,7 +666,7 @@
           "title_en": "Science M.4 Topics",
           "icon": "ph-flask",
           "items_th": [
-            "เซลล์และออร์แกเนล",
+            "เซลล์และออร์แกเนลล์",
             "ชีวิตของพืช",
             "ร่างกายมนุษย์",
             "การเคลื่อนที่และแรง",
@@ -701,16 +679,16 @@
             "อวกาศ"
           ],
           "items_en": [
-            "Cells and organelles",
-            "Plant life",
-            "Human body",
-            "Motion and forces",
-            "Thermal energy",
+            "Cells and Organelles",
+            "Plant Life",
+            "Human Body",
+            "Motion and Force",
+            "Thermal Energy / Heat Energy",
             "Light",
-            "Matter and its properties",
-            "Separation of mixtures",
-            "Earth's structure",
-            "Natural disasters",
+            "Matter and Its Properties",
+            "Separation of Substances / Separation of Mixtures",
+            "Structure of the Earth",
+            "Natural Disasters",
             "Space"
           ]
         }
